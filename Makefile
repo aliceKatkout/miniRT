@@ -6,7 +6,7 @@
 #    By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/07 18:05:22 by avedrenn         ###   ########.fr        #
+#    Updated: 2023/08/07 18:15:05 by avedrenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ CFLAGS	= -Wall -Wextra -Werror
 
 FILES	=	main	\
 			parsing \
+			utils 	\
 	
 	
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))

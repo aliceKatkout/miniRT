@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/07 18:01:52 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:14:01 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ typedef struct s_scene
 
 void	print_list_prefix(t_list *lst, char *prefix);
 void	parse_scene(char *argv, t_scene *scene);
+
+void	ft_error(char *error);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/07 18:10:39 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:14:27 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	parse_scene(char *argv, t_scene *scene)
 	t_list	*tmp;
 
 	if (ft_strncmp(argv + (ft_strlen(argv) - 3), ".rt", 3) != 0)
-		printf("Scene given is not in .rt format.\n");
+		ft_error("Scene given is not in .rt format.\n");
 	scene->rt_file = open(argv, O_RDWR);
 	if (scene->rt_file < 0)
-		printf("Can't open scene.\n");
+		ft_error("Can't open scene.\n");
 	buf = ft_lstnew((void *) get_next_line(scene->rt_file));
 	if (!buf)
 	{
