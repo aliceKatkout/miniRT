@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/07 18:01:52 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:24:58 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,22 @@
 
 # define PI 3.14159265358979323846
 
+typedef struct s_form
+{
+	//
+} t_form;
+
+typedef struct s_env
+{
+	t_camera	camera;
+	t_ambient	amb;
+	t_light		light;
+} t_env;
 typedef struct s_scene
 {	
 	int			rt_file;
+	t_env		env;
+	t_form		form;
 
 } t_scene;
 
