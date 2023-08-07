@@ -6,7 +6,7 @@
 #    By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/07 16:32:06 by avedrenn         ###   ########.fr        #
+#    Updated: 2023/08/07 16:38:43 by avedrenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ= $(SRCS:.c=.o)
 
 CC= gcc
 
-HEADER = so_long.h
+HEADER = miniRT.h
 
 CFLAGS= -Wall -Wextra -Werror
 
