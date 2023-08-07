@@ -6,7 +6,7 @@
 #    By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/07 17:11:11 by mrabourd         ###   ########.fr        #
+#    Updated: 2023/08/07 17:19:36 by mrabourd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(LIBFT) -I $(MLX)
 
 $(NAME): $(OBJ) $(HEADER) libft/libft.a mlx-linux/libmlx.a
-	${CC} -$(CFLAGS) ${OBJ} -L ./libft -lft -L ./mlx-linux -lmlx -lXext -lX11 -lm -lbsd
+	${CC} $(CFLAGS) ${OBJ} -L ./libft -lft -L ./mlx-linux -lmlx -lXext -lX11 -lm -lbsd
 
 # %.o: %.c libft/libft.a mlx-linux/libmlx.a
 # 	$(CC) $(CFLAGS) -o $@ -c $< -I $(LIBFT) -I $(MLX)
