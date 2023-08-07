@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/07 16:40:46 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:10:04 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <limits.h>
 
 //# include "mlx.h"
-# include "libft.h"
+# include "libft/libft.h"
 
 # define PI 3.14159265358979323846
 

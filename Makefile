@@ -3,36 +3,50 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+         #
+#    By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/07 16:38:43 by avedrenn         ###   ########.fr        #
+#    Updated: 2023/08/07 17:11:11 by mrabourd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS= srcs/main.c
+SRC_DIR	= srcs/
 
-NAME= miniRT
+OBJ_DIR	= obj/
 
-LIBFT= /libft/libft.a
+LIBFT	= /libft/libft.a
 
-MLX= /mlx-linux/libmlx.a
+MLX		= /mlx-linux/libmlx.a
 
-OBJ= $(SRCS:.c=.o)
+NAME	= miniRT
 
-CC= gcc
+CC		= cc
 
-HEADER = miniRT.h
+HEADER	= miniRT.h
 
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
+
+FILES	=	main	\
+	
+	
+SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
+OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
+
+OBJF = .cache_exists
+
+$(OBJF) :
+	@mkdir -p $(OBJ_DIR)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER) libft/libft.a mlx-linux/libmlx.a
-	${CC} -o $@ ${OBJ} -L ./libft -lft -L ./mlx-linux -lmlx -lXext -lX11 -lm -lbsd
-
-%.o: %.c libft/libft.a mlx-linux/libmlx.a
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(LIBFT) -I $(MLX)
+
+$(NAME): $(OBJ) $(HEADER) libft/libft.a mlx-linux/libmlx.a
+	${CC} -$(CFLAGS) ${OBJ} -L ./libft -lft -L ./mlx-linux -lmlx -lXext -lX11 -lm -lbsd
+
+# %.o: %.c libft/libft.a mlx-linux/libmlx.a
+# 	$(CC) $(CFLAGS) -o $@ -c $< -I $(LIBFT) -I $(MLX)
 
 libft/libft.a:
 	${MAKE} -C libft
@@ -41,7 +55,8 @@ mlx-linux/libmlx.a :
 	${MAKE} -C mlx-linux
 
 clean:
-	rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
+	@rm -f $(OBJF)
 	${MAKE} -C libft clean
 
 fclean: clean
