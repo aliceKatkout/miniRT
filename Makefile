@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+         #
+#    By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/07 18:15:05 by avedrenn         ###   ########.fr        #
+#    Updated: 2023/08/07 18:28:29 by mrabourd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,10 @@ HEADER	= miniRT.h
 
 CFLAGS	= -Wall -Wextra -Werror
 
-FILES	=	main	\
-			parsing \
-			utils 	\
+FILES	=	main		\
+			parsing		\
+			utils		\
+			parsing_env	\
 	
 	
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
