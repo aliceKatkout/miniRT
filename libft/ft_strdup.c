@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:23:04 by avedrenn          #+#    #+#             */
-/*   Updated: 2022/11/08 16:45:27 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:04:50 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,24 @@ char	*ft_strdup(const char *s)
 	size = 0;
 	while (s[size])
 		size ++;
+	dup = (char *) malloc (size + 1);
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		dup[i] = s[i];
+		i ++;
+	}
+	dup[i] = 0;
+	return (dup);
+}
+
+char	*ft_strdup_size(const char *s, int size)
+{
+	int		i;
+	char	*dup;
+
 	dup = (char *) malloc (size + 1);
 	if (!dup)
 		return (NULL);

@@ -6,11 +6,7 @@
 #    By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/08/07 17:19:36 by mrabourd         ###   ########.fr        #
-=======
-#    Updated: 2023/08/07 17:28:15 by avedrenn         ###   ########.fr        #
->>>>>>> 9b6f7c2 (Change executable name)
+#    Updated: 2023/08/07 18:05:22 by avedrenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +27,7 @@ HEADER	= miniRT.h
 CFLAGS	= -Wall -Wextra -Werror
 
 FILES	=	main	\
+			parsing \
 	
 	
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))

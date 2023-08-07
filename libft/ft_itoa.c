@@ -6,13 +6,13 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:24:33 by avedrenn          #+#    #+#             */
-/*   Updated: 2022/11/11 13:44:03 by avedrenn         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:29:40 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	find_size(unsigned int nb, int minus)
+static int	find_s(unsigned int nb, int minus)
 {
 	int	size;
 
@@ -58,7 +58,7 @@ char	*ft_itoa(int n)
 	if (n < 0)
 		minus *= -1;
 	nb = n * minus;
-	res = (char *) malloc (find_size(nb, minus) + 1);
+	res = (char *) malloc (find_s(nb, minus) + 1);
 	if (!res)
 		return (NULL);
 	i = 0;

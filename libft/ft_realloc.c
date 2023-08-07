@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 15:57:15 by avedrenn          #+#    #+#             */
-/*   Updated: 2022/12/10 15:36:03 by avedrenn         ###   ########.fr       */
+/*   Created: 2022/12/10 15:31:52 by avedrenn          #+#    #+#             */
+/*   Updated: 2022/12/10 15:32:07 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	*ft_realloc(void *ptr, size_t size)
 {
 	char	*res;
-	int		i;
-	int		j;
+	size_t	i;
 
-	if (!s1 || !s2)
+	if (ptr && size == 0)
+	{
+		free(ptr);
 		return (NULL);
-	res = (char *) malloc (ft_strlen(s1) + ft_strlen(s2) + 1);
+	}
+	res = malloc(size);
 	if (!res)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (ptr && ((char *)ptr)[i] && i < size)
 	{
-		res[i] = s1[i];
+		res[i] = ((char *)ptr)[i];
 		i++;
 	}
-	j = 0;
-	while (s2[j])
+	while (i < size)
 	{
-		res[i + j] = s2[j];
-		j++;
+		res[i] = 0;
+		i++;
 	}
-	res[i + j] = 0;
-	return (res);
+	free(ptr);
+	return ((void *) res);
 }

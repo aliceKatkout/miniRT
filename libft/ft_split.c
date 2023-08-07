@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:25:52 by avedrenn          #+#    #+#             */
-/*   Updated: 2022/11/15 11:14:05 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:11:16 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	*strdup_from(char const *s, char c, int start)
 	return (res);
 }
 
-static void	*ft_free(char **res, int i)
+static void	*ft_free_split(char **res, int i)
 {
 	while (i >= 0)
 	{
@@ -89,7 +89,7 @@ char	**ft_split(char const *s, char c)
 		if (!is_sep(s[i], c) && s[i])
 			res[j] = strdup_from(s, c, i);
 		if (!res[j])
-			return (ft_free(res, j - 1));
+			return (ft_free_split(res, j - 1));
 		while (!is_sep(s[i], c) && s[i])
 			i ++;
 		j ++;
