@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 19:54:29 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:29:18 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ typedef struct s_scene
 
 } t_scene;
 
+
+
 void	init_scene(t_scene *scene);
 void	print_list_prefix(t_list *lst, char *prefix);
 void	parse_scene(char *argv, t_scene *scene);
@@ -130,12 +132,17 @@ double  ft_atof(char *str);
 
 void	ft_error(char *error);
 int 	ft_arrlen(void **array);
+void	ft_free_arr(void **array);
 
 int		parse_forms(t_list *buf, t_scene *scene);
 int		create_plane(char *line, t_scene *scene);
 int		create_sphere(char *line, t_scene *scene);
 int		create_cylinder(char *line, t_scene *scene);
+int		init_sphere(char **params, t_sphere	*sp);
 
 double	set_diameter(char	*param);
+
+int		is_in_range(double val, double min, double max);
+int		is_number(char *str);
 
 #endif

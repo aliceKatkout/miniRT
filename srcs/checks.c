@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 16:38:25 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 23:14:42 by avedrenn         ###   ########.fr       */
+/*   Created: 2023/08/08 22:25:00 by avedrenn          #+#    #+#             */
+/*   Updated: 2023/08/08 22:31:51 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+# include "../miniRT.h"
 
-
-int	main(int argc, char **argv)
+int		is_in_range(double val, double min, double max)
 {
-	t_scene scene;
-
-	if (argc != 2)
-	{
-		printf("Invalid number of argument. \n");
+	if (val >= min && val <= max)
 		return (1);
-	}
-
-	init_scene(&scene);
-	parse_scene(argv[1], &scene);
 	return (0);
+}
+
+int		is_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while(str[i])
+	{
+		if (!ft_isdigit(str[i]) && str[i] != '.')
+			return (0);
+		i ++;
+	}
+	return (1);
 }

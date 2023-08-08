@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 16:43:35 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:29:40 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,17 @@ int ft_arrlen(void **array)
 		i ++;
 	return (i);
 }
+
+void	ft_free_arr(void **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
