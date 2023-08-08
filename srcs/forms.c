@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:52:54 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 19:39:03 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:22:01 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	parse_forms(t_list *buf, t_scene *scene)
 			create_sphere((char *) tmp->content, scene);
 		else if (!ft_strncmp((char *) tmp->content, "cy  ", 3))
 			create_cylinder((char *) tmp->content, scene);
+		printf("coucou toi : %s\n", (char *) tmp->content);
 		tmp = tmp->next;
 	}
 	return (0);
@@ -39,6 +40,10 @@ int	create_plane(char *line, t_scene *scene)
 	params = ft_split(line, 32);
 	if (!params)
 		ft_error("Split hasn't splitted correctly.\n");
+
+	if (!scene->planes)
+		printf("oh non\n");
+	return (0);
 	
 }
 
@@ -51,7 +56,7 @@ int	create_sphere(char *line, t_scene *scene)
 	params = ft_split(line, 32);
 	if (!params)
 		ft_error("Split hasn't splitted correctly.\n");
-	params_nb = ft_arrlen(params);
+	params_nb = ft_arrlen((void **) params);
 	if (params_nb != 4)
 	{
 		free (params);
@@ -59,25 +64,54 @@ int	create_sphere(char *line, t_scene *scene)
 	}
 	new_sp = malloc(sizeof(t_sphere));
 	if (!new_sp)
-		//error
-	set_diameter(new_sp, params[2]);
+		printf("error\n");
+	new_sp->diameter = set_diameter(params[2]);
 	
 	if (!scene->spheres)
-
+		printf("error\n");
 	
-	
+	return (0);
 }
 
-void	set_diameter(t_sphere *sp, char	*param)
+double	set_diameter(char	*param)
 {
-	int	diameter;
+	double	diameter;
 
 	diameter = ft_atof(param);
+	printf("%f", diameter);
+	diameter = 1;
 	if (diameter <= 0)
-		//error
+	{
+		ft_error("Problem\n");
+		return (-1);
+	}
+	else
+		return (diameter);
+	// if in range
 }
 
 int	create_cylinder(char *line, t_scene *scene)
 {
-	
+	char 		**params;
+	int			params_nb;
+	t_cylinder	*new_cy;
+
+	params = ft_split(line, 32);
+	if (!params)
+		ft_error("Split hasn't splitted correctly.\n");
+	params_nb = ft_arrlen((void **) params);
+	if (params_nb != 6)
+	{
+		free (params);
+		ft_error("Invalid number of parameters for creating cylinder.\n");
+	}
+	new_cy = malloc(sizeof(t_cylinder));
+	if (!new_cy)
+		printf("error\n");
+	new_cy->diameter = set_diameter(params[2]);	
+	if (!scene->cylinders)
+		printf("error\n");
+	printf("Coucou cylinder\n");
+
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:18:24 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/08 16:57:17 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:29:52 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,19 @@ double  ft_atof(char *str)
 			minus *= -1;
 		i++;
 	}
-    while(str[i] != '.')
+	while(str[i] && str[i] != '.')
+        i++; 
+    if (str[i] && str[i] == '.')
+	{
         i++;
-    if (str[i] != '.')
-        i++;
-    ret2 = (double)ft_atoi(&str[i]);
-    len = ft_strlen(&str[i]);
-    while(len--)
-    {
-        ret2 /= 10;
-    }
+		ret2 = (double)ft_atoi(&str[i]);
+		len = ft_strlen(&str[i]);
+		while(len--)
+		{
+			ret2 /= 10;
+		}
+	}
     ret *= minus;
+	printf("atof => %f + %f = %f\n", ret, ret2, (ret + ret2));
     return (ret + ret2);
 }

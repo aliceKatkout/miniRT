@@ -6,7 +6,7 @@
 #    By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/08 19:42:34 by avedrenn         ###   ########.fr        #
+#    Updated: 2023/08/08 20:07:48 by avedrenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CC		= cc
 
 HEADER	= miniRT.h
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror 
 
 FILES	=	main	\
 			parsing \
@@ -48,7 +48,7 @@ $(OBJF) :
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(LIBFT) -I $(MLX)
+	$(CC) -ggdb $(CFLAGS) -o $@ -c $< -I $(LIBFT) -I $(MLX)
 
 # %.o: %.c libft/libft.a mlx-linux/libmlx.a
 # 	$(CC) $(CFLAGS) -o $@ -c $< -I $(LIBFT) -I $(MLX)

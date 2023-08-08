@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:14:03 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/08 19:41:43 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:23:05 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void    ft_print_info(char **info)
 void    parse_env(t_scene *scene, t_list *buf)
 {
     t_list  *tmp;
-    int     i;
+    //int     i;
     char    **info;
     (void)scene;
     
     info = NULL;
-    i = 0;
+    //i = 0;
     tmp = buf;
     while(tmp)
     {
@@ -43,6 +43,6 @@ void    parse_env(t_scene *scene, t_list *buf)
         }
         // check_info(scene, info);//checker si bon nombre d'elements dans info
         // scene->cam->x_view = ft_atof(info[1]);
-        i++;
+        tmp = tmp->next;
     }
 }

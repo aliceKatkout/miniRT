@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 19:42:41 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:54:29 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,7 @@ int		parse_forms(t_list *buf, t_scene *scene);
 int		create_plane(char *line, t_scene *scene);
 int		create_sphere(char *line, t_scene *scene);
 int		create_cylinder(char *line, t_scene *scene);
+
+double	set_diameter(char	*param);
 
 #endif

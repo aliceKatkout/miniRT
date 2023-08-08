@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 19:40:17 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:30:17 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	init_scene(t_scene *scene)
 {
-	scene->cylinders = NULL;
-	scene->planes = NULL;
-	scene->spheres = NULL;
+	/* scene->cylinders = ft_calloc(1, sizeof(t_list *));
+	scene->planes = ft_calloc(1, sizeof(t_list *));
+	scene->spheres = ft_calloc(1, sizeof(t_list *)); */
+	scene->spheres = 0;
+	scene->planes = 0;
+	scene->cylinders = 0;
 }
 
 void	parse_scene(char *argv, t_scene *scene)
@@ -41,7 +44,7 @@ void	parse_scene(char *argv, t_scene *scene)
 		ft_lstadd_back(&buf, ft_lstnew((void *) get_next_line(scene->rt_file)));
 		tmp = tmp->next;
 	}
-	print_list_prefix(buf, NULL);
+	//print_list_prefix(buf, NULL);
 	if (parse_forms(buf, scene))
 		return (ft_error("Problem encoutered while parsing forms.\n"));
 	parse_env(scene, buf);
