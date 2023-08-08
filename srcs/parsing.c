@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 16:58:23 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:40:17 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parse_scene(char *argv, t_scene *scene)
 	print_list_prefix(buf, NULL);
 	if (parse_forms(buf, scene))
 		return (ft_error("Problem encoutered while parsing forms.\n"));
-	//parse_env();
+	parse_env(scene, buf);
 	//free_buf;
 	close(scene->rt_file);
 }

@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 16:58:39 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:42:41 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,50 @@ typedef struct s_cylinder
 
 } t_cylinder;
 
+typedef struct s_form
+{
+	//
+} t_form;
+
+typedef struct s_cam
+{
+	double	x_view;
+	double	y_view;
+	double	z_view;
+	double	x_vector;
+	double	y_vector;
+	double	z_vector;
+	int		fov;
+} t_cam;
+
+typedef struct s_amb
+{
+	double	lighting;
+	int		r;
+	int		g;
+	int		b;
+} t_amb;
+
+typedef struct s_light
+{
+	double	x;
+	double	y;
+	double	z;
+	double	brightness;
+} t_light;
+
+typedef struct s_env
+{
+	t_cam		cam;
+	t_amb		amb;
+	t_light		light;
+} t_env;
+
 typedef struct s_scene
 {	
 	int			rt_file;
+	t_env		env;
+	t_form		form;
 	t_list		*spheres;
 	t_list		*cylinders;
 	t_list		*planes;
@@ -82,6 +123,10 @@ typedef struct s_scene
 void	init_scene(t_scene *scene);
 void	print_list_prefix(t_list *lst, char *prefix);
 void	parse_scene(char *argv, t_scene *scene);
+
+void    parse_env(t_scene *scene, t_list *buf);
+
+double  ft_atof(char *str);
 
 void	ft_error(char *error);
 int 	ft_arrlen(void **array);

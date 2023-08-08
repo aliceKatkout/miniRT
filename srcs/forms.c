@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:52:54 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 17:08:56 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:39:03 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,11 @@ int	create_sphere(char *line, t_scene *scene)
 
 void	set_diameter(t_sphere *sp, char	*param)
 {
+	int	diameter;
 
+	diameter = ft_atof(param);
+	if (diameter <= 0)
+		//error
 }
 
 int	create_cylinder(char *line, t_scene *scene)
