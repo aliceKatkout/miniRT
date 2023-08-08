@@ -6,11 +6,18 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/07 18:22:21 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:58:23 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../miniRT.h"
+
+void	init_scene(t_scene *scene)
+{
+	scene->cylinders = NULL;
+	scene->planes = NULL;
+	scene->spheres = NULL;
+}
 
 void	parse_scene(char *argv, t_scene *scene)
 {
@@ -35,7 +42,8 @@ void	parse_scene(char *argv, t_scene *scene)
 		tmp = tmp->next;
 	}
 	print_list_prefix(buf, NULL);
-	//parse_forms();
+	if (parse_forms(buf, scene))
+		return (ft_error("Problem encoutered while parsing forms.\n"));
 	//parse_env();
 	//free_buf;
 	close(scene->rt_file);
@@ -46,7 +54,7 @@ void	print_list_prefix(t_list *lst, char *prefix)
 	t_list	*tmp;
 
 	if (!lst)
-		printf("error : list is empty ...\n");
+		return ;
 	tmp = lst;
 	while (tmp != NULL)
 	{

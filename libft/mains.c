@@ -1,4 +1,3 @@
-
 //strlcat
 int main ()
 {
