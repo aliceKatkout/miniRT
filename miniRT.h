@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/07 18:28:43 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:00:45 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,36 @@ typedef struct s_form
 	//
 } t_form;
 
+typedef struct s_cam
+{
+	double	x_view;
+	double	y_view;
+	double	z_view;
+	double	x_vector;
+	double	y_vector;
+	double	z_vector;
+	int		fov;
+} t_cam;
+
+typedef struct s_amb
+{
+	double	lighting;
+	int		r;
+	int		g;
+	int		b;
+} t_amb;
+
+typedef struct s_light
+{
+	double	x;
+	double	y;
+	double	z;
+	double	brightness;
+} t_light;
 typedef struct s_env
 {
-	t_camera	camera;
-	t_ambient	amb;
+	t_cam		cam;
+	t_amb		amb;
 	t_light		light;
 } t_env;
 typedef struct s_scene
@@ -48,6 +74,10 @@ typedef struct s_scene
 
 void	print_list_prefix(t_list *lst, char *prefix);
 void	parse_scene(char *argv, t_scene *scene);
+
+void    parse_env(t_scene *scene, t_list *buf);
+
+double  ft_atof(char *str);
 
 void	ft_error(char *error);
 

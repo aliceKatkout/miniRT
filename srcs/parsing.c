@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/07 18:28:35 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:08:42 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	parse_scene(char *argv, t_scene *scene)
 		ft_lstadd_back(&buf, ft_lstnew((void *) get_next_line(scene->rt_file)));
 		tmp = tmp->next;
 	}
-	print_list_prefix(buf, NULL);
+	// print_list_prefix(buf, NULL);
 	//parse_forms();
-	//parse_env();
+	parse_env(scene, buf);
 	//free_buf;
 	close(scene->rt_file);
 }
