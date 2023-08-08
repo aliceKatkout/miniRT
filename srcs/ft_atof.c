@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 16:18:24 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/08 20:29:52 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 21:09:42 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ double  ft_atof(char *str)
     len = 0;
     minus = 1;
     ret = (double)ft_atoi(str);
+	if (ret < 0)
+		ret *= -1;
     ret2 = 0;
     while (str[i] && is_space(str[i]))
 		i ++;
@@ -45,7 +47,6 @@ double  ft_atof(char *str)
 			ret2 /= 10;
 		}
 	}
-    ret *= minus;
-	printf("atof => %f + %f = %f\n", ret, ret2, (ret + ret2));
-    return (ret + ret2);
+	ret += ret2;
+    return (minus * ret);
 }

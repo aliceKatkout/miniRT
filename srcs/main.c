@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:38:25 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 16:57:02 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:39:06 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	main(int argc, char **argv)
 		printf("Invalid number of argument. \n");
 		return (1);
 	}
+	ft_atof("-234.897");
+	ft_atof("324");
+	ft_atof("vrnej");
 	init_scene(&scene);
 	parse_scene(argv[1], &scene);
 	printf("Hello World!\n");

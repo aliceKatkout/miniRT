@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:52:54 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 20:22:01 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:38:23 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	parse_forms(t_list *buf, t_scene *scene)
 			create_sphere((char *) tmp->content, scene);
 		else if (!ft_strncmp((char *) tmp->content, "cy  ", 3))
 			create_cylinder((char *) tmp->content, scene);
-		printf("coucou toi : %s\n", (char *) tmp->content);
 		tmp = tmp->next;
 	}
 	return (0);
