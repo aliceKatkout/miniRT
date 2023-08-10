@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 14:37:33 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:50:14 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int ft_arrlen(void **array)
 	return (i);
 }
 
-void	ft_free_arr(void **array)
+int	ft_free_arr(void **array)
 {
 	int	i;
 
@@ -43,6 +43,7 @@ void	ft_free_arr(void **array)
 		i++;
 	}
 	free(array);
+	return (2);
 }
 
 void	ft_free_parse(t_scene *s, t_list *buf)

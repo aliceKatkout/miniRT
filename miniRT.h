@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 15:07:02 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:50:28 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ double  ft_atof(char *str);
 
 void	ft_error_parse(char *error, t_scene *s, t_list *buf);
 int 	ft_arrlen(void **array);
-void	ft_free_arr(void **array);
+int		ft_free_arr(void **array);
 void	ft_free_parse(t_scene *s, t_list *buf);
 
 int		parse_forms(t_list *buf, t_scene *scene);
@@ -146,6 +146,7 @@ double	set_diameter(char	*param);
 int		is_in_range(double val, double min, double max);
 int		is_number(char *str);
 
-char **get_params_from_line(char *line, int wanted_nb);
+char 	**get_params_from_line(char *line, int wanted_nb);
+char	**check_rgb(char *line);
 
 #endif
