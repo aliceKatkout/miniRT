@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 21:53:15 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:50:03 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_scene(t_scene *scene)
 	scene->spheres = 0;
 	scene->planes = 0;
 	scene->cylinders = 0;
+	scene->rt_file = -1;
 }
 
 void	parse_scene(char *argv, t_scene *scene)
@@ -28,16 +29,13 @@ void	parse_scene(char *argv, t_scene *scene)
 	t_list	*tmp;
 
 	if (ft_strncmp(argv + (ft_strlen(argv) - 3), ".rt", 3) != 0)
-		ft_error("Scene given is not in .rt format.\n");
+		ft_error_parse("Scene given is not in .rt format.\n", scene, NULL);
 	scene->rt_file = open(argv, O_RDWR);
 	if (scene->rt_file < 0)
-		ft_error("Can't open scene.\n");
+		ft_error_parse("Can't open scene.\n", scene, NULL);
 	buf = ft_lstnew((void *) get_next_line(scene->rt_file));
 	if (!buf)
-	{
-		close(scene->rt_file);
-		printf("Empty scene.\n");
-	}
+		ft_error_parse("Empty scene.\n", scene, NULL);
 	tmp = buf;
 	while (tmp)
 	{
@@ -46,7 +44,7 @@ void	parse_scene(char *argv, t_scene *scene)
 	}
 	//print_list_prefix(buf, NULL);
 	if (parse_forms(buf, scene))
-		return (ft_error("Problem encoutered while parsing forms.\n"));
+		return (ft_error_parse("Occured when parsing forms.\n", scene, buf));
 	parse_env(scene, buf);
 	//free_buf;
 	ft_lstclear(&buf, free);

@@ -6,7 +6,7 @@
 #    By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/08 22:29:32 by avedrenn         ###   ########.fr        #
+#    Updated: 2023/08/10 15:07:13 by avedrenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ FILES	=	main	\
 			parsing \
 			utils 	\
 			forms	\
+			forms_utils \
 			parse_env	\
 			ft_atof		\
 			checks

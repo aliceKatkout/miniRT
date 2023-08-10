@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   forms_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:41:48 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 14:48:33 by avedrenn         ###   ########.fr       */
+/*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
+/*   Updated: 2023/08/10 15:09:41 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "../miniRT.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char **get_params_from_line(char *line, int wanted_nb)
 {
-	int	i;
+	char 	**params;
+	int 	params_nb;
 
-	if (!s || !fd)
-		return ;
-	i = 0;
-	while (s[i])
+	params = ft_split(line, 32);
+	if (!params)
+		return (NULL);
+	params_nb = ft_arrlen((void **) params);
+	if (params_nb != wanted_nb)
 	{
-		write(fd, &s[i], 1);
-		i ++;
+		ft_putstr_fdi("Error \nInvalid number of parameters for creating a form.\n", 2);
+		ft_free_arr((void **) params);
+		return (NULL);
 	}
-}
-
-int	ft_putstr_fdi(char *s, int fd)
-{
-	int	i;
-
-	if (!s || !fd)
-		return (-1);
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i ++;
-	}
-	return (i);
+	return (params);
 }

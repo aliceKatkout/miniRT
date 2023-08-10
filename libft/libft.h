@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:24:50 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 15:49:11 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:49:03 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_atoi(const char *nptr);
 int			is_space(char c);
+int			ft_putstr_fdi(char *s, int fd);
 
 size_t		ft_strlen(const char *s);
 size_t		ft_strslen(char **strs);

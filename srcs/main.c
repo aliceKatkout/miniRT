@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:38:25 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/08 23:14:42 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:13:48 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(int argc, char **argv)
 
 	init_scene(&scene);
 	parse_scene(argv[1], &scene);
+	ft_free_parse(&scene, NULL);
 	return (0);
 }
