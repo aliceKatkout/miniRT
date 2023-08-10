@@ -6,11 +6,11 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 14:50:03 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:12:11 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../miniRT.h"
+#include "../miniRT.h"
 
 void	init_scene(t_scene *scene)
 {

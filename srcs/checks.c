@@ -6,20 +6,20 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:25:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 16:32:51 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:05:46 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../miniRT.h"
+#include "../miniRT.h"
 
-int		is_in_range(double val, double min, double max)
+int	is_in_range(double val, double min, double max)
 {
 	if (val >= min && val <= max)
 		return (1);
 	return (0);
 }
 
-int		is_number(char *str)
+int	is_number(char *str)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ int		is_number(char *str)
 		return (0);
 	if (str[i] == '-')
 		i ++;
-	while(str[i])
+	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && str[i] != '.')
 			return (0);

@@ -6,11 +6,11 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:06:06 by avedrenn          #+#    #+#             */
-/*   Updated: 2022/10/06 20:11:58 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:03:51 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 int	ft_isascii(int c)
 {

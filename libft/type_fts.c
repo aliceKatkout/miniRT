@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:21:13 by avedrenn          #+#    #+#             */
-/*   Updated: 2022/12/08 14:25:33 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:02:44 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	put_p(int count, va_list lst)
 	res[i] = base[(adr % 16)];
 	count += write(1, "0x", 2);
 	while (res[i] == '0')
-			i++;
+		i++;
 	while (i < 9)
 		count += write(1, &res[i++], 1);
 	return (count);
