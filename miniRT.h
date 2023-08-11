@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/10 16:50:28 by avedrenn         ###   ########.fr       */
+=======
+/*   Updated: 2023/08/10 14:02:24 by mrabourd         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +74,6 @@ typedef struct s_cylinder
 
 } t_cylinder;
 
-typedef struct s_form
-{
-	//
-} t_form;
-
 typedef struct s_cam
 {
 	double	x_view;
@@ -113,7 +112,6 @@ typedef struct s_scene
 {	
 	int			rt_file;
 	t_env		env;
-	t_form		form;
 	t_list		*spheres;
 	t_list		*cylinders;
 	t_list		*planes;
