@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:52:54 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 17:11:36 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:41:51 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,27 @@ int	parse_forms(t_list *buf, t_scene *scene)
 int	create_plane(char *line, t_scene *scene)
 {
 	char	**params;
+	t_plane	*new;
+	t_list		*new_elem;
 
-	params = ft_split(line, 32);
+	params = get_params_from_line(line, 4);
 	if (!params)
-		return (ft_putstr_fdi("Split hasn't splitted correctly.\n", 2));
-	if (!scene->planes)
-		printf("houhou\n");
+		return (1); 
+	new = malloc(sizeof(t_plane));
+	if (!new)
+		return (ft_free_arr((void **) params));
+	if (init_plane(params, new))
+	{
+		free (new);
+		return (ft_free_arr((void **) params));
+	}
+	new_elem = ft_lstnew((void *) new);
+	if (!new_elem)
+	{
+		free (new);
+		return (ft_free_arr((void **) params));
+	}
+	ft_lstadd_back(&scene->planes, new_elem);
 	ft_free_arr((void **) params);
 	return (0);
 }
@@ -77,53 +92,32 @@ int	create_sphere(char *line, t_scene *scene)
 	return (0);
 }
 
-int	init_sphere(char **params, t_sphere	*sp)
-{
-	static int	id = 0;
-	char		**xyz;
-	char		**rgb;
 
-	sp->id = id++;
-	sp->diameter = set_diameter(params[2]);
-	if (sp->diameter <= 0)
-		return (ft_putstr_fdi("Sphere diameter is incorrect.\n", 2)); // ou 2
-	xyz = ft_split(params[1], ',');
-	if (ft_arrlen((void **)xyz) != 3 || !is_number(xyz[0]) 
-		|| !is_number(xyz[1]) || !is_number(xyz[2]))
-		return (ft_free_arr((void **)xyz));
-	sp->x = ft_atof(xyz[0]);
-	sp->y = ft_atof(xyz[1]);
-	sp->z = ft_atof(xyz[2]);
-	rgb = check_rgb(params[3]);
-	if (!rgb)
-		return (ft_free_arr((void **)xyz));
-	sp->r = ft_atof(rgb[0]);
-	sp->g = ft_atof(rgb[1]);
-	sp->b = ft_atof(rgb[2]);
-	ft_free_arr((void **)xyz);
-	ft_free_arr((void **)rgb);
-	return (0);
-}
 
 int	create_cylinder(char *line, t_scene *scene)
 {
 	char		**params;
 	t_cylinder	*new_cy;
+	t_list		*new_elem;
 
-	params = ft_split(line, 32);
+	params = get_params_from_line(line, 6);
 	if (!params)
-		return (1);
-	//if (params_nb != 6)
-	/* {
-		ft_free_arr((void **) params);
-		ft_error("Invalid number of parameters for creating cylinder.\n");
-	} */
+		return (1); 
 	new_cy = malloc(sizeof(t_cylinder));
 	if (!new_cy)
-		printf("error\n");
-	//new_cy->diameter = set_diameter(params[2]);	
-	if (!scene->cylinders)
-		printf("Coucou cylinder\n");
+		return (ft_free_arr((void **) params));
+	if (init_cylinder(params, new_cy))
+	{
+		free (new_cy);
+		return (ft_free_arr((void **) params));
+	}
+	new_elem = ft_lstnew((void *) new_cy);
+	if (!new_elem)
+	{
+		free (new_cy);
+		return (ft_free_arr((void **) params));
+	}
+	ft_lstadd_back(&scene->cylinders, new_elem);
 	ft_free_arr((void **) params);
 	return (0);
 }

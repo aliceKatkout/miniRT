@@ -134,14 +134,17 @@ int		parse_forms(t_list *buf, t_scene *scene);
 int		create_plane(char *line, t_scene *scene);
 int		create_sphere(char *line, t_scene *scene);
 int		create_cylinder(char *line, t_scene *scene);
-int		init_sphere(char **params, t_sphere	*sp);
 
-double	set_diameter(char	*param);
+int		init_sphere(char **params, t_sphere	*sp);
+int		init_cylinder(char **params, t_cylinder	*sp);
+int		init_plane(char **params, t_plane	*sp);
 
 int		is_in_range(double val, double min, double max);
 int		is_number(char *str);
 
+double	set_diameter(char	*param);
 char 	**get_params_from_line(char *line, int wanted_nb);
 char	**check_rgb(char *line);
+char	**check_vectors(char *line);
 
 #endif

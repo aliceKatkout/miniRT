@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 17:10:07 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:30:15 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,32 @@ char	**check_rgb(char *line)
 		return (NULL);
 	}
 	return (rgb);
+}
+
+char	**check_vectors(char *line)
+{
+	char	**vec;
+	double	x;
+	double	y;
+	double	z;
+
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = ',';
+	vec = ft_split(line, ',');
+	if (ft_arrlen((void **)vec) != 3 || !is_number(vec[0]) 
+		|| !is_number(vec[1]) || !is_number(vec[2]))
+	{
+		ft_free_arr((void **)vec);
+		return (NULL);
+	}
+	x = ft_atof(vec[0]);
+	y = ft_atof(vec[1]);
+	z = ft_atof(vec[2]);
+	if (!is_in_range(x, -1.0, 1.0) || !is_in_range(y, -1.0, 1.0) 
+		|| !is_in_range(z, -1.0, 1.0))
+	{
+		ft_free_arr((void **)vec);
+		return (NULL);
+	}
+	return (vec);
 }
