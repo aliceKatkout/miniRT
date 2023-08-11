@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/08/10 16:50:28 by avedrenn         ###   ########.fr       */
-=======
-/*   Updated: 2023/08/10 14:02:24 by mrabourd         ###   ########.fr       */
->>>>>>> main
+/*  Created: 2023/08/07 16:39:08 by avedrenn          #+#    #+#             */
+/*   Updated: 2023/08/11 12:20:14 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +128,7 @@ void	ft_error_parse(char *error, t_scene *s, t_list *buf);
 int 	ft_arrlen(void **array);
 int		ft_free_arr(void **array);
 void	ft_free_parse(t_scene *s, t_list *buf);
+void	ft_error(char *error);
 
 int		parse_forms(t_list *buf, t_scene *scene);
 int		create_plane(char *line, t_scene *scene);

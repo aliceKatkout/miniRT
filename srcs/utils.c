@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 17:13:25 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/11 12:21:29 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ void	ft_error_parse(char *error, t_scene *s, t_list *buf)
 	ft_putstr_fd("Error\n❌ ", 2);
 	ft_putstr_fd(error, 2);
 	ft_free_parse(s, buf);
+	exit(1);
+}
+
+void	ft_error(char *error)
+{
+	ft_putstr_fd("Error\n❌ ", 2);
+	ft_putstr_fd(error, 2);
 	exit(1);
 }
 
