@@ -115,12 +115,17 @@ typedef struct s_scene
 } t_scene;
 
 
+/* PRINT TEST - to remove */
+void	print_cam(t_cam *cam);
+void	print_amb(t_amb *amb);
+void	print_light(t_light *light);
+/* END */
 
 void	init_scene(t_scene *scene);
 void	print_list_prefix(t_list *lst, char *prefix);
 void	parse_scene(char *argv, t_scene *scene);
 
-void    parse_env(t_scene *scene, t_list *buf);
+int	    parse_env(t_scene *scene, t_list *buf);
 
 double  ft_atof(char *str);
 
@@ -146,5 +151,6 @@ double	set_diameter(char	*param);
 char 	**get_params_from_line(char *line, int wanted_nb);
 char	**check_rgb(char *line);
 char	**check_vectors(char *line);
+char	**get_new_params(char *line, int wanted_nb, char sep);
 
 #endif

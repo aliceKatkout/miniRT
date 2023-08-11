@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 17:12:11 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:32:23 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	parse_scene(char *argv, t_scene *scene)
 	//print_list_prefix(buf, NULL);
 	if (parse_forms(buf, scene))
 		return (ft_error_parse("Occured when parsing forms.\n", scene, buf));
-	parse_env(scene, buf);
+	if (parse_env(scene, buf))
+		return (ft_error_parse("Occured when parsing env.\n", scene, buf));
 	//free_buf;
 	ft_lstclear(&buf, free);
 	free (buf);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/11 14:30:15 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:15:22 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,21 @@ char	**check_vectors(char *line)
 		return (NULL);
 	}
 	return (vec);
+}
+
+char	**get_new_params(char *line, int wanted_nb, char sep)
+{
+	char	**params;
+	int		params_nb;
+
+	params = ft_split(line, sep);
+	if (!params)
+		return (NULL);
+	params_nb = ft_arrlen((void **) params);
+	if (params_nb != wanted_nb)
+	{
+		ft_free_arr((void **) params);
+		return (NULL);
+	}
+	return (params);
 }
