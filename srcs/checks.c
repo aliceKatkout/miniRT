@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:25:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 17:05:46 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:00:57 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 int	is_in_range(double val, double min, double max)
 {
+	if (min < INT_MIN)
+		return (0);
+	if (max >= INT_MAX)
+		return (0);
 	if (val >= min && val <= max)
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:14:03 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/11 19:34:43 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:02:21 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void    ft_print_info(char **info)
 
 int		init_cam(t_scene *scene, char **info)
 {
-	char	**param;
+	char	**vec;
+    char	**param;
 
 	param = get_new_params(info[1], 3, ',');
 	if (!param)
@@ -35,14 +36,17 @@ int		init_cam(t_scene *scene, char **info)
 	scene->env.cam.y_view = ft_atof(param[1]);
 	scene->env.cam.z_view = ft_atof(param[2]);
 	ft_free_arr((void **) param);
-	param = get_new_params(info[2], 3, ',');
-	if (!param)
-		return (1);
-	scene->env.cam.x_vector = ft_atof(param[0]);
-	scene->env.cam.y_vector = ft_atof(param[1]);
-	scene->env.cam.z_vector = ft_atof(param[2]);
+	vec = check_vectors(info[2]);
+    if (!vec)
+    {
+        ft_free_arr((void **)info);
+        return (1);
+    }
+	scene->env.cam.x_vector = ft_atof(vec[0]);
+	scene->env.cam.y_vector = ft_atof(vec[1]);
+	scene->env.cam.z_vector = ft_atof(vec[2]);
 	scene->env.cam.fov = ft_atoi(info[3]);
-	ft_free_arr((void **) param);
+	ft_free_arr((void **) vec);
 	// print_cam(&scene->env.cam);
 	return (0);
 }
@@ -70,9 +74,12 @@ int	create_amb(char *line, t_scene *scene)
 	if (!info)
 		return (1);
 	scene->env.amb.lighting = ft_atof(info[1]);
-	param = get_new_params(info[2], 3, ',');
-	if (!param)
+    param = check_rgb(info[2]);
+    if (!param)
+    {
+        ft_free_arr((void **)info);
 		return (1);
+    }
 	scene->env.amb.r = ft_atoi(param[0]);
 	scene->env.amb.g = ft_atoi(param[1]);
 	scene->env.amb.b = ft_atoi(param[2]);
@@ -108,7 +115,21 @@ int	create_light(char *line, t_scene *scene)
 	ft_free_arr((void **) info);
 	// print_light(&scene->env.light);
 	return (0);
-;}
+}
+
+int     check_nb_env(t_list *current, char *c)
+{
+    t_list  *tmp;
+
+    tmp = current;
+    while(tmp)
+    {
+        tmp = tmp->next;
+        if (tmp && ft_strncmp(tmp->content, c, 1) == 0)
+            return (1);
+    }
+    return (0);
+}
 
 int    parse_env(t_scene *scene, t_list *buf)
 {
@@ -122,11 +143,20 @@ int    parse_env(t_scene *scene, t_list *buf)
     while(tmp)
     {
 		if (ft_strncmp(tmp->content, "C", 1) == 0)
+        {
 			err = create_cam(tmp->content, scene);
-		if (ft_strncmp(tmp->content, "A", 1) == 0)
+            err = check_nb_env(tmp, "C");
+        }
+        if (ft_strncmp(tmp->content, "A", 1) == 0)
+        {
 			err = create_amb(tmp->content, scene);
+            err = check_nb_env(tmp, "A");
+        }
 		if (ft_strncmp(tmp->content, "L", 1) == 0)
+        {
 			err = create_light(tmp->content, scene);
+            err = check_nb_env(tmp, "L");
+        }
 		if (err)
 			return (1);
         tmp = tmp->next;
