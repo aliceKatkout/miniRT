@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+         #
+#    By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/14 17:50:46 by mrabourd         ###   ########.fr        #
+#    Updated: 2023/08/14 19:01:56 by avedrenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ FILES	=	main	\
 			print_struc
 	
 	
-SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
+SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES))) 
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
 OBJF = .cache_exists
@@ -63,51 +63,28 @@ libft/libft.a:
 mlx-linux/libmlx.a :
 	${MAKE} -C mlx-linux
 
-################################################################################
-#                              	TEST VARIABLES					   		   	   #
-################################################################################
 
-CR_HEADER_PATH	=	-I${HOME}/Criterion/include/criterion
-T_NAME			= 	test_miniRT
-T_SRC_DIR		=	tests/
-T_SRCS			=	$(addprefix $(T_SRC_DIR), $(addsuffix .c, $(T_FILES)))
-T_FILES			=	test_checks 
-T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)
-CR_LIB_PATH		=	-Wl,-rpath=${HOME}/Criterion/build/src -L${HOME}/Criterion/build/src
-T_FLAGS			=	-lcriterion
-T_OBJECTS 		=	$(subst /,/build/,${T_SRCS:.c=.o})
+tests:
+	${MAKE} -C tests
 
-################################################################################
-#                                TEST RULES								       #
-################################################################################
+cleantest :
+	${MAKE} -C tests clean
 
-${T_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
-	@if [ ! -d "./$(dir $@)" ]; then\
-		mkdir -p $(dir $@);\
-	fi
-	@$(T_CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@
-
-tests:	${OBJ} ${T_OBJECTS} 
-	@echo "Creating binary for Tests"
-	@${T_CC} -o ${T_NAME} ${T_OBJECTS} -L ./libft -lft -L ./mlx-linux -lmlx -lXext -lX11 -lm -lbsd
-	@./${T_NAME}
-
+retest :
+	${MAKE} -C tests re
 
 clean:
 	@rm -rf $(OBJ_DIR) 
 	@rm -f $(OBJF)
 	${MAKE} -C libft clean
-	@rm -rf tests/build
+	${MAKE} -C tests clean
 
 fclean: clean
 	rm -f $(NAME)
 	${MAKE} -C libft fclean
+	${MAKE} -C tests clean
 
 re: fclean all
 
-cleantest: 
-	@rm -rf tests/build 
 
-retest: cleantest tests	
-
-.PHONY: re retest cleantest all fclean clean
+.PHONY: re all fclean clean tests retest cleantest
