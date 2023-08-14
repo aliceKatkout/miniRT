@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:38:25 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 15:13:48 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:23:54 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf("Invalid number of argument. \n");
+		printf("One argument expected. \n");
 		return (1);
 	}
 
