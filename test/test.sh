@@ -1,1 +1,0 @@
-gcc -o test_parse_env.c -I$HOME/Criterion/include/criterion -Wl,-rpath=$HOME/Criterion/build/src -L$HOME/Criterion/build/src -W -Wall -Wextra -Werror -lcriterion

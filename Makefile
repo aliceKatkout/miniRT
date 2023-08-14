@@ -6,7 +6,7 @@
 #    By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/07 16:30:00 by avedrenn          #+#    #+#              #
-#    Updated: 2023/08/14 17:37:44 by mrabourd         ###   ########.fr        #
+#    Updated: 2023/08/14 17:50:46 by mrabourd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,14 +63,15 @@ libft/libft.a:
 mlx-linux/libmlx.a :
 	${MAKE} -C mlx-linux
 
-
 ################################################################################
 #                              	TEST VARIABLES					   		   	   #
 ################################################################################
 
 CR_HEADER_PATH	=	-I${HOME}/Criterion/include/criterion
-T_NAME			= 	test_project
-T_SRCS			=	test/test_1.c
+T_NAME			= 	test_miniRT
+T_SRC_DIR		=	tests/
+T_SRCS			=	$(addprefix $(T_SRC_DIR), $(addsuffix .c, $(T_FILES)))
+T_FILES			=	test_checks 
 T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)
 CR_LIB_PATH		=	-Wl,-rpath=${HOME}/Criterion/build/src -L${HOME}/Criterion/build/src
 T_FLAGS			=	-lcriterion
@@ -82,23 +83,21 @@ T_OBJECTS 		=	$(subst /,/build/,${T_SRCS:.c=.o})
 
 ${T_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 	@if [ ! -d "./$(dir $@)" ]; then\
-		echo "${_BOLD}${_UNDER}${_BLUE}"mkdir -p $(dir $@)"${_END}";\
 		mkdir -p $(dir $@);\
 	fi
-	@echo "${_BOLD}${_BLUE}"$(T_CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"
 	@$(T_CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@
 
-tests:	${OBJ} ${T_OBJECTS}
-	@echo "${_UNDER}${_RED}Creating binary for Tests${_END}"
-	@echo "${_BOLD}${_GREEN}${T_CC} -o ${T_NAME} ${OBJ} ${T_OBJECTS} ${_END}"
-	@${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS}
+tests:	${OBJ} ${T_OBJECTS} 
+	@echo "Creating binary for Tests"
+	@${T_CC} -o ${T_NAME} ${T_OBJECTS} -L ./libft -lft -L ./mlx-linux -lmlx -lXext -lX11 -lm -lbsd
 	@./${T_NAME}
 
-	
+
 clean:
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR) 
 	@rm -f $(OBJF)
 	${MAKE} -C libft clean
+	@rm -rf tests/build
 
 fclean: clean
 	rm -f $(NAME)
@@ -106,4 +105,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: re all fclean clean
+cleantest: 
+	@rm -rf tests/build 
+
+retest: cleantest tests	
+
+.PHONY: re retest cleantest all fclean clean
