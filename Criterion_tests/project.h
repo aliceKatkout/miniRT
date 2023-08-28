@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   project.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
+/*   Updated: 2023/08/28 18:33:25 by mrabourd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PROJECT_H
 # define PROJECT_H
 
@@ -35,7 +47,14 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_tuple	create_point(double x, double y, double z);
 t_tuple	create_vector(double x, double y, double z);
 int		tuples_cmp(t_tuple a, t_tuple b);
+
+/* OPERATIONS */
 t_tuple	add_tuples(t_tuple a, t_tuple b);
 t_tuple	sub_tuples(t_tuple a, t_tuple b);
+t_tuple	neg_tuples(t_tuple a);
+t_tuple	mult_tuples(t_tuple a, double vec);
+t_tuple	div_tuples(t_tuple a, double vec);
+
+double	magn_tuple(t_tuple a);
 
 #endif
