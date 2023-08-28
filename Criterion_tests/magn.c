@@ -1,49 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creation_tuple.c                                   :+:      :+:    :+:   */
+/*   magn.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 17:09:53 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/28 17:11:20 by mrabourd         ###   ########.fr       */
+/*   Created: 2023/08/28 17:56:06 by mrabourd          #+#    #+#             */
+/*   Updated: 2023/08/28 18:24:13 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "project.h"
 
-t_tuple	create_point(double x, double y, double z)
+double	magn_tuple(t_tuple a)
 {
-	t_tuple a;
+	double	add_sqrs;
+	double	c;
 	
-	a.x = x;
-	a.y = y;
-	a.z = z;
-	a.w = 1.0;
-
-	return (a);
-}
-
-t_tuple	create_vector(double x, double y, double z)
-{
-	t_tuple b;
-
-	b.x = x;
-	b.y = y;
-	b.z = z;
-	b.w = 0;
-	return (b);
-}
-
-int	tuples_cmp(t_tuple a, t_tuple b)
-{
-	if (fabs(a.x - b.x) < EPSILON)
-	{
-		if (fabs(a.y - b.y) < EPSILON)
-		{
-			if (fabs(a.z - b.z) < EPSILON)
-				return (1);
-		}
-	}
-	return (0);
+	add_sqrs = (a.x * a.x) + (a.y * a.y) + ( a.z * a.z) + (a.w * a.w);
+	c = sqrtf(add_sqrs);
+	return (c);
 }

@@ -180,3 +180,68 @@ Test(tuple, tuple_sub_vec_vec)
 	cr_expect(c.z == -6);
 	cr_expect(c.w == 0);
 }
+
+Test(tuple, tuple_neg_vec)
+{
+	t_tuple a;
+	t_tuple c;
+	a = create_vector(1, -2, 3);
+	c = neg_tuples(a);
+	cr_expect(c.x == -1);
+	cr_expect(c.y == 2);
+	cr_expect(c.z == -3);
+	cr_expect(c.w == 0);
+}
+
+Test(tuple, tuple_mult_vec1)
+{
+	t_tuple a;
+	double	vec = 3.5;
+	t_tuple c;
+	a = create_vector(1, -2, 3);
+	c = mult_tuples(a, vec);
+	cr_expect(c.x == 3.5);
+	cr_expect(c.y == -7);
+	cr_expect(c.z == 10.5);
+	cr_expect(c.w == 0);
+}
+
+Test(tuple, tuple_div_vec1)
+{
+	t_tuple a;
+	double	vec = 2;
+	t_tuple c;
+	a = create_vector(1, -2, 3);
+	c = div_tuples(a, vec);
+	cr_expect(c.x == 0.5);
+	cr_expect(c.y == -1);
+	cr_expect(c.z == 1.5);
+	cr_expect(c.w == 0);
+}
+
+Test(tuple, tuple_magnitude1)
+{
+	t_tuple a;
+	double c;
+	a = create_vector(1, 0, 0);
+	c = magn_tuple(a);
+	cr_expect(c == 1);
+}
+
+Test(tuple, tuple_magnitude2)
+{
+	t_tuple a;
+	double c;
+	a = create_vector(1, 2, 3);
+	c = magn_tuple(a);
+	cr_expect(c == sqrtf(14));
+}
+
+Test(tuple, tuple_magnitude3)
+{
+	t_tuple a;
+	double c;
+	a = create_vector(4, 0, 3);
+	c = magn_tuple(a);
+	cr_expect(c == 5);
+}

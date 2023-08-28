@@ -18,7 +18,9 @@ _WHITE=$'\033[37m
 #                                VARIABLES									   #
 ################################################################################
 
-SRCS			=	creation_tuple.c
+SRCS			=	creation_tuple.c	\
+					operation_tuples.c	\
+					magn.c
 MAIN_SRCS		=	main.c
 NAME			= 	project
 RM				= 	rm -rf
@@ -36,7 +38,7 @@ all:	$(NAME)
 ${NAME}:	${OBJECTS} ${M_OBJECTS}
 	@echo "${_UNDER}${_RED}Creating binary for Project${_END}"
 	@echo "${_BOLD}${_GREEN}${CC} -o ${NAME} ${OBJECTS} ${M_OBJECTS}${_END}"
-	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS}
+	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} -lm
 
 ${M_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 	@echo "${_BOLD}${_BLUE}"$(CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"
@@ -77,7 +79,7 @@ ${T_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 tests:	${OBJECTS} ${T_OBJECTS}
 	@echo "${_UNDER}${_RED}Creating binary for Tests${_END}"
 	@echo "${_BOLD}${_GREEN}${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} ${_END}"
-	@${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS}
+	@${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} -lm
 	@./${T_NAME}
 
 ################################################################################
