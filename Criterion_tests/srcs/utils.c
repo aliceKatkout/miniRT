@@ -50,3 +50,16 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	else
 		*lst = new;
 }
+
+void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+
+	str = s;
+	while (n > 0)
+	{
+		*str = '\0';
+		n--;
+		str++;
+	}
+}

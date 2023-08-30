@@ -6,11 +6,11 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:09:51 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/28 17:53:24 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:34:44 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "project.h"
+#include "../project.h"
 
 t_tuple	add_tuples(t_tuple a, t_tuple b)
 {

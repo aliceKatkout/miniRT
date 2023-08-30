@@ -6,11 +6,11 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:09:53 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/28 17:11:20 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:34:35 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "project.h"
+#include "../project.h"
 
 t_tuple	create_point(double x, double y, double z)
 {

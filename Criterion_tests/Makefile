@@ -18,10 +18,14 @@ _WHITE=$'\033[37m
 #                                VARIABLES									   #
 ################################################################################
 
-SRCS			=	creation_tuple.c	\
-					operation_tuples.c	\
-					magn.c
-MAIN_SRCS		=	main.c
+SRCS			=	srcs/creation_tuple.c	\
+					srcs/operation_tuples.c	\
+					srcs/operation_tuples2.c	\
+					srcs/colors.c	\
+					srcs/canvas.c	\
+					srcs/hook.c		\
+					srcs/exit.c
+MAIN_SRCS		=	srcs/main.c
 NAME			= 	project
 RM				= 	rm -rf
 CC				=	gcc $(CFLAGS)
@@ -38,7 +42,7 @@ all:	$(NAME)
 ${NAME}:	${OBJECTS} ${M_OBJECTS}
 	@echo "${_UNDER}${_RED}Creating binary for Project${_END}"
 	@echo "${_BOLD}${_GREEN}${CC} -o ${NAME} ${OBJECTS} ${M_OBJECTS}${_END}"
-	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} -lm
+	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} -L./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz 
 
 ${M_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 	@echo "${_BOLD}${_BLUE}"$(CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"
@@ -58,7 +62,9 @@ ${OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 
 CR_HEADER_PATH	=	-I${HOME}/Criterion/include/criterion
 T_NAME			= 	test_project
-T_SRCS			=	test_tuples.c
+T_SRCS			=	tests/test_tuples.c \
+					tests/test_tuples_ops.c	\
+					tests/test_colors.c
 T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)
 CR_LIB_PATH		=	-Wl,-rpath=${HOME}/Criterion/build/src -L${HOME}/Criterion/build/src
 T_FLAGS			=	-lcriterion
