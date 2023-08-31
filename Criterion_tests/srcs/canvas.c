@@ -6,43 +6,11 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/30 19:17:23 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:19:14 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
-
-// void	fill_canvas(t_canvas canvas)
-// {
-// 	int	x;
-// 	int	y;
-// 	t_tuple	black;
-
-// 	x = 0;
-// 	y = 0;
-// 	black = create_color(0, 0, 0);
-// 	while (y < canvas.w)
-// 	{
-// 		x = 0;
-// 		while (x < canvas.h)
-// 		{
-// 			write_pixel(canvas, x, y, black);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-// void	write_pix_canvas(t_canvas canvas, int x, int y, t_tuple color)
-// {
-// 	if (x >= 0 && x <= canvas.h)
-// 	{
-// 		if (y >= 0 && y <= canvas.w)
-// 		{
-			
-// 		}
-// 	}
-// }
 
 void	img_pxl_put(t_image *img, int x, int y, int color)
 {
@@ -85,23 +53,28 @@ void	render_background(t_image *img, int color)
 
 void	render_map(t_data *data)
 {
-	// int	x;
-	// int	y;
+	int		i;
+	t_tuple	red;
+	int		red2;
+	int		scale;
 
-	// x = 0;
-	// y = 0;
+	scale = 3;
+	red = create_color(255, 0, 0);
+	red2 = transform_color(red);
+	i = 0;
 	render_background(&data->img, 0x000000);
-	img_pxl_put(&data->img, 2, 2, 0xFF00);
-	// while (y < WINDOW_HEIGHT - 1)
-	// {
-	// 	x = 0;
-	// 	while (x < WINDOW_WIDTH)
-	// 	{
-	// 		render_proj(data, x, y);
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
+	data->proj.position = create_point(50, 1, 0);
+	data->proj.velocity = create_vector(1, 3, 0);
+	// data->proj.velocity = normalize(data->proj.velocity);
+	data->env.gravity = create_vector(0, -0.1, 0);
+	data->env.wind = create_vector(-0.01, 0, 0);
+	while (scale * data->proj.position.y >= 1)
+	{
+		data->proj = ft_tick(data->env, data->proj);
+		img_pxl_put(&data->img,  data->proj.position.x * scale,
+			WINDOW_HEIGHT - (data->proj.position.y * scale), red2);
+		i++;
+	}
 }
 
 
@@ -128,8 +101,7 @@ void	init_canvas(t_data *data)
 		render_map(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
-	// mlx_hook(data->win_ptr, ButtonPress, ButtonPressMask, &handle_mouse, data);
-	mlx_hook(data->win_ptr, 2, 1, &handle_keypress, data);
+	// mlx_hook(data->win_ptr, 2, 1, &handle_keypress, data);
 	mlx_hook(data->win_ptr, 17, 0, &ft_free_all, data);
 	mlx_loop(data->mlx_ptr);
 }

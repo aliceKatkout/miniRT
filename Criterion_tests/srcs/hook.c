@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:59:17 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/30 19:03:43 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:36:19 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
+	{
 		ft_free_all(data);
-	render_map(data);
+	}
 	return (0);
 }
 

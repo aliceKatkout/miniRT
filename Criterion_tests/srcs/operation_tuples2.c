@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:56:06 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/30 17:34:38 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:16:17 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ double	magn_tuple(t_tuple a)
 {
 	double	add_sqrs;
 	double	c;
-	
-	add_sqrs = (a.x * a.x) + (a.y * a.y) + ( a.z * a.z) + (a.w * a.w);
+
+	add_sqrs = (a.x * a.x) + (a.y * a.y) + (a.z * a.z) + (a.w * a.w);
 	c = sqrtf(add_sqrs);
 	return (c);
 }

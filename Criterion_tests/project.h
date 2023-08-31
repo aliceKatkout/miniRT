@@ -6,16 +6,18 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/30 19:10:43 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:13:37 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROJECT_H
 # define PROJECT_H
 
-#include <stdio.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include <sys/stat.h>
+# include <fcntl.h>
 # include "mlx_linux/mlx.h"
 # include <fcntl.h>
 # include <X11/X.h>
@@ -52,12 +54,6 @@ typedef struct s_env
 	t_tuple	wind;
 }	t_env;
 
-typedef struct s_canvas
-{
-	int	w;
-	int	h;
-}	t_canvas;
-
 typedef struct s_image
 {
 	void	*image;
@@ -67,22 +63,37 @@ typedef struct s_image
 	int		endian;
 }				t_image;
 
+typedef struct s_matrix_4
+{
+	float	tab[4][4];
+}	t_matrix_4;
+
+typedef struct s_matrix_3
+{
+	float	tab[3][3];
+}	t_matrix_3;
+
+typedef struct s_matrix_2
+{
+	float	tab[2][2];
+}	t_matrix_2;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_image	img;
-	// t_projectile	proj;
-	// t_env	env;
-	t_canvas	canvas;
+	t_image			img;
+	t_projectile	proj;
+	t_env			env;
 }	t_data;
 
-/* CREATE */
+/* TUPLES CREATE */
 t_tuple	create_point(double x, double y, double z);
 t_tuple	create_vector(double x, double y, double z);
+t_tuple	create_tuple(double x, double y, double z, double w);
 int		tuples_cmp(t_tuple a, t_tuple b);
 
-/* OPERATIONS */
+/* TUPLES OPERATIONS */
 t_tuple	add_tuples(t_tuple a, t_tuple b);
 t_tuple	sub_tuples(t_tuple a, t_tuple b);
 t_tuple	neg_tuples(t_tuple a);
@@ -95,20 +106,38 @@ double	dot_product(t_tuple a, t_tuple b);
 t_tuple	cross_product(t_tuple a, t_tuple b);
 
 /* PRINT ON CANVAS */
+t_projectile	ft_tick(t_env env, t_projectile proj);
 t_tuple	create_color(double red, double green, double blue);
 t_tuple	mult_colors(t_tuple a, t_tuple b);
+int		transform_color(t_tuple color);
 
-void	write_pix_canvas(t_canvas canvas, int x, int y, t_tuple color);
-
+/* FOR MLX */
 void	render_background(t_image *img, int color);
 void	render_map(t_data *data);
 void	img_pxl_put(t_image *img, int x, int y, int color);
 int		render(t_data *data);
 void	init_canvas(t_data *data);
 
-/* HOOK */
+/* HOOK --- with MLX */
 int	handle_keypress(int keysym, t_data *data);
 // int	handle_mouse(int button, int x, int y, t_data *data);
+
+/* MATRICES CREATE*/
+t_matrix_4	create_matrix_4(float tab[16]);
+t_matrix_3	create_matrix_3(float tab[9]);
+t_matrix_2	create_matrix_2(float tab[4]);
+int	matrix_cmp_4(t_matrix_4 a, t_matrix_4 b);
+
+/* MATRIX OPERATIONS */
+t_matrix_4	matrix_mult_4(t_matrix_4 a, t_matrix_4 b);
+t_tuple	matrix_mult_tuple(t_matrix_4 a, t_tuple point);
+t_matrix_4	identity_matrix(void);
+t_matrix_4	transpose_mat(t_matrix_4 mat);
+
+/* SUBMATRICES */
+int	determine_two(t_matrix_2 a);
+t_matrix_2	submatrix_3(t_matrix_3 a, int row, int col);
+t_matrix_3	submatrix_4(t_matrix_4 a, int row, int col);
 
 /* EXIT */
 int	ft_free_all(t_data *data);
