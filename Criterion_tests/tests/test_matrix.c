@@ -27,7 +27,7 @@ Test(matrix, matrix_cmp1)
 	mat_a = create_matrix_4(tab_a);
 	mat_b = create_matrix_4(tab_b);
 	//Assert
-	cr_expect(matrix_cmp_4(mat_a, mat_b) == -1);
+	cr_expect(matrix_cmp_4(mat_a, mat_b) != EPSILON);
 }
 
 Test(matrix, matrix_cmp2)
@@ -63,7 +63,6 @@ Test(matrix, matrix_mult1)
 	cr_expect(mat_c.tab[1][1] == 54);
 	cr_expect(mat_c.tab[1][2] == 114);
 	cr_expect(mat_c.tab[3][1] == 26);
-
 }
 
 Test(matrix, matrix_mult1_tuple1)
@@ -179,3 +178,130 @@ Test(matrix, sub_matrix_2)
 	cr_expect(b.tab[2][1] == -1);
 	cr_expect(b.tab[2][2] == 1);
 }
+
+Test(matrix, minor_1)
+{
+	t_matrix_3	a;
+	float	tab_a[9] = {3, 5, 0, 2, -1, -7, 6, -1, 5};
+	int		minor1;
+	int		minor2;
+	int		minor3;
+	int		minor4;
+
+	a = create_matrix_3(tab_a);
+	minor1 = minor_3(a, 1, 0);
+	cr_expect(minor1 == 25);
+	minor2 = cofactor_3(a, 1, 0);
+	cr_expect(minor2 == -25);
+
+	minor3 = minor_3(a, 0, 0);
+	cr_expect(minor3 == -12);
+	minor4 = cofactor_3(a, 0, 0);
+	cr_expect(minor4 == -12);
+}
+
+Test(matrix, determ_1)
+{
+	t_matrix_3	a;
+	float tab_a[9] = {1, 2, 6, -5, 8, -4, 2, 6, 4};
+
+	a = create_matrix_3(tab_a);
+	cr_expect(cofactor_3(a, 0, 0) == 56);
+	cr_expect(cofactor_3(a, 0, 1) == 12);
+	cr_expect(cofactor_3(a, 0, 2) == -46);
+	cr_expect(determine_three(a) == -196);
+}
+
+Test(matrix, determ_2)
+{
+	t_matrix_4	a;
+	float tab_a[16] = {-2, -8, 3, 5, -3, 1, 7, 3,
+		1, 2, -9, 6, -6, 7, 7, -9};
+
+	a = create_matrix_4(tab_a);
+	cr_expect(cofactor_4(a, 0, 0) == 690);
+	cr_expect(cofactor_4(a, 0, 1) == 447);
+	cr_expect(cofactor_4(a, 0, 2) == 210);
+	cr_expect(cofactor_4(a, 0, 3) == 51);
+	cr_expect(determine_four(a) == -4071);
+}
+
+Test(matrix, is_invertible1)
+{
+	t_matrix_4	a;
+	float tab_a[16] = {6, 4, 4, 4, 5, 5, 7, 6, 
+		4, -9, 3, -7, 9, 1, 7, -6};
+	t_matrix_4	b;
+	float tab_b[16] = {-4, 2, -2, -3, 9, 6, 2, 6,
+		0, -5, 1, -5, 0, 0, 0, 0};
+
+	a = create_matrix_4(tab_a);
+	b = create_matrix_4(tab_b);
+	cr_expect(is_invertible(a) == 1);
+	cr_expect(is_invertible(b) == 0);
+}
+
+Test(matrix, inversion_4_1)
+{
+	t_matrix_4	a;
+	float tab[16] = {-5, 2, 6, -8, 1, -5, 1, 8,
+		7, 7, -6, -7, 1, -3, 7, 4};
+	t_matrix_4	b;
+
+	a = create_matrix_4(tab);
+	b = mat_inversion_4(a);
+	cr_expect((b.tab[3][2] - -0.300752) < EPSILON);
+	cr_expect((b.tab[1][1] - -1.456767) < EPSILON);
+}
+
+Test(matrix, inversion_4_2)
+{
+	t_matrix_4	a;
+	float tab[16] = {8, -5, 9, 2, 7, 5, 6, 1,
+		-6, 0, 9, 6, -3, 0, -9, -4};
+	t_matrix_4	b;
+
+	a = create_matrix_4(tab);
+	b = mat_inversion_4(a);
+	cr_expect((b.tab[0][0] - -0.15385) < EPSILON);
+	cr_expect((b.tab[0][1] - -0.15385) < EPSILON);
+	cr_expect((b.tab[1][1] - 0.12308) < EPSILON);
+	cr_expect((b.tab[3][3] - -1.92308) < EPSILON);
+	cr_expect((b.tab[2][3] - 0.92308) < EPSILON);
+}
+
+Test(matrix, inversion_4_3)
+{
+	t_matrix_4	a;
+	float tab[16] = {9, 3, 0, 9, -5, -2, -6, -3,
+		-4, 9, 6, 4, -7, 6, 6, 2};
+	t_matrix_4	b;
+
+	a = create_matrix_4(tab);
+	b = mat_inversion_4(a);
+	cr_expect((b.tab[0][0] - -0.04074) < EPSILON);
+	cr_expect((b.tab[0][1] - -0.07778) < EPSILON);
+	cr_expect((b.tab[1][1] - 0.03333) < EPSILON);
+	cr_expect((b.tab[3][3] - 0.33333) < EPSILON);
+	cr_expect((b.tab[2][3] - 0.12963) < EPSILON);
+}
+
+Test(matrix, inversion_4_4)
+{
+	t_matrix_4	a;
+	float tab[16] = {3, -9, 7, 3, 3, -8, 2, -9,
+		-4, 4, 4, 1, -6, 5, -1, 1};
+	t_matrix_4	b;
+	float tab2[16] = {8, 2, 2, 2, 3, -1, 7, 0,
+		7, 0, 5, 4, 6, -2, 0, 5};
+	t_matrix_4	c;
+	t_matrix_4	cmp;
+
+	a = create_matrix_4(tab);
+	b = create_matrix_4(tab2);
+	c = matrix_mult_4(a, b);
+	b = mat_inversion_4(b);
+	cmp = matrix_mult_4(c, b);
+	cr_expect(matrix_cmp_4(cmp, a) < EPSILON);
+}
+

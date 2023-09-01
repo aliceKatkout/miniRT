@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/31 20:18:36 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:23:08 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,20 @@ int	main(void)
 {
 	t_data	data;
 	(void)data;
-	t_matrix_3	a;
-	t_matrix_2	b;
-	float	tab_a[9] = {1, 5, 10, -3, 2, 7, 10, 6, -3};
+		t_matrix_4	scaled;
+	t_matrix_4	inverse;
+	t_tuple vec;
+	t_tuple	res;
 
-	a = create_matrix_3(tab_a);
-	print_matrix_3(a);
-	b = submatrix_3(a, 0, 2);
-	print_matrix_2(b);
-	(void)b;
+	scaled = scaling(2, 3, 4);
+	inverse = mat_inversion_4(scaled);
+	vec = create_vector(-4, 6, 8);
+	res = matrix_mult_tuple(inverse, vec);
+	printf("res.x : %f\n", res.x);
+	printf("res.y : %f\n", res.y);
+	printf("res.z : %f\n", res.z);
+	printf("res.w : %f\n", res.w);
+
 	// init_canvas(&data);
 	// ft_free_all(&data);
 	return (0);

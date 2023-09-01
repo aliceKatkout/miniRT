@@ -24,7 +24,10 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/colors.c	\
 					srcs/matrix.c	\
 					srcs/matrix_ops.c	\
-					srcs/submatrix.c	\
+					srcs/matrix_3.c	\
+					srcs/matrix_4.c	\
+					srcs/matrix_inversion.c	\
+					srcs/transformations.c	\
 					# srcs/canvas.c	\
 					srcs/hook.c		\
 					srcs/exit.c
@@ -68,7 +71,8 @@ T_NAME			= 	test_project
 T_SRCS			=	tests/test_tuples.c \
 					tests/test_tuples_ops.c	\
 					tests/test_colors.c	\
-					tests/test_matrix.c
+					tests/test_matrix.c	\
+					tests/test_transformations.c
 T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)
 CR_LIB_PATH		=	-Wl,-rpath=${HOME}/Criterion/build/src -L${HOME}/Criterion/build/src
 T_FLAGS			=	-lcriterion

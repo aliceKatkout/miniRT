@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:25:22 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/31 20:18:07 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:19:52 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_matrix_2	create_matrix_2(float tab[4])
 	return (matrix);
 }
 
-int	matrix_cmp_4(t_matrix_4 a, t_matrix_4 b)
+double	matrix_cmp_4(t_matrix_4 a, t_matrix_4 b)
 {
 	int	x;
 	int	y;
@@ -95,7 +95,7 @@ int	matrix_cmp_4(t_matrix_4 a, t_matrix_4 b)
 		y = 0;
 		while (y < 4)
 		{
-			if (a.tab[x][y] - b.tab[x][y] != 0)
+			if (fabs(a.tab[x][y] - b.tab[x][y]) < EPSILON )
 				return (a.tab[x][y] - b.tab[x][y]);
 			y++;
 		}
@@ -108,7 +108,8 @@ t_matrix_4	identity_matrix(void)
 {
 	t_matrix_4	id;
 
-	float		tab[16] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1};
+	float		tab[16] = {1, 0, 0, 0, 0, 1, 0, 0,
+		0, 0, 1, 0, 0, 0, 0, 1};
 	id = create_matrix_4(tab);
 	return (id);
 }

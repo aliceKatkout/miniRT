@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/08/31 20:13:37 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:28:53 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <X11/keysym.h>
 #include <math.h>
 
-# define EPSILON 0.001
+# define EPSILON 0.0001
 # define WINDOW_WIDTH 720	
 # define WINDOW_HEIGHT 480
 
@@ -126,7 +126,7 @@ int	handle_keypress(int keysym, t_data *data);
 t_matrix_4	create_matrix_4(float tab[16]);
 t_matrix_3	create_matrix_3(float tab[9]);
 t_matrix_2	create_matrix_2(float tab[4]);
-int	matrix_cmp_4(t_matrix_4 a, t_matrix_4 b);
+double	matrix_cmp_4(t_matrix_4 a, t_matrix_4 b);
 
 /* MATRIX OPERATIONS */
 t_matrix_4	matrix_mult_4(t_matrix_4 a, t_matrix_4 b);
@@ -136,8 +136,25 @@ t_matrix_4	transpose_mat(t_matrix_4 mat);
 
 /* SUBMATRICES */
 int	determine_two(t_matrix_2 a);
+int	determine_three(t_matrix_3 a);
+int	determine_four(t_matrix_4 a);
+
 t_matrix_2	submatrix_3(t_matrix_3 a, int row, int col);
 t_matrix_3	submatrix_4(t_matrix_4 a, int row, int col);
+int	minor_3(t_matrix_3 a, int row, int col);
+int	cofactor_3(t_matrix_3 a, int row, int col);
+
+int	minor_4(t_matrix_4 a, int row, int col);
+int	cofactor_4(t_matrix_4 a, int row, int col);
+
+/* MATRIX INVERSION */
+int	is_invertible(t_matrix_4 a);
+t_matrix_4	mat_inversion_4(t_matrix_4 a);
+
+/* MATRIX TRANSFORMATIONS */
+t_matrix_4	translation(double x, double y, double z);
+t_matrix_4	scaling(double x, double y, double z);
+
 
 /* EXIT */
 int	ft_free_all(t_data *data);
