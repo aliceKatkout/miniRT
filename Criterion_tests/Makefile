@@ -29,6 +29,7 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/matrix_inversion.c	\
 					srcs/transformations.c	\
 					srcs/rotations.c	\
+					srcs/shearing.c	\
 					#srcs/canvas.c	\
 					srcs/hook.c		\
 					srcs/exit.c
@@ -74,7 +75,8 @@ T_SRCS			=	tests/test_tuples.c \
 					tests/test_colors.c	\
 					tests/test_matrix.c	\
 					tests/test_transformations.c\
-					tests/test_rotations.c
+					tests/test_rotations.c\
+					tests/test_shearing.c
 T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)
 CR_LIB_PATH		=	-Wl,-rpath=${HOME}/Criterion/build/src -L${HOME}/Criterion/build/src
 T_FLAGS			=	-lcriterion

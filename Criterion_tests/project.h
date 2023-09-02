@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/02 16:06:20 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:20:28 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,8 @@ t_matrix_4	scaling(double x, double y, double z);
 t_matrix_4	rotation_x(float rad);
 t_matrix_4	rotation_y(float rad);
 t_matrix_4	rotation_z(float rad);
+
+t_matrix_4	shearing(float xy, float xz, float yx, float yz, float zx, float zy);
 
 /* EXIT */
 int			ft_free_all(t_data *data);
