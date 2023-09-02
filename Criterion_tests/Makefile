@@ -28,7 +28,7 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/matrix_4.c	\
 					srcs/matrix_inversion.c	\
 					srcs/transformations.c	\
-					# srcs/canvas.c	\
+					srcs/canvas.c	\
 					srcs/hook.c		\
 					srcs/exit.c
 MAIN_SRCS		=	srcs/main.c
@@ -48,7 +48,7 @@ all:	$(NAME)
 ${NAME}:	${OBJECTS} ${M_OBJECTS}
 	@echo "${_UNDER}${_RED}Creating binary for Project${_END}"
 	@echo "${_BOLD}${_GREEN}${CC} -o ${NAME} ${OBJECTS} ${M_OBJECTS}${_END}"
-	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} -L./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz 
+	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} -L./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 ${M_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 	@echo "${_BOLD}${_BLUE}"$(CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"

@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   operation_tuples2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:56:06 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/01 16:35:05 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:24:34 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
+/* The distance represented by a vector is
+called its magnitude, or length. It’s how far you would travel in a straight line
+if you were to walk from one end of the vector to the other. */
 double	magn_tuple(t_tuple a)
 {
 	double	add_sqrs;
@@ -23,6 +26,9 @@ double	magn_tuple(t_tuple a)
 	return (c);
 }
 
+/* Vectors with magnitudes of 1 are called a unit vectors.
+Normalization is the process of taking an arbitrary vector and converting it
+into a unit vector. To normalize a vector, you divide it by its magnitude. */
 t_tuple	normalize(t_tuple vec)
 {
 	t_tuple	normlzd;
@@ -36,6 +42,7 @@ t_tuple	normalize(t_tuple vec)
 	return (normlzd);
 }
 
+/* Dot product = You get a scalar value from 2 vectors*/
 double	dot_product(t_tuple a, t_tuple b)
 {
 	double	ret;
@@ -45,6 +52,8 @@ double	dot_product(t_tuple a, t_tuple b)
 	return (ret);
 }
 
+/*Cross product = You get a new vector that is perpendicular
+to both of the original vectors */
 t_tuple	cross_product(t_tuple a, t_tuple b)
 {
 	t_tuple	vec;

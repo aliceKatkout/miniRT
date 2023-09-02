@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   creation_tuple.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:09:53 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/01 15:25:00 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:00:06 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
+
+/*
+**	If tuple is a point, w = 1, else if it's a vector, w = 0.
+	Beware of comparing floating point values using simple equivalency. Round-off error
+	can make two numbers that should be equivalent instead be slightly different.
+	When you need to test two floating point numbers for equivalence, compare their
+	difference. If the absolute value of their difference is less than some value (called
+	EPSILON), you can consider them equal.
+*/
 
 t_tuple	create_point(double x, double y, double z)
 {
