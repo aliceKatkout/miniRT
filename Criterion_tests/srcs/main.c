@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/02 13:50:57 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:44:19 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	print_matrix_2(t_matrix_2 b)
 int	main(void)
 {
 	t_data	data;
+	(void)data;
 		t_matrix_4	scaled;
 	t_matrix_4	inverse;
 	t_tuple vec;
@@ -75,7 +76,7 @@ int	main(void)
 	printf("res.z : %f\n", res.z);
 	printf("res.w : %f\n", res.w);
 
-	init_canvas(&data);
-	ft_free_all(&data);
+/* 	init_canvas(&data);
+	ft_free_all(&data); */
 	return (0);
 }
