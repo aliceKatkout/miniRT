@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/02 16:20:28 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:09:28 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef struct s_tuple
 	double	z;
 	double	w;
 }	t_tuple;
+
+typedef struct s_ray
+{
+	t_tuple	origin;
+	t_tuple	direction;
+}	t_ray;
 
 typedef struct s_projectile
 {
@@ -161,6 +167,10 @@ t_matrix_4	rotation_y(float rad);
 t_matrix_4	rotation_z(float rad);
 
 t_matrix_4	shearing(float xy, float xz, float yx, float yz, float zx, float zy);
+
+/* RAYS */
+t_ray		create_ray(t_tuple origin, t_tuple direction);
+t_tuple		position(t_ray sray, double t);
 
 /* EXIT */
 int			ft_free_all(t_data *data);
