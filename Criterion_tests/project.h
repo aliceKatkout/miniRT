@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/04 12:09:28 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:18:26 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # define WINDOW_WIDTH 720
 # define WINDOW_HEIGHT 480
 
+typedef struct s_xs
+{
+	double	x0;
+	double	x1;
+	int		count;
+}	t_xs;
+
 typedef struct s_list
 {
 	void			*content;
@@ -41,6 +48,18 @@ typedef struct s_tuple
 	double	z;
 	double	w;
 }	t_tuple;
+
+typedef struct s_sphere
+{
+	int		id;
+	double	x;
+	double	y;
+	double	z;
+	double	diameter;
+	int		r;
+	int		g;
+	int		b;
+}	t_sphere;
 
 typedef struct s_ray
 {
@@ -171,6 +190,10 @@ t_matrix_4	shearing(float xy, float xz, float yx, float yz, float zx, float zy);
 /* RAYS */
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
+
+/* SPHERES */
+t_sphere	void_sphere(void);
+t_xs	intersect(t_sphere s, t_ray r);
 
 /* EXIT */
 int			ft_free_all(t_data *data);

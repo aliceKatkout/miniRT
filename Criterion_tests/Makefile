@@ -30,7 +30,8 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/transformations.c	\
 					srcs/rotations.c	\
 					srcs/shearing.c	\
-					srcs/rays.c
+					srcs/rays.c\
+					srcs/spheres.c	\
 					#srcs/canvas.c	\
 					srcs/hook.c		\
 					srcs/exit.c

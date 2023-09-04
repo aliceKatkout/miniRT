@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 12:17:56 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:26:45 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,4 @@ t_tuple	position(t_ray ray, double t)
 	pos.w = 1;
 	return (pos);
 }
+
