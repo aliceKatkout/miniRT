@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres.c                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 15:56:21 by avedrenn         ###   ########.fr       */
+/*   Created: 2022/11/08 16:46:08 by avedrenn          #+#    #+#             */
+/*   Updated: 2022/11/13 13:29:05 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "libft.h"
 
-t_sphere	void_sphere(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_sphere	sphere;
-	static int	id = 0;
+	int	i;
 
-	sphere.id = id++;
-	sphere.x = 0;
-	sphere.y = 0;
-	sphere.z = 0;
-	sphere.diameter = 1;
-	return (sphere);
+	if (!s || !fd)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i ++;
+	}
+	write(fd, "\n", 1);
 }

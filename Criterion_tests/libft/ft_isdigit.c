@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres.c                                          :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 15:56:21 by avedrenn         ###   ########.fr       */
+/*   Created: 2022/10/06 19:32:30 by avedrenn          #+#    #+#             */
+/*   Updated: 2023/08/10 17:01:19 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "libft.h"
 
-t_sphere	void_sphere(void)
+int	ft_isdigit(int c)
 {
-	t_sphere	sphere;
-	static int	id = 0;
-
-	sphere.id = id++;
-	sphere.x = 0;
-	sphere.y = 0;
-	sphere.z = 0;
-	sphere.diameter = 1;
-	return (sphere);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/04 15:18:26 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:36:24 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "mlx_linux/mlx.h"
+# include "libft/libft.h"
 # include <fcntl.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -34,12 +35,6 @@ typedef struct s_xs
 	double	x1;
 	int		count;
 }	t_xs;
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
 
 typedef struct s_tuple
 {
@@ -60,6 +55,12 @@ typedef struct s_sphere
 	int		g;
 	int		b;
 }	t_sphere;
+
+typedef struct s_intersection
+{
+	double		t;
+	t_sphere	*s;
+}	t_intersection;
 
 typedef struct s_ray
 {
@@ -194,6 +195,7 @@ t_tuple		position(t_ray sray, double t);
 /* SPHERES */
 t_sphere	void_sphere(void);
 t_xs	intersect(t_sphere s, t_ray r);
+t_intersection	create_intersection(double t, t_sphere *s);
 
 /* EXIT */
 int			ft_free_all(t_data *data);

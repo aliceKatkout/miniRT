@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres.c                                          :+:      :+:    :+:   */
+/*   ft_strslen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 15:56:21 by avedrenn         ###   ########.fr       */
+/*   Created: 2022/12/10 17:24:35 by avedrenn          #+#    #+#             */
+/*   Updated: 2022/12/10 17:25:48 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "libft.h"
 
-t_sphere	void_sphere(void)
+size_t	ft_strslen(char **strs)
 {
-	t_sphere	sphere;
-	static int	id = 0;
+	size_t	i;
 
-	sphere.id = id++;
-	sphere.x = 0;
-	sphere.y = 0;
-	sphere.z = 0;
-	sphere.diameter = 1;
-	return (sphere);
+	i = 0;
+	while (strs[i])
+		i ++;
+	return (i);
 }

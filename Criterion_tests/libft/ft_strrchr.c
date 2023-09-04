@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 15:56:21 by avedrenn         ###   ########.fr       */
+/*   Created: 2022/10/12 16:11:51 by avdrenn           #+#    #+#             */
+/*   Updated: 2023/08/10 17:03:51 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "libft.h"
 
-t_sphere	void_sphere(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_sphere	sphere;
-	static int	id = 0;
+	int	i;
 
-	sphere.id = id++;
-	sphere.x = 0;
-	sphere.y = 0;
-	sphere.z = 0;
-	sphere.diameter = 1;
-	return (sphere);
+	i = (ft_strlen(s) - 1);
+	if (!c)
+		return ((char *)(s + i + 1));
+	while (i >= 0)
+	{
+		if (s[i] == (char) c)
+			return ((char *)(s + i));
+		i --;
+	}
+	return (NULL);
 }

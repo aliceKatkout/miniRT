@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 15:56:21 by avedrenn         ###   ########.fr       */
+/*   Created: 2022/10/11 18:25:05 by avedrenn          #+#    #+#             */
+/*   Updated: 2023/08/10 17:03:51 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "libft.h"
 
-t_sphere	void_sphere(void)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_sphere	sphere;
-	static int	id = 0;
+	size_t	dst_size;
+	size_t	i;
 
-	sphere.id = id++;
-	sphere.x = 0;
-	sphere.y = 0;
-	sphere.z = 0;
-	sphere.diameter = 1;
-	return (sphere);
+	if (!size)
+		return (ft_strlen(src));
+	dst_size = ft_strlen(dst);
+	i = 0;
+	while ((dst_size + i) < (size - 1) && src[i])
+	{
+		dst[i + dst_size] = src[i];
+		i ++;
+	}
+	if (i > 0)
+		dst[i + dst_size] = 0;
+	if (dst_size > size)
+		return (size + ft_strlen(src));
+	return (dst_size + ft_strlen(src));
 }

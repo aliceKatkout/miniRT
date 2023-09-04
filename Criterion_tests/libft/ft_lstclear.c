@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres.c                                          :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 15:56:21 by avedrenn         ###   ########.fr       */
+/*   Created: 2022/11/09 15:17:01 by avedrenn          #+#    #+#             */
+/*   Updated: 2022/11/13 13:44:39 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "libft.h"
 
-t_sphere	void_sphere(void)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_sphere	sphere;
-	static int	id = 0;
+	t_list	*tmp;
 
-	sphere.id = id++;
-	sphere.x = 0;
-	sphere.y = 0;
-	sphere.z = 0;
-	sphere.diameter = 1;
-	return (sphere);
+	if (!lst || !(del))
+		return ;
+	while ((*lst))
+	{
+		(del)((*lst)->content);
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
+	}
 }

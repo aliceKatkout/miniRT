@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 15:56:21 by avedrenn         ###   ########.fr       */
+/*   Created: 2022/11/08 16:50:31 by avedrenn          #+#    #+#             */
+/*   Updated: 2022/11/15 11:14:36 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "libft.h"
 
-t_sphere	void_sphere(void)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_sphere	sphere;
-	static int	id = 0;
+	unsigned int	nb;
 
-	sphere.id = id++;
-	sphere.x = 0;
-	sphere.y = 0;
-	sphere.z = 0;
-	sphere.diameter = 1;
-	return (sphere);
+	if (n < 0)
+	{
+		nb = n * -1;
+		write(fd, "-", 1);
+	}
+	else
+		nb = n;
+	if (nb <= 9)
+		ft_putchar_fd(nb + 48, fd);
+	else if (nb >= 9)
+	{
+		ft_putnbr_fd((int)(nb / 10), fd);
+		ft_putchar_fd(nb % 10 + 48, fd);
+	}
 }

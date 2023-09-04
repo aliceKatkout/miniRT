@@ -49,10 +49,13 @@ M_OBJECTS 		=	$(subst /,/build/,${MAIN_SRCS:.c=.o})
 
 all:	$(NAME)
 
-${NAME}:	${OBJECTS} ${M_OBJECTS}
+libft/libft.a:
+	${MAKE} -C libft
+
+${NAME}:	${OBJECTS} ${M_OBJECTS} libft
 	@echo "${_UNDER}${_RED}Creating binary for Project${_END}"
 	@echo "${_BOLD}${_GREEN}${CC} -o ${NAME} ${OBJECTS} ${M_OBJECTS}${_END}"
-	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} -L./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} -L ./libft -lft -L./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 ${M_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 	@echo "${_BOLD}${_BLUE}"$(CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"
@@ -98,10 +101,10 @@ ${T_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 	@echo "${_BOLD}${_BLUE}"$(T_CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"
 	@$(T_CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@
 
-tests:	${OBJECTS} ${T_OBJECTS}
+tests:	${OBJECTS} ${T_OBJECTS} libft/libft.a
 	@echo "${_UNDER}${_RED}Creating binary for Tests${_END}"
 	@echo "${_BOLD}${_GREEN}${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} ${_END}"
-	@${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} -lm
+	@${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} -lm -L ./libft -lft
 	@./${T_NAME}
 
 ################################################################################
