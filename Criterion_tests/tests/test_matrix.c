@@ -27,7 +27,7 @@ Test(matrix, matrix_cmp1)
 	mat_a = create_matrix_4(tab_a);
 	mat_b = create_matrix_4(tab_b);
 	//Assert
-	cr_expect(matrix_cmp_4(mat_a, mat_b) != EPSILON);
+	cr_expect(matrix_cmp_4(mat_a, mat_b) != 0);
 }
 
 Test(matrix, matrix_cmp2)
@@ -229,7 +229,7 @@ Test(matrix, determ_2)
 Test(matrix, is_invertible1)
 {
 	t_matrix_4	a;
-	float tab_a[16] = {6, 4, 4, 4, 5, 5, 7, 6, 
+	float tab_a[16] = {6, 4, 4, 4, 5, 5, 7, 6,
 		4, -9, 3, -7, 9, 1, 7, -6};
 	t_matrix_4	b;
 	float tab_b[16] = {-4, 2, -2, -3, 9, 6, 2, 6,
@@ -304,4 +304,3 @@ Test(matrix, inversion_4_4)
 	cmp = matrix_mult_4(c, b);
 	cr_expect(matrix_cmp_4(cmp, a) < EPSILON);
 }
-

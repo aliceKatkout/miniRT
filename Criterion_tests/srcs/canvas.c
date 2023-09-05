@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/02 13:53:28 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:16:22 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,47 @@ void	render_background(t_image *img, int color)
 
 void	render_map(t_data *data)
 {
-	int		i;
+
+	t_ray	ray;
+	t_tuple	origin;
+	t_tuple	pos;
 	t_tuple	red;
 	int		red2;
-	int		scale;
+	t_sphere	sphere;
+	t_xs	xs;
+	int	world_x;
+	int	world_y;
+	int x;
+	int y;
 
-	scale = 3;
+	x = 0;
+	y = 0;
+	world_x = 0;
+	world_y = 0;
 	red = create_color(255, 0, 0);
 	red2 = transform_color(red);
-	i = 0;
+	origin = create_point(0, 0, -50);
 	render_background(&data->img, 0x000000);
-	data->proj.position = create_point(50, 1, 0);
-	data->proj.velocity = create_vector(1, 3, 0);
-	// data->proj.velocity = normalize(data->proj.velocity);
-	data->env.gravity = create_vector(0, -0.1, 0);
-	data->env.wind = create_vector(-0.01, 0, 0);
-	while (scale * data->proj.position.y >= 1)
+	sphere = void_sphere();
+	set_transform(&sphere, scaling(300, 100, 10));
+	while (y < 1000)
 	{
-		data->proj = ft_tick(data->env, data->proj);
-		img_pxl_put(&data->img,  data->proj.position.x * scale,
-			WINDOW_HEIGHT - (data->proj.position.y * scale), red2);
-		i++;
+		x = 0;
+		world_y = WINDOW_HEIGHT - (y * 2);
+		while (x < 1000)
+		{
+			world_x = -WINDOW_WIDTH + (x * 2);
+			pos = create_point(world_x, world_y, 10);
+			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
+			xs = intersect(sphere, ray);
+			if (xs.count > 0)
+				img_pxl_put(&data->img, x, y, red2);
+			x++;
+		}
+		y++;
 	}
+
+
 }
 
 
