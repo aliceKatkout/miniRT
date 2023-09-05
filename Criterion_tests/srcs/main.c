@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/02 14:44:19 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:24:56 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,8 @@ void	print_matrix_2(t_matrix_2 b)
 int	main(void)
 {
 	t_data	data;
-	(void)data;
-		t_matrix_4	scaled;
-	t_matrix_4	inverse;
-	t_tuple vec;
-	t_tuple	res;
+ 	init_canvas(&data);
 
-	scaled = scaling(2, 3, 4);
-	inverse = mat_inversion_4(scaled);
-	vec = create_vector(-1, 6, 8);
-	res = matrix_mult_tuple(inverse, vec);
-	printf("res.x : %f\n", res.x);
-	printf("res.y : %f\n", res.y);
-	printf("res.z : %f\n", res.z);
-	printf("res.w : %f\n", res.w);
-
-/* 	init_canvas(&data);
-	ft_free_all(&data); */
+	ft_free_all(&data);
 	return (0);
 }
