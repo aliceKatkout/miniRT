@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 16:35:19 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:22:50 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,15 @@ t_intersection	create_intersection(double t, t_sphere *s)
 	i.t = t;
 	i.s = s;
 	return (i);
+}
+
+t_ray	transform_ray(t_ray r, t_matrix_4 m)
+{
+	t_ray	new;
+	t_tuple	tmp;
+
+	tmp = matrix_mult_tuple(m, r.direction);
+	new.origin = tmp;
+	new.direction = r.direction;
+	return (new);
 }
