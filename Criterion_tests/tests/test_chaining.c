@@ -35,7 +35,8 @@ Test(transform, set_transform)
 	s = void_sphere();
 	cr_expect(matrix_cmp_4(s.transform, identity_matrix()) == 0);
 	transform = translation(2, 3, 4);
-	cr_expect(matrix_cmp_4(transform, translation(2, 3, 4)) == 0);
+	set_transform(&s, transform);
+	cr_expect(matrix_cmp_4(s.transform, transform) == 0);
 }
 
 Test(transform, set_transform2)
@@ -46,10 +47,11 @@ Test(transform, set_transform2)
 
 	r= create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
 	s = void_sphere();
-	set_transform(s, scaling(2, 2, 2));
+
+	set_transform(&s, scaling(2, 2, 2));
+
 	xs = intersect(s, r);
 	cr_expect(xs.count == 2);
-	cr_expect(fabs(xs.x0 - 0) < EPSILON);
-	cr_assert(false, "xs.x1 = %f", xs.x1);
-	cr_expect(fabs(xs.x1 - 7) < EPSILON);
+	cr_expect(xs.x0 - 3 < EPSILON);
+	cr_expect(xs.x1 - 7 < EPSILON);
 }

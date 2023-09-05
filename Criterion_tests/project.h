@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/05 14:56:20 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:14:25 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ t_intersection	create_intersection(double t, t_sphere *s);
 
 /* SPHERES */
 t_sphere	void_sphere(void);
-void	set_transform(t_sphere s, t_matrix_4 m);
+void	set_transform(t_sphere *s, t_matrix_4 m);
 
 
 /* EXIT */
