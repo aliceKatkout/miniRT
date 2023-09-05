@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/04 15:56:21 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:57:13 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,12 @@ t_sphere	void_sphere(void)
 	sphere.y = 0;
 	sphere.z = 0;
 	sphere.diameter = 1;
+	sphere.transform = identity_matrix();
 	return (sphere);
+}
+
+void	set_transform(t_sphere s, t_matrix_4 m)
+{
+	s.transform = m;
+	(void)s;
 }

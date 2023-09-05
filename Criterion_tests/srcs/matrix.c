@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:25:22 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/02 14:03:45 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:16:18 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,10 @@ t_matrix_4	identity_matrix(void)
 {
 	t_matrix_4	id;
 
-	float		tab[16] = {1, 0, 0, 0, 0, 1, 0, 0,
-		0, 0, 1, 0, 0, 0, 0, 1};
+	float		tab[16] = {1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1};
 	id = create_matrix_4(tab);
 	return (id);
 }

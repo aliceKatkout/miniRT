@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/05 14:40:43 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:56:20 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@
 # define WINDOW_WIDTH 720
 # define WINDOW_HEIGHT 480
 
-typedef struct s_xs
-{
-	double			x0;
-	double			x1;
-	int				count;
-	struct s_sphere	*obj;
-}	t_xs;
 
 typedef struct s_tuple
 {
@@ -45,23 +38,8 @@ typedef struct s_tuple
 	double	w;
 }	t_tuple;
 
-typedef struct s_sphere
-{
-	int		id;
-	double	x;
-	double	y;
-	double	z;
-	double	diameter;
-	int		r;
-	int		g;
-	int		b;
-}	t_sphere;
 
-typedef struct s_intersection
-{
-	double		t;
-	t_sphere	*s;
-}	t_intersection;
+
 
 typedef struct s_ray
 {
@@ -105,6 +83,27 @@ typedef struct s_matrix_2
 	float	tab[2][2];
 }	t_matrix_2;
 
+typedef struct s_sphere
+{
+	int		id;
+	t_matrix_4	transform;
+	double	x;
+	double	y;
+	double	z;
+	double	diameter;
+	int		r;
+	int		g;
+	int		b;
+}	t_sphere;
+
+typedef struct s_xs
+{
+	double			x0;
+	double			x1;
+	int				count;
+	struct s_sphere	*obj;
+}	t_xs;
+
 typedef struct s_data
 {
 	void			*mlx_ptr;
@@ -113,6 +112,13 @@ typedef struct s_data
 	t_projectile	proj;
 	t_env			env;
 }	t_data;
+
+typedef struct s_intersection
+{
+	double		t;
+	t_sphere	*s;
+}	t_intersection;
+
 
 /* TUPLES CREATE */
 t_tuple		create_point(double x, double y, double z);
@@ -193,12 +199,13 @@ t_matrix_4	shearing(float xy, float xz, float yx, float yz, float zx, float zy);
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
 t_ray	transform_ray(t_ray r, t_matrix_4 m);
-
+t_xs	intersect(t_sphere s, t_ray r);
+t_intersection	create_intersection(double t, t_sphere *s);
 
 /* SPHERES */
 t_sphere	void_sphere(void);
-t_xs	intersect(t_sphere s, t_ray r);
-t_intersection	create_intersection(double t, t_sphere *s);
+void	set_transform(t_sphere s, t_matrix_4 m);
+
 
 /* EXIT */
 int			ft_free_all(t_data *data);
