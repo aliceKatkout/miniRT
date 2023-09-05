@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/04 16:36:24 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:36:01 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@
 
 typedef struct s_xs
 {
-	double	x0;
-	double	x1;
-	int		count;
+	double			x0;
+	double			x1;
+	int				count;
+	struct s_sphere	*obj;
 }	t_xs;
 
 typedef struct s_tuple
