@@ -55,3 +55,18 @@ Test(transform, set_transform2)
 	cr_expect(xs.x0 - 3 < EPSILON);
 	cr_expect(xs.x1 - 7 < EPSILON);
 }
+
+Test(transform, set_transform3)
+{
+	t_sphere	s;
+	t_ray		r;
+	t_xs	xs;
+
+	r= create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
+	s = void_sphere();
+
+	set_transform(&s, translation(5, 0, 0));
+
+	xs = intersect(s, r);
+	cr_expect(xs.count == 0);
+}
