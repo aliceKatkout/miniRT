@@ -3,13 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*   Updated: 2023/09/05 14:16:20 by mrabourd         ###   ########.fr       */
 =======
 /*   Updated: 2023/09/05 14:36:01 by avedrenn         ###   ########.fr       */
+>>>>>>> origin/alice_book
+=======
+/*   Updated: 2023/09/05 14:40:43 by avedrenn         ###   ########.fr       */
 >>>>>>> origin/alice_book
 /*                                                                            */
 /* ************************************************************************** */
