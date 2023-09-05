@@ -71,3 +71,40 @@ Test(rays, intersect)
 	cr_expect(xs.x0 == -6);
 	cr_expect(xs.x1 == -4);
 }
+
+
+Test(rays, transform1)
+{
+	t_ray		r;
+	t_matrix_4	m;
+	t_ray		r2;
+
+	r = create_ray(create_point(1, 2, 3), create_vector(0, 1, 0));
+	m = translation(3, 4, 5);
+	r2 = transform_ray(r, m);
+
+	cr_expect(r2.origin.x == 4);
+	cr_expect(r2.origin.y == 6);
+	cr_expect(r2.origin.z == 8);
+	cr_expect(r2.direction.x == 0);
+	cr_expect(r2.direction.y == 1);
+	cr_expect(r2.direction.z == 0);
+}
+
+Test(rays, transform2)
+{
+	t_ray		r;
+	t_matrix_4	m;
+	t_ray		r2;
+
+	r = create_ray(create_point(1, 2, 3), create_vector(0, 1, 0));
+	m = scaling(2, 3, 4);
+	r2 = transform_ray(r, m);
+
+	cr_expect(r2.origin.x == 2);
+	cr_expect(r2.origin.y == 6);
+	cr_expect(r2.origin.z == 12);
+	cr_expect(r2.direction.x == 0);
+	cr_expect(r2.direction.y == 3);
+	cr_expect(r2.direction.z == 0);
+}

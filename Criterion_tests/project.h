@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/05 14:36:01 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:40:43 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,8 @@ t_matrix_4	shearing(float xy, float xz, float yx, float yz, float zx, float zy);
 /* RAYS */
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
+t_ray	transform_ray(t_ray r, t_matrix_4 m);
+
 
 /* SPHERES */
 t_sphere	void_sphere(void);
