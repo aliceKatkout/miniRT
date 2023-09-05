@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/05 14:22:50 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:28:13 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ t_intersection	create_intersection(double t, t_sphere *s)
 t_ray	transform_ray(t_ray r, t_matrix_4 m)
 {
 	t_ray	new;
-	t_tuple	tmp;
 
-	tmp = matrix_mult_tuple(m, r.direction);
-	new.origin = tmp;
-	new.direction = r.direction;
+	new.direction = matrix_mult_tuple(m, r.direction);
+	new.origin = matrix_mult_tuple(m, r.origin);
 	return (new);
 }
