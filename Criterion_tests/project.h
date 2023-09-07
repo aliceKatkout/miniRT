@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/05 18:40:22 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:12:20 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,9 @@ t_intersection	create_intersection(double t, t_sphere *s);
 /* SPHERES */
 t_sphere	void_sphere(void);
 void	set_transform(t_sphere *s, t_matrix_4 m);
+
+/* LIGHTS */
+t_tuple		normal_at(t_sphere sphere, t_tuple point);
 
 
 /* EXIT */
