@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spheres.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/05 17:14:17 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:40:35 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_sphere	void_sphere(void)
 	sphere.z = 0;
 	sphere.diameter = 1;
 	sphere.transform = identity_matrix();
+	sphere.color = create_color(0, 0, 0);
 	return (sphere);
 }
 

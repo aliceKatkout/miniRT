@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   creation_tuple.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:09:53 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/02 13:00:06 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/07 18:02:22 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,13 @@ int	tuples_cmp(t_tuple a, t_tuple b)
 		}
 	}
 	return (0);
+}
+
+t_tuple	reverse_tuple(t_tuple a)
+{
+	a.x = -a.x;
+	a.y = -a.y;
+	a.z = -a.z;
+	a.w = -a.w;
+	return (a);
 }

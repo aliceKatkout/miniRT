@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/05 18:16:22 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/07 18:17:05 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,30 @@ void	render_map(t_data *data)
 	t_ray	ray;
 	t_tuple	origin;
 	t_tuple	pos;
-	t_tuple	red;
-	int		red2;
 	t_sphere	sphere;
 	t_xs	xs;
 	int	world_x;
 	int	world_y;
 	int x;
 	int y;
+	t_tuple	color;
+	int	color2;
+	t_light	light;
+	t_tuple	eye;
+	t_tuple	normal;
 
 	x = 0;
 	y = 0;
 	world_x = 0;
 	world_y = 0;
-	red = create_color(255, 0, 0);
-	red2 = transform_color(red);
 	origin = create_point(0, 0, -50);
 	render_background(&data->img, 0x000000);
 	sphere = void_sphere();
-	set_transform(&sphere, scaling(300, 100, 10));
+	sphere.material = init_material();
+	sphere.material.color = create_color(255, 20, 255);
+	light.position = create_point(-10, 10, -10);
+	light.intensity = create_color(255, 100, 100);
+	set_transform(&sphere, scaling(50, 50, 30));
 	while (y < 1000)
 	{
 		x = 0;
@@ -86,12 +91,17 @@ void	render_map(t_data *data)
 			pos = create_point(world_x, world_y, 10);
 			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
 			xs = intersect(sphere, ray);
+			normal = normal_at(sphere, pos);
+			eye = reverse_tuple(ray.direction);
+			color = lighting(sphere.material, light, pos, eye, normal);
+			color2 = transform_color(color);
 			if (xs.count > 0)
-				img_pxl_put(&data->img, x, y, red2);
+				img_pxl_put(&data->img, x, y, color2);
 			x++;
 		}
 		y++;
 	}
+	printf("Done!\n");
 
 
 }

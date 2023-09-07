@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:34:52 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/01 16:02:16 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:23:12 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ t_matrix_4	mat_inversion_4(t_matrix_4 a)
 			x++;
 		}
 	}
+	else
+		res = identity_matrix();
 	return (res);
 }

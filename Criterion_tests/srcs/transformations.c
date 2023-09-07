@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:35:59 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/01 17:27:04 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:20:05 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ t_matrix_4	scaling(double x, double y, double z)
 	res.tab[0][0] = x;
 	res.tab[1][1] = y;
 	res.tab[2][2] = z;
+	res.tab[3][3] = 1;
 	return (res);
 }

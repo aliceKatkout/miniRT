@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 19:36:52 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/01 12:52:22 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:48:44 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	determine_four(t_matrix_4 a)
 	int	deter;
 
 	deter = 0;
+	cof = 0;
 	cof = cofactor_4(a, 0, 0);
 	deter += a.tab[0][0] * cof;
 	cof = cofactor_4(a, 0, 1);
@@ -63,6 +64,7 @@ int	minor_4(t_matrix_4 a, int row, int col)
 	t_matrix_3	b;
 	int			minor;
 
+	minor = 0;
 	b = submatrix_4(a, row, col);
 	minor = determine_three(b);
 	return (minor);
@@ -73,6 +75,8 @@ int	cofactor_4(t_matrix_4 a, int row, int col)
 	int	minor;
 	int	signe;
 
+	minor = 0;
+	signe = 0;
 	minor = minor_4(a, row, col);
 	signe = row + col;
 	if (signe % 2 != 0)

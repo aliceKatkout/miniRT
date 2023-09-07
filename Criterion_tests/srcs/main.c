@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/07 11:48:24 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:48:23 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,9 @@ void	print_matrix_2(t_matrix_2 b)
 int	main(void)
 {
 	t_data	data;
-	(void)data;
- 	// init_canvas(&data);
-	t_sphere	s;
-	t_tuple		n;
-	t_tuple		cmp;
+	// (void)data;
+ 	init_canvas(&data);
 
-	s = void_sphere();
-	n = normal_at(s, create_point(sqrt(3/3), sqrt(3/3), sqrt(3/3)));
-	cmp = normalize(n);
-	printf("cmp.x: %f\n", cmp.x);
-	printf("cmp.y: %f\n", cmp.y);
-	printf("cmp.z: %f\n", cmp.z);
-	// ft_free_all(&data);
+	ft_free_all(&data);
 	return (0);
 }

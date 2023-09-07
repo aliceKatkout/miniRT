@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/07 11:56:01 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/07 18:02:30 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define EPSILON 0.0001
 # define WINDOW_WIDTH 720
 # define WINDOW_HEIGHT 480
+# define PI 3.14159265359
 
 
 typedef struct s_tuple
@@ -93,29 +94,30 @@ typedef struct s_xs
 	struct s_sphere	*obj;
 }	t_xs;
 
-typedef struct s_data
-{
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_image			img;
-	t_projectile	proj;
-	t_env			env;
-}	t_data;
-
-
- 
 typedef struct s_light
 {
 	t_tuple	position;
 	t_tuple	intensity;
-} t_light;
+}	t_light;
 
 typedef struct s_material
 {
 	t_tuple	color;
+	double	ambient;
 	double	diffuse;
 	double	specular;
+	double	shininess;
 } t_material;
+
+typedef struct s_data
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_light			light;
+	t_image			img;
+	t_projectile	proj;
+	t_env			env;
+}	t_data;
 
 typedef struct s_sphere
 {
@@ -147,6 +149,7 @@ t_tuple		create_point(double x, double y, double z);
 t_tuple		create_vector(double x, double y, double z);
 t_tuple		create_tuple(double x, double y, double z, double w);
 int			tuples_cmp(t_tuple a, t_tuple b);
+t_tuple		reverse_tuple(t_tuple a);
 
 /* TUPLES OPERATIONS */
 t_tuple		add_tuples(t_tuple a, t_tuple b);
@@ -229,8 +232,12 @@ t_sphere	void_sphere(void);
 void	set_transform(t_sphere *s, t_matrix_4 m);
 
 /* LIGHTS */
-t_tuple		normal_at(t_sphere sphere, t_tuple point);
-t_light	point_light(t_tuple l_position, t_tuple l_color);
+t_tuple		normal_at(t_sphere s, t_tuple p);
+// t_light	point_light(t_tuple l_position, t_tuple l_color);
+t_tuple	reflect(t_tuple in, t_tuple normal);
+t_light	point_light(t_tuple position, t_tuple intensity);
+t_material	init_material(void);
+t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv);
 
 /* EXIT */
 int			ft_free_all(t_data *data);

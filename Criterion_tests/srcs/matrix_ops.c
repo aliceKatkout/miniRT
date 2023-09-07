@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:44:29 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/01 15:25:19 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:44:48 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_tuple	matrix_mult_tuple(t_matrix_4 a, t_tuple point)
 {
 	t_tuple	c;
 
+	ft_bzero(&c, sizeof(c));
 	c.x = res_mult(a, point, 0);
 	c.y = res_mult(a, point, 1);
 	c.z = res_mult(a, point, 2);
