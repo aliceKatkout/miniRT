@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/07 18:17:05 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/07 18:25:30 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ void	render_map(t_data *data)
 	light.position = create_point(-10, 10, -10);
 	light.intensity = create_color(255, 100, 100);
 	set_transform(&sphere, scaling(50, 50, 30));
-	while (y < 1000)
+	while (y < WINDOW_HEIGHT)
 	{
 		x = 0;
 		world_y = WINDOW_HEIGHT - (y * 2);
-		while (x < 1000)
+		while (x < WINDOW_WIDTH)
 		{
 			world_x = -WINDOW_WIDTH + (x * 2);
 			pos = create_point(world_x, world_y, 10);
