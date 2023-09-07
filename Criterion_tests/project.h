@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/05 17:14:25 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:42:21 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,7 @@ typedef struct s_matrix_2
 	float	tab[2][2];
 }	t_matrix_2;
 
-typedef struct s_sphere
-{
-	int		id;
-	t_matrix_4	transform;
-	double	x;
-	double	y;
-	double	z;
-	double	diameter;
-	int		r;
-	int		g;
-	int		b;
-}	t_sphere;
+
 
 typedef struct s_xs
 {
@@ -113,12 +102,45 @@ typedef struct s_data
 	t_env			env;
 }	t_data;
 
+
+ 
+typedef struct s_light
+{
+	t_tuple	position;
+	t_tuple	intensity;
+} t_light;
+
+typedef struct s_material
+{
+	t_tuple	color;
+	double	diffuse;
+	double	specular;
+} t_material;
+
+typedef struct s_sphere
+{
+	int			id;
+	t_matrix_4	transform;
+	double		x;
+	double		y;
+	double		z;
+	double		diameter;
+	t_material	material;
+	t_tuple 	color;
+}	t_sphere;
+
+typedef struct s_world
+{
+	t_light		*light;
+	t_sphere	*spheres;
+
+} t_world;
+
 typedef struct s_intersection
 {
 	double		t;
 	t_sphere	*s;
 }	t_intersection;
-
 
 /* TUPLES CREATE */
 t_tuple		create_point(double x, double y, double z);
@@ -206,6 +228,7 @@ t_intersection	create_intersection(double t, t_sphere *s);
 t_sphere	void_sphere(void);
 void	set_transform(t_sphere *s, t_matrix_4 m);
 
+t_light	point_light(t_tuple l_position, t_tuple l_color);
 
 /* EXIT */
 int			ft_free_all(t_data *data);

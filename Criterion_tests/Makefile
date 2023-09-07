@@ -32,9 +32,11 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/shearing.c	\
 					srcs/rays.c\
 					srcs/spheres.c	\
-					srcs/canvas.c	\
-					srcs/hook.c		\
-					srcs/exit.c
+					srcs/light.c \
+					srcs/world.c\
+					# srcs/canvas.c	\
+					# srcs/hook.c		\
+					# srcs/exit.c
 MAIN_SRCS		=	srcs/main.c
 NAME			= 	project
 RM				= 	rm -rf
