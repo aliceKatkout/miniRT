@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:48:38 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/07 18:08:33 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:31:30 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_material	init_material(void)
 {
 	t_material	m;
 
-	m.color = create_color(255, 255, 255);
+	m.color = create_color(1, 1, 1);
 	m.ambient = 0.1;
 	m.diffuse = 0.9;
 	m.specular = 0.9;

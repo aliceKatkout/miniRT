@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:25:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/01 15:24:51 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:45:33 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ t_tuple	mult_colors(t_tuple a, t_tuple b)
 
 int	transform_color(t_tuple color)
 {
-	return ((int)color.w << 24 | (int)color.x << 16
-		| (int)color.y << 8 | (int)color.z);
+	t_tuple	res;
+
+	res.x = color.x * 255;
+	res.y = color.y * 255;
+	res.z = color.z * 255;
+	res.w = color.w * 255;
+	return ((int)res.w << 24 | (int)res.x << 16
+		| (int)res.y << 8 | (int)res.z);
 }

@@ -51,7 +51,6 @@ Test(print, mult_colors1)
 	cr_expect(c.z == 0.8);
 }
 
-
 Test(print, mult_colors2)
 {
 	t_tuple a;
@@ -64,4 +63,17 @@ Test(print, mult_colors2)
 	cr_expect(c.x == 0.9);
 	cr_expect(c.y == 0.2);
 	cr_expect(c.z == 0.4 * 0.1);
+}
+
+Test(print, mult_colors3)
+{
+	t_tuple a;
+	t_tuple b;
+
+	a = create_color(1, 0.2, 0.4);
+	b = transform_to_rgb(a);
+
+	cr_expect(b.x == 255);
+	cr_expect(b.y == 51);
+	cr_expect(b.z == 102.0);
 }
