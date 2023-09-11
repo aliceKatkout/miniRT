@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres.c                                          :+:      :+:    :+:   */
+/*   objs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/11 14:43:24 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:35:55 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../project.h"
 
-t_sphere	void_sphere(void)
+t_obj	*void_obj(void)
 {
-	t_sphere	sphere;
+	t_obj	*obj;
 	static int	id = 0;
 
-	sphere.id = id++;
-	sphere.x = 0;
-	sphere.y = 0;
-	sphere.z = 0;
-	sphere.diameter = 1;
-	sphere.transform = identity_matrix();
-	sphere.color = create_color(0, 0, 0);
-	sphere.material = init_material();
-	return (sphere);
+	obj = ft_calloc(1, sizeof(t_obj));
+	obj->id = id++;
+	obj->x = 0;
+	obj->y = 0;
+	obj->z = 0;
+	obj->diameter = 1;
+	obj->transform = identity_matrix();
+	obj->color = create_color(0, 0, 0);
+	obj->material = init_material();
+	return (obj);
 }
 
-void	set_transform(t_sphere *s, t_matrix_4 m)
+void	set_transform(t_obj *s, t_matrix_4 m)
 {
 	int	x;
 	int	y;
