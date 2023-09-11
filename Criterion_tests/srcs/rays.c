@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/11 14:27:42 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:43:52 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ t_xs	intersect(t_sphere s, t_ray r)
 	xs.x0 = (-b - sqrtf(discriminant)) / (2 * a);
 	xs.x1 = (-b + sqrtf(discriminant)) / (2 * a);
 	xs.count = 2;
+	if (xs.x0 <= xs.x1 && xs.x0 >= 0)
+		xs.t = xs.x0;
+	else if (xs.x1 < xs.x0 && xs.x1 >= 0)
+		xs.t = xs.x1;
+	else
+		xs.count = 0;
 	return (xs);
 }
 

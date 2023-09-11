@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 13:49:54 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:39:51 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_xs
 {
 	double			x0;
 	double			x1;
+	double			t;
 	int				count;
 	struct s_sphere	*obj;
 }	t_xs;
