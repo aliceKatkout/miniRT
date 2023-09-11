@@ -27,24 +27,24 @@
 
 # define PI 3.14159265358979323846
 
-typedef struct s_sphere
+typedef struct s_obj
 {
 	int		id;
 	double	x;
 	double	y;
-	double	z;	
+	double	z;
 	double diameter;
 	int		r;
 	int		g;
 	int		b;
-} t_sphere;
+} t_obj;
 
 typedef struct s_plane
 {
 	int		id;
 	double	x;
 	double	y;
-	double	z;	
+	double	z;
 	double	x_v;
 	double	y_v;
 	double	z_v;
@@ -58,7 +58,7 @@ typedef struct s_cylinder
 	int		id;
 	double	x;
 	double	y;
-	double	z;	
+	double	z;
 	double	x_v;
 	double	y_v;
 	double	z_v;
@@ -105,10 +105,10 @@ typedef struct s_env
 } t_env;
 
 typedef struct s_scene
-{	
+{
 	int			rt_file;
 	t_env		env;
-	t_list		*spheres;
+	t_list		*objs;
 	t_list		*cylinders;
 	t_list		*planes;
 
@@ -137,10 +137,10 @@ void	ft_error(char *error);
 
 int		parse_forms(t_list *buf, t_scene *scene);
 int		create_plane(char *line, t_scene *scene);
-int		create_sphere(char *line, t_scene *scene);
+int		create_obj(char *line, t_scene *scene);
 int		create_cylinder(char *line, t_scene *scene);
 
-int		init_sphere(char **params, t_sphere	*sp);
+int		init_obj(char **params, t_obj	*sp);
 int		init_cylinder(char **params, t_cylinder	*sp);
 int		init_plane(char **params, t_plane	*sp);
 

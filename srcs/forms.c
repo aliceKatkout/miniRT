@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:52:54 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/11 14:41:51 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:24:45 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parse_forms(t_list *buf, t_scene *scene)
 		if (!ft_strncmp((char *) tmp->content, "pl ", 3))
 			err = create_plane((char *) tmp->content, scene);
 		else if (!ft_strncmp((char *) tmp->content, "sp ", 3))
-			err = create_sphere((char *) tmp->content, scene);
+			err = create_obj((char *) tmp->content, scene);
 		else if (!ft_strncmp((char *) tmp->content, "cy  ", 3))
 			err = create_cylinder((char *) tmp->content, scene);
 		if (err)
@@ -44,7 +44,7 @@ int	create_plane(char *line, t_scene *scene)
 
 	params = get_params_from_line(line, 4);
 	if (!params)
-		return (1); 
+		return (1);
 	new = malloc(sizeof(t_plane));
 	if (!new)
 		return (ft_free_arr((void **) params));
@@ -64,19 +64,19 @@ int	create_plane(char *line, t_scene *scene)
 	return (0);
 }
 
-int	create_sphere(char *line, t_scene *scene)
+int	create_obj(char *line, t_scene *scene)
 {
 	char		**params;
-	t_sphere	*new_sp;
+	t_obj	*new_sp;
 	t_list		*new_elem;
 
 	params = get_params_from_line(line, 4);
 	if (!params)
-		return (1); 
-	new_sp = malloc(sizeof(t_sphere));
+		return (1);
+	new_sp = malloc(sizeof(t_obj));
 	if (!new_sp)
 		return (ft_free_arr((void **) params));
-	if (init_sphere(params, new_sp))
+	if (init_obj(params, new_sp))
 	{
 		free (new_sp);
 		return (ft_free_arr((void **) params));
@@ -87,7 +87,7 @@ int	create_sphere(char *line, t_scene *scene)
 		free (new_sp);
 		return (ft_free_arr((void **) params));
 	}
-	ft_lstadd_back(&scene->spheres, new_elem);
+	ft_lstadd_back(&scene->objs, new_elem);
 	ft_free_arr((void **) params);
 	return (0);
 }
@@ -102,7 +102,7 @@ int	create_cylinder(char *line, t_scene *scene)
 
 	params = get_params_from_line(line, 6);
 	if (!params)
-		return (1); 
+		return (1);
 	new_cy = malloc(sizeof(t_cylinder));
 	if (!new_cy)
 		return (ft_free_arr((void **) params));

@@ -6,13 +6,13 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 12:26:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/11 14:40:09 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:24:45 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	init_sphere(char **params, t_sphere	*sp)
+int	init_obj(char **params, t_obj	*sp)
 {
 	static int	id = 0;
 	char		**xyz;
@@ -21,9 +21,9 @@ int	init_sphere(char **params, t_sphere	*sp)
 	sp->id = id++;
 	sp->diameter = set_diameter(params[2]);
 	if (sp->diameter <= 0)
-		return (ft_putstr_fdi("Sphere diameter is incorrect.\n", 2)); // ou 2
+		return (ft_putstr_fdi("obj diameter is incorrect.\n", 2)); // ou 2
 	xyz = ft_split(params[1], ',');
-	if (ft_arrlen((void **)xyz) != 3 || !is_number(xyz[0]) 
+	if (ft_arrlen((void **)xyz) != 3 || !is_number(xyz[0])
 		|| !is_number(xyz[1]) || !is_number(xyz[2]))
 		return (ft_free_arr((void **)xyz));
 	sp->x = ft_atof(xyz[0]);
@@ -53,7 +53,7 @@ int	init_cylinder(char **params, t_cylinder	*cy)
 	if (cy->height <= 0 || cy->diameter <= 0)
 		return (ft_putstr_fdi("cylinder diameter is incorrect.\n", 2)); // ou 2
 	xyz = ft_split(params[1], ',');
-	if (ft_arrlen((void **)xyz) != 3 || !is_number(xyz[0]) 
+	if (ft_arrlen((void **)xyz) != 3 || !is_number(xyz[0])
 		|| !is_number(xyz[1]) || !is_number(xyz[2]))
 		return (ft_free_arr((void **)xyz));
 	cy->x = ft_atof(xyz[0]);
@@ -89,7 +89,7 @@ int	init_plane(char **params, t_plane	*pl)
 
 	pl->id = id++;
 	xyz = ft_split(params[1], ',');
-	if (ft_arrlen((void **)xyz) != 3 || !is_number(xyz[0]) 
+	if (ft_arrlen((void **)xyz) != 3 || !is_number(xyz[0])
 		|| !is_number(xyz[1]) || !is_number(xyz[2]))
 		return (ft_free_arr((void **)xyz));
 	pl->x = ft_atof(xyz[0]);
