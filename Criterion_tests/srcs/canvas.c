@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 14:35:18 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:59:35 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ void	render_map(t_data *data)
 	sphere = void_sphere();
 	set_transform(&sphere, scaling(60, 60, 30));
 	sphere.material = init_material();
-	sphere.material.color = create_color(1, 0.9, 1);
+	sphere.material.color = create_color(1, 0.2, 1);
 	light.position = create_point(-10, 10, -10);
 	light.intensity = create_color(1, 1, 1);
+	light = point_light(light.position, light.intensity);
 	while (y < WINDOW_HEIGHT)
 	{
 		x = 0;

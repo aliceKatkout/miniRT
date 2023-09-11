@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 14:40:11 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:57:34 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,11 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 			spec = mult_tuples(spec, factor);
 		}
 	}
-	(void) ambient;
-	(void) spec;
-	res = diff;
-	//res = add_tuples(ambient, diff);
-	//res = add_tuples(res, spec);
+	// (void) diff;
+	// (void) ambient;
+	// (void) spec;
+	// res = ambient;
+	res = add_tuples(ambient, diff);
+	res = add_tuples(res, spec);
 	return (res);
 }
