@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 18:07:00 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:20:34 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	render_map(t_data *data)
 	t_tuple	origin;
 	t_tuple	pos;
 	t_tuple	point;
-	t_sphere	
-	sphere;
+	t_sphere	sphere;
 	t_xs	xs;
 	int	world_x;
 	int	world_y;
@@ -106,9 +105,6 @@ void	render_map(t_data *data)
 		}
 		y++;
 	}
-	printf("sphere color x:%f\n", sphere.material.color.x);
-	printf("sphere color y:%f\n", sphere.material.color.y);
-	printf("sphere color z:%f\n", sphere.material.color.z);
 	printf("Done!\n");
 }
 
