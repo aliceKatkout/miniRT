@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/11 19:32:23 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:24:45 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	init_scene(t_scene *scene)
 {
 	/* scene->cylinders = ft_calloc(1, sizeof(t_list *));
 	scene->planes = ft_calloc(1, sizeof(t_list *));
-	scene->spheres = ft_calloc(1, sizeof(t_list *)); */
-	scene->spheres = 0;
+	scene->objs = ft_calloc(1, sizeof(t_list *)); */
+	scene->objs = 0;
 	scene->planes = 0;
 	scene->cylinders = 0;
 	scene->rt_file = -1;

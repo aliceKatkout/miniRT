@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 16:25:38 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:23:59 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-t_tuple		normal_at(t_sphere *s, t_tuple p)
+t_tuple		normal_at(t_obj *s, t_tuple p)
 {
 	t_tuple	obj_point;
 	t_tuple	obj_normal;
@@ -31,11 +31,11 @@ t_tuple		normal_at(t_sphere *s, t_tuple p)
 	return (world_normal);
 }
 
-/*It expects five arguments: 
--the material itself, 
+/*It expects five arguments:
+-the material itself,
 -the point being illuminated,
 -the light source
--the eye 
+-the eye
 -and normal vectors from thePhong reflection model.*/
 t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv)
 {

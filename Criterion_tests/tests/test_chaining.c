@@ -30,27 +30,27 @@ Test(matrix, chaining)
 Test(transform, set_transform)
 {
 	t_matrix_4	transform;
-	t_sphere	s;
+	t_obj		*s;
 
-	s = void_sphere();
-	cr_expect(matrix_cmp_4(s.transform, identity_matrix()) == 0);
+	s = void_obj();
+	cr_expect(matrix_cmp_4(s->transform, identity_matrix()) == 0);
 	transform = translation(2, 3, 4);
-	set_transform(&s, transform);
-	cr_expect(matrix_cmp_4(s.transform, transform) == 0);
+	set_transform(s, transform);
+	cr_expect(matrix_cmp_4(s->transform, transform) == 0);
 }
 
 Test(transform, set_transform2)
 {
-	t_sphere	s;
+	t_obj		*s;
 	t_ray		r;
 	t_xs	xs;
 
 	r= create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
-	s = void_sphere();
+	s = void_obj();
 
-	set_transform(&s, scaling(2, 2, 2));
+	set_transform(s, scaling(2, 2, 2));
 
-	xs = intersect(&s, r);
+	xs = intersect(s, r);
 	cr_expect(xs.count == 2);
 	cr_expect(xs.x0 - 3 < EPSILON);
 	cr_expect(xs.x1 - 7 < EPSILON);
@@ -58,15 +58,15 @@ Test(transform, set_transform2)
 
 Test(transform, set_transform3)
 {
-	t_sphere	s;
+	t_obj	*s;
 	t_ray		r;
 	t_xs	xs;
 
 	r= create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
-	s = void_sphere();
+	s = void_obj();
 
-	set_transform(&s, translation(5, 0, 0));
+	set_transform(s, translation(5, 0, 0));
 
-	xs = intersect(&s, r);
+	xs = intersect(s, r);
 	cr_expect(xs.count == 0);
 }

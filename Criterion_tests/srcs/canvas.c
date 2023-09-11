@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/09/11 18:20:34 by mrabourd         ###   ########.fr       */
+=======
+/*   Updated: 2023/09/11 18:38:27 by avedrenn         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +62,11 @@ void	render_map(t_data *data)
 	t_tuple	origin;
 	t_tuple	pos;
 	t_tuple	point;
+<<<<<<< HEAD
 	t_sphere	sphere;
+=======
+	t_obj	*obj;
+>>>>>>> main
 	t_xs	xs;
 	int	world_x;
 	int	world_y;
@@ -76,9 +84,9 @@ void	render_map(t_data *data)
 	world_y = 0;
 	origin = create_point(0, 0, -1.5);
 	render_background(&data->img, 0x000000);
-	sphere = void_sphere();
-	set_transform(&sphere, scaling(1, 1, 1));
-	sphere.material.color = create_color(1, 0.2, 1);
+	obj = void_obj();
+	set_transform(obj, scaling(1, 1, 1));
+	obj->material.color = create_color(1, 0.2, 1);
 	light.position = create_point(-3, 4, -5);
 	light.intensity = create_color(1, 1, 1);
 	light = point_light(light.position, light.intensity);
@@ -91,7 +99,7 @@ void	render_map(t_data *data)
 			world_x = -WINDOW_WIDTH + (x * 2);
 			pos = create_point(world_x, world_y, 60);
 			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
-			xs = intersect(&sphere, ray);
+			xs = intersect(obj, ray);
 			if (xs.count > 0)
 			{
 				point = position(ray, xs.t);
@@ -105,6 +113,12 @@ void	render_map(t_data *data)
 		}
 		y++;
 	}
+<<<<<<< HEAD
+=======
+	printf("obj color x:%f\n", obj->material.color.x);
+	printf("obj color y:%f\n", obj->material.color.y);
+	printf("obj color z:%f\n", obj->material.color.z);
+>>>>>>> main
 	printf("Done!\n");
 }
 
@@ -117,7 +131,7 @@ void	render_map(t_data *data)
 	t_tuple	pos;
 	t_tuple	red;
 	int		red2;
-	t_sphere	sphere;
+	t_obj	obj;
 	t_xs	xs;
 	int	world_x;
 	int	world_y;
@@ -132,8 +146,8 @@ void	render_map(t_data *data)
 	red2 = transform_color(red);
 	origin = create_point(0, 0, -50);
 	render_background(&data->img, 0x000000);
-	sphere = void_sphere();
-	set_transform(&sphere, scaling(300, 100, 10));
+	obj = void_obj();
+	set_transform(&obj, scaling(300, 100, 10));
 	while (y < 1000)
 	{
 		x = 0;
@@ -143,7 +157,7 @@ void	render_map(t_data *data)
 			world_x = -WINDOW_WIDTH + (x * 2);
 			pos = create_point(world_x, world_y, 10);
 			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
-			xs = intersect(sphere, ray);
+			xs = intersect(obj, ray);
 			if (xs.count > 0)
 				img_pxl_put(&data->img, x, y, red2);
 			x++;

@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/11 12:21:29 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:24:45 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	ft_free_parse(t_scene *s, t_list *buf)
 		ft_lstclear(&buf, free);
 		free (buf);
 	}
-	if (s->spheres)
-		ft_lstclear(&s->spheres, free);
+	if (s->objs)
+		ft_lstclear(&s->objs, free);
 	if (s->cylinders)
 		ft_lstclear(&s->cylinders, free);
 	if (s->planes)

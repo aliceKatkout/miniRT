@@ -1,5 +1,7 @@
 miniRT
 *.o
+.nfs*
+project
 
 # Prerequisites
 *.d

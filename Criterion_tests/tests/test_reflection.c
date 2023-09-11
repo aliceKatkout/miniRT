@@ -49,14 +49,14 @@ Test(reflection, reflection1)
 
 Test(reflection, material1)
 {
-	t_sphere	s;
+	t_obj		*s;
 	t_material	m;
 
-	s = void_sphere();
+	s = void_obj();
 	m = init_material();
 	m.ambient = 1;
-	s.material = m;
-	cr_expect(s.material.ambient == m.ambient);
-	cr_expect(s.material.diffuse == m.diffuse);
-	cr_expect(s.material.specular == m.specular);
+	s->material = m;
+	cr_expect(s->material.ambient == m.ambient);
+	cr_expect(s->material.diffuse == m.diffuse);
+	cr_expect(s->material.specular == m.specular);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 18:07:21 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:52:38 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_xs
 	double			x1;
 	double			t;
 	int				count;
-	struct s_sphere	*obj;
+	struct s_obj	*obj;
 }	t_xs;
 
 typedef struct s_light
@@ -120,9 +120,10 @@ typedef struct s_data
 	t_env			env;
 }	t_data;
 
-typedef struct s_sphere
+typedef struct s_obj
 {
 	int			id;
+	char		*type;
 	t_matrix_4	transform;
 	double		x;
 	double		y;
@@ -130,19 +131,19 @@ typedef struct s_sphere
 	double		diameter;
 	t_material	material;
 	t_tuple 	color;
-}	t_sphere;
+}	t_obj;
 
 typedef struct s_world
 {
 	t_light		*light;
-	t_sphere	*spheres;
+	t_list		*objs;
 
 } t_world;
 
 typedef struct s_intersection
 {
 	double		t;
-	t_sphere	*s;
+	t_obj	*s;
 }	t_intersection;
 
 /* TUPLES CREATE */
@@ -225,15 +226,15 @@ t_matrix_4	shearing(float xy, float xz, float yx, float yz, float zx, float zy);
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
 t_ray	transform_ray(t_ray r, t_matrix_4 m);
-t_xs	intersect(t_sphere *s, t_ray r);
-t_intersection	create_intersection(double t, t_sphere *s);
+t_xs	intersect(t_obj *s, t_ray r);
+t_intersection	create_intersection(double t, t_obj *s);
 
-/* SPHERES */
-t_sphere	void_sphere(void);
-void	set_transform(t_sphere *s, t_matrix_4 m);
+/* objS */
+t_obj	*void_obj(void);
+void	set_transform(t_obj *s, t_matrix_4 m);
 
 /* LIGHTS */
-t_tuple		normal_at(t_sphere *s, t_tuple p);
+t_tuple		normal_at(t_obj *s, t_tuple p);
 // t_light	point_light(t_tuple l_position, t_tuple l_color);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple intensity);
@@ -243,4 +244,7 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 /* EXIT */
 int			ft_free_all(t_data *data);
 
+/* WORLD */
+t_world		create_world(void);
+t_world		default_world(void);
 #endif
