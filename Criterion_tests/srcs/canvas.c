@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 15:45:04 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:11:41 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ void	render_map(t_data *data)
 	t_ray	ray;
 	t_tuple	origin;
 	t_tuple	pos;
-	t_sphere	sphere;
+	t_tuple	point;
+	t_sphere	
+	sphere;
 	t_xs	xs;
 	int	world_x;
 	int	world_y;
@@ -77,7 +79,6 @@ void	render_map(t_data *data)
 	render_background(&data->img, 0x000000);
 	sphere = void_sphere();
 	set_transform(&sphere, scaling(60, 60, 30));
-	sphere.material = init_material();
 	sphere.material.color = create_color(1, 0.2, 1);
 	light.position = create_point(-10, 10, -10);
 	light.intensity = create_color(1, 1, 1);
@@ -91,25 +92,28 @@ void	render_map(t_data *data)
 			world_x = -WINDOW_WIDTH + (x * 2);
 			pos = create_point(world_x, world_y, 10);
 			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
-			xs = intersect(sphere, ray);
-			if (xs.count != 0)
-				pos = position(ray, xs.t);
-			else
-				pos = position(ray, 0);
-			normal = normal_at(xs.obj, pos);
-			eye = reverse_tuple(ray.direction);
-			color = lighting(sphere.material, light, pos, eye, normal);
-			printf("color.x : %f\n", color.x);
-			printf("color.y : %f\n", color.y);
-			printf("color.z : %f\n", color.z);
-			color2 = transform_color(color);
-			printf("color2 : %d\n", color2);
+			xs = intersect(&sphere, ray);
 			if (xs.count > 0)
+			{
+				point = position(ray, xs.t);
+				normal = normal_at(xs.obj, point);
+				eye = reverse_tuple(ray.direction);
+				color = lighting(xs.obj->material, light, point, eye, normal);
+				//printf("color.x : %f\n", color.x);
+				//printf("color.y : %f\n", color.y);
+				//printf("color.z : %f\n", color.z);
+				color2 = transform_color(color);
+				printf("color2 : %d\n", color2);
+				printf("count: %d\n", xs.count);
 				img_pxl_put(&data->img, x, y, color2);
+			}
 			x++;
 		}
 		y++;
 	}
+	printf("sphere color x:%f\n", sphere.material.color.x);
+	printf("sphere color y:%f\n", sphere.material.color.y);
+	printf("sphere color z:%f\n", sphere.material.color.z);
 	printf("Done!\n");
 }
 

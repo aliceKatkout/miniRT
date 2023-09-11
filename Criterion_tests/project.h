@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 15:39:51 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:02:37 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ t_matrix_4	shearing(float xy, float xz, float yx, float yz, float zx, float zy);
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
 t_ray	transform_ray(t_ray r, t_matrix_4 m);
-t_xs	intersect(t_sphere s, t_ray r);
+t_xs	intersect(t_sphere *s, t_ray r);
 t_intersection	create_intersection(double t, t_sphere *s);
 
 /* SPHERES */

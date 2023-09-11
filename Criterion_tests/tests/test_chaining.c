@@ -50,7 +50,7 @@ Test(transform, set_transform2)
 
 	set_transform(&s, scaling(2, 2, 2));
 
-	xs = intersect(s, r);
+	xs = intersect(&s, r);
 	cr_expect(xs.count == 2);
 	cr_expect(xs.x0 - 3 < EPSILON);
 	cr_expect(xs.x1 - 7 < EPSILON);
@@ -67,6 +67,6 @@ Test(transform, set_transform3)
 
 	set_transform(&s, translation(5, 0, 0));
 
-	xs = intersect(s, r);
+	xs = intersect(&s, r);
 	cr_expect(xs.count == 0);
 }

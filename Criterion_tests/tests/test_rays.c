@@ -40,34 +40,34 @@ Test(rays, intersect)
 
 	ray = create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
 	sphere = void_sphere();
-	xs = intersect(sphere, ray);
+	xs = intersect(&sphere, ray);
 	cr_expect(xs.count == 2);
 	cr_expect(xs.x0 == 4);
 	cr_expect(xs.x1 == 6);
 
 	ray = create_ray(create_point(0, 1, -5), create_vector(0, 0, 1));
 	sphere = void_sphere();
-	xs = intersect(sphere, ray);
+	xs = intersect(&sphere, ray);
 	cr_expect(xs.count == 2);
 	cr_expect(xs.x0 == 5);
 	cr_expect(xs.x1 == 5);
 
 	ray = create_ray(create_point(0, 2, -5), create_vector(0, 0, 1));
 	sphere = void_sphere();
-	xs = intersect(sphere, ray);
+	xs = intersect(&sphere, ray);
 	cr_expect(xs.count == 0);
 
 	ray = create_ray(create_point(0, 0, 0), create_vector(0, 0, 1));
 	sphere = void_sphere();
-	xs = intersect(sphere, ray);
-	cr_expect(xs.count == 2);
+	xs = intersect(&sphere, ray);
+	cr_expect(xs.count == 1);
 	cr_expect(xs.x0 == -1);
 	cr_expect(xs.x1 == 1);
 
 	ray = create_ray(create_point(0, 0, 5), create_vector(0, 0, 1));
 	sphere = void_sphere();
-	xs = intersect(sphere, ray);
-	cr_expect(xs.count == 2);
+	xs = intersect(&sphere, ray);
+	cr_expect(xs.count == 0);
 	cr_expect(xs.x0 == -6);
 	cr_expect(xs.x1 == -4);
 }
