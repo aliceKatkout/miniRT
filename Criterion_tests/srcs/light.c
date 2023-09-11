@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 14:57:34 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:25:38 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 	t_tuple	res;
 
 	eff_color = mult_colors(m.color, l.intensity);
-	printf("m.color.x : %f\n", m.color.x);
-	printf("m.color.y : %f\n", m.color.y);
-	printf("m.color.z : %f\n", m.color.z);
 	lightv = normalize(sub_tuples(l.position, pos));
 	ambient = mult_tuples(eff_color, m.ambient);
 	light_dot_normal = dot_product(lightv, normalv);

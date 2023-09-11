@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 16:11:41 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:07:00 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ void	render_map(t_data *data)
 	y = 0;
 	world_x = 0;
 	world_y = 0;
-	origin = create_point(0, -10, -50);
+	origin = create_point(0, 0, -1.5);
 	render_background(&data->img, 0x000000);
 	sphere = void_sphere();
-	set_transform(&sphere, scaling(60, 60, 30));
+	set_transform(&sphere, scaling(1, 1, 1));
 	sphere.material.color = create_color(1, 0.2, 1);
-	light.position = create_point(-10, 10, -10);
+	light.position = create_point(-3, 4, -5);
 	light.intensity = create_color(1, 1, 1);
 	light = point_light(light.position, light.intensity);
 	while (y < WINDOW_HEIGHT)
@@ -90,7 +90,7 @@ void	render_map(t_data *data)
 		while (x < WINDOW_WIDTH)
 		{
 			world_x = -WINDOW_WIDTH + (x * 2);
-			pos = create_point(world_x, world_y, 10);
+			pos = create_point(world_x, world_y, 60);
 			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
 			xs = intersect(&sphere, ray);
 			if (xs.count > 0)
@@ -99,12 +99,7 @@ void	render_map(t_data *data)
 				normal = normal_at(xs.obj, point);
 				eye = reverse_tuple(ray.direction);
 				color = lighting(xs.obj->material, light, point, eye, normal);
-				//printf("color.x : %f\n", color.x);
-				//printf("color.y : %f\n", color.y);
-				//printf("color.z : %f\n", color.z);
 				color2 = transform_color(color);
-				printf("color2 : %d\n", color2);
-				printf("count: %d\n", xs.count);
 				img_pxl_put(&data->img, x, y, color2);
 			}
 			x++;

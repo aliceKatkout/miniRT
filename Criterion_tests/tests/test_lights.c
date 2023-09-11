@@ -120,6 +120,9 @@ Test(light, lighting3)
 	cr_expect(fabs(result.x - 0.7364) < EPSILON);
 	cr_expect(fabs(result.y - 0.7364) < EPSILON);
 	cr_expect(fabs(result.z - 0.7364) < EPSILON);
+	cr_expect(result.x = 0.7364);
+	cr_expect(result.y = 0.7364);
+	cr_expect(result.z = 0.7364);
 }
 
 Test(light, lighting4)
@@ -136,6 +139,9 @@ Test(light, lighting4)
 	cr_expect(fabs(result.x - 1.6364) < EPSILON);
 	cr_expect(fabs(result.y - 1.6364) < EPSILON);
 	cr_expect(fabs(result.z - 1.6364) < EPSILON);
+	cr_expect(result.x = 1.6364);
+	cr_expect(result.y = 1.6364);
+	cr_expect(result.z = 1.6364);
 }
 
 Test(light, lighting5)
