@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/08 14:18:33 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:27:42 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,24 @@ t_tuple	position(t_ray ray, double t)
 	return (pos);
 }
 
+// void print_matrix_4(t_matrix_4 a)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	x = 0;
+// 	while (x < 4)
+// 	{
+// 		y = 0;
+// 		while (y < 4)
+// 		{
+// 			printf("a.tab[%d][%d]: %f\n", x, y, a.tab[x][y]);
+// 			y++;
+// 		}
+// 		x++;
+// 	}
+// }
+
 //A modifier pour rnvoyer une liste de xs/ ou de t_intersection
 t_xs	intersect(t_sphere s, t_ray r)
 {
@@ -52,6 +70,7 @@ t_xs	intersect(t_sphere s, t_ray r)
 		r = transform_ray(r, mat_inversion_4(s.transform));
 		sphere_to_ray = sub_tuples(r.origin, create_point(s.x, s.y, s.z));
 	} */
+	xs.obj = &s;
 	a = dot_product(r.direction, r.direction);
 	b = 2 * dot_product(r.direction, sphere_to_ray);
 	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
@@ -64,9 +83,6 @@ t_xs	intersect(t_sphere s, t_ray r)
 	xs.x0 = (-b - sqrtf(discriminant)) / (2 * a);
 	xs.x1 = (-b + sqrtf(discriminant)) / (2 * a);
 	xs.count = 2;
-	// create_intersection(xs.x0, &s);
-	// create_intersection(xs.x1, &s);
-	xs.obj = &s;
 	return (xs);
 }
 

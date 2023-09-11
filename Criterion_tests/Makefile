@@ -41,7 +41,7 @@ SRCS			=	srcs/creation_tuple.c	\
 MAIN_SRCS		=	srcs/main.c
 NAME			= 	project
 RM				= 	rm -rf
-CC				=	gcc $(CFLAGS)
+CC				=	gcc -ggdb $(CFLAGS)
 CFLAGS			=	-Wall -Werror -Wextra
 OBJECTS 		=	$(subst /,/build/,${SRCS:.c=.o})
 M_OBJECTS 		=	$(subst /,/build/,${MAIN_SRCS:.c=.o})

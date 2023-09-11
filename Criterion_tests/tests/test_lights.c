@@ -8,22 +8,22 @@ Test(light, normal1)
 	t_tuple		vec;
 
 	s = void_sphere();
-	n = normal_at(s, create_point(1, 0, 0));
+	n = normal_at(&s, create_point(1, 0, 0));
 	vec = create_vector(1, 0, 0);
 	cr_expect(n.x == vec.x);
 	cr_expect(n.y == vec.y);
 	cr_expect(n.z == vec.z);
-	n = normal_at(s, create_point(0, 1, 0));
+	n = normal_at(&s, create_point(0, 1, 0));
 	vec = create_vector(0, 1, 0);
 	cr_expect(n.x == vec.x);
 	cr_expect(n.y == vec.y);
 	cr_expect(n.z == vec.z);
-	n = normal_at(s, create_point(0, 0, 1));
+	n = normal_at(&s, create_point(0, 0, 1));
 	vec = create_vector(0, 0, 1);
 	cr_expect(n.x == vec.x);
 	cr_expect(n.y == vec.y);
 	cr_expect(n.z == vec.z);
-	n = normal_at(s, create_point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3));
+	n = normal_at(&s, create_point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3));
 	vec = create_vector(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3);
 	cr_expect(n.x == vec.x);
 	cr_expect(n.y == vec.y);
@@ -37,7 +37,7 @@ Test(light, normalize)
 	t_tuple		cmp;
 
 	s = void_sphere();
-	n = normal_at(s, create_point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3));
+	n = normal_at(&s, create_point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3));
 	cr_expect(n.x == sqrt(3)/3);
 	cr_expect(n.y == sqrt(3)/3);
 	cr_expect(n.z == sqrt(3)/3);
@@ -52,7 +52,7 @@ Test(light, normal2)
 	t_sphere	s;
 	t_tuple		n;
 	set_transform(&s, translation(0, 1, 0));
-	n = normal_at(s, create_point(0, 1.70711, -0.70711));
+	n = normal_at(&s, create_point(0, 1.70711, -0.70711));
 	cr_expect(n.x - 0 < EPSILON);
 	cr_expect(n.y - 0.70711 < EPSILON);
 	cr_expect(n.z - -0.70711 < EPSILON);
@@ -68,7 +68,7 @@ Test(light, normal3)
 	m = scaling(1, 0.5, 1);
 	m = rotation_z(M_PI / 5);
 	set_transform(&s, m);
-	n = normal_at(s, create_point(0, sqrt(2)/2, (-sqrt(2))/2));
+	n = normal_at(&s, create_point(0, sqrt(2)/2, (-sqrt(2))/2));
 	cr_expect(n.x - 0 < EPSILON);
 	cr_expect(n.y - 0.97014 < EPSILON);
 	cr_expect(n.z - -0.24254 < EPSILON);

@@ -6,29 +6,12 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:23:24 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/07 14:29:35 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:03:13 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-/* void print_matrix_4(t_matrix_4 a)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < 4)
-	{
-		y = 0;
-		while (y < 4)
-		{
-			printf("a.tab[%d][%d]: %f\n", x, y, a.tab[x][y]);
-			y++;
-		}
-		x++;
-	}
-} */
 
 t_matrix_4	rotation_x(float rad)
 {

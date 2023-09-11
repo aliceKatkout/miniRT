@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/08 14:33:49 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:49:54 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ t_sphere	void_sphere(void);
 void	set_transform(t_sphere *s, t_matrix_4 m);
 
 /* LIGHTS */
-t_tuple		normal_at(t_sphere s, t_tuple p);
+t_tuple		normal_at(t_sphere *s, t_tuple p);
 // t_light	point_light(t_tuple l_position, t_tuple l_color);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple intensity);

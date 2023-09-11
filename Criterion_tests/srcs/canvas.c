@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/08 14:42:38 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:35:18 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	render_map(t_data *data)
 			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
 			xs = intersect(sphere, ray);
 			pos = position(ray, xs.x0);
-			normal = normal_at(sphere, pos);/* ici, changer 'sphere' par 'xs.obj'??*/
+			normal = normal_at(xs.obj, pos);
 			eye = reverse_tuple(ray.direction);
 			color = lighting(sphere.material, light, pos, eye, normal);
 			printf("color.x : %f\n", color.x);
