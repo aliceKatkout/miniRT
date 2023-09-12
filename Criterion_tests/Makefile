@@ -36,7 +36,7 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/reflection.c	\
 					srcs/world.c \
 					srcs/shadow.c 	\
-					#srcs/canvas.c	\
+					srcs/canvas.c	\
 					srcs/hook.c		\
 					srcs/exit.c
 MAIN_SRCS		=	srcs/main.c

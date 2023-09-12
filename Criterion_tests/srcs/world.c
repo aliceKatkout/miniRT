@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:08:55 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/11 18:40:06 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:01:05 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_world	default_world()
 	s2 = void_obj();
 	s2->transform = scaling(0.5, 0.5, 0.5);
 	w.light = &l;
+	printf("light : %f, %f, %f\n", w.light->position.x, w.light->position.y, w.light->position.z);
+	printf("light : %f, %f, %f\n", w.light->intensity.x, w.light->intensity.y, w.light->intensity.z);
 	new = ft_lstnew((void *) s1);
 	new->next = ft_lstnew((void *) s2);
 	w.objs = new;

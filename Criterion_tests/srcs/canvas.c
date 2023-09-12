@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/12 14:56:23 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:28:25 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	render_map(t_data *data)
 	t_tuple	origin;
 	t_tuple	pos;
 	t_tuple	point;
-	t_obj	obj;
+	t_obj	*obj;
 	t_xs	xs;
 	int	world_x;
 	int	world_y;
@@ -97,7 +97,7 @@ void	render_map(t_data *data)
 				point = position(ray, xs.t);
 				normal = normal_at(xs.obj, point);
 				eye = reverse_tuple(ray.direction);
-				color = lighting(xs.obj->material, light, point, eye, normal);
+				color = lighting(xs.obj->material, light, point, eye, normal, 0);
 				color2 = transform_color(color);
 				img_pxl_put(&data->img, x, y, color2);
 			}
