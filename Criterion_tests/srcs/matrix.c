@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:25:22 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/05 17:09:54 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:23:59 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-t_matrix_4	create_matrix_4(float tab[16])
+t_matrix_4	create_matrix_4(double tab[16])
 {
 	t_matrix_4	matrix;
 	int			i;
@@ -36,7 +36,7 @@ t_matrix_4	create_matrix_4(float tab[16])
 	return (matrix);
 }
 
-t_matrix_3	create_matrix_3(float tab[9])
+t_matrix_3	create_matrix_3(double tab[9])
 {
 	t_matrix_3	matrix;
 	int			i;
@@ -60,7 +60,7 @@ t_matrix_3	create_matrix_3(float tab[9])
 	return (matrix);
 }
 
-t_matrix_2	create_matrix_2(float tab[4])
+t_matrix_2	create_matrix_2(double tab[4])
 {
 	t_matrix_2	matrix;
 	int			i;
@@ -110,7 +110,7 @@ t_matrix_4	identity_matrix(void)
 {
 	t_matrix_4	id;
 
-	float		tab[16] = {1, 0, 0, 0,
+	double		tab[16] = {1, 0, 0, 0,
 			0, 1, 0, 0,
 			0, 0, 1, 0,
 			0, 0, 0, 1};

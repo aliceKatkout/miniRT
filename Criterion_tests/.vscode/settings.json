@@ -1,7 +1,7 @@
 {
 	"files.associations": {
 		"math.h": "c",
-		"floatn.h": "c",
+		"doublen.h": "c",
 		"project.h": "c",
 		"stdio.h": "c",
 		"stdlib.h": "c"

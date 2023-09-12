@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:09:53 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/07 18:02:22 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:23:59 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 /*
 **	If tuple is a point, w = 1, else if it's a vector, w = 0.
-	Beware of comparing floating point values using simple equivalency. Round-off error
+	Beware of comparing doubleing point values using simple equivalency. Round-off error
 	can make two numbers that should be equivalent instead be slightly different.
-	When you need to test two floating point numbers for equivalence, compare their
+	When you need to test two doubleing point numbers for equivalence, compare their
 	difference. If the absolute value of their difference is less than some value (called
 	EPSILON), you can consider them equal.
 */

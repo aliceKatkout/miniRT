@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/12 15:25:43 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:23:59 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,17 @@ typedef struct s_image
 
 typedef struct s_matrix_4
 {
-	float	tab[4][4];
+	double	tab[4][4];
 }	t_matrix_4;
 
 typedef struct s_matrix_3
 {
-	float	tab[3][3];
+	double	tab[3][3];
 }	t_matrix_3;
 
 typedef struct s_matrix_2
 {
-	float	tab[2][2];
+	double	tab[2][2];
 }	t_matrix_2;
 
 
@@ -94,6 +94,12 @@ typedef struct s_xs
 	int				count;
 	struct s_obj	*obj;
 }	t_xs;
+
+typedef struct s_xs_world
+{
+	int		count;
+	t_xs	tab_xs[100];
+}	t_xs_world;
 
 typedef struct s_light
 {
@@ -135,7 +141,7 @@ typedef struct s_obj
 
 typedef struct s_world
 {
-	t_light		*light;
+	t_light		light;
 	t_list		*objs;
 
 } t_world;
@@ -183,9 +189,9 @@ int			handle_keypress(int keysym, t_data *data);
 // int	handle_mouse(int button, int x, int y, t_data *data);
 
 /* MATRICES CREATE*/
-t_matrix_4	create_matrix_4(float tab[16]);
-t_matrix_3	create_matrix_3(float tab[9]);
-t_matrix_2	create_matrix_2(float tab[4]);
+t_matrix_4	create_matrix_4(double tab[16]);
+t_matrix_3	create_matrix_3(double tab[9]);
+t_matrix_2	create_matrix_2(double tab[4]);
 double		matrix_cmp_4(t_matrix_4 a, t_matrix_4 b);
 
 /* MATRIX OPERATIONS */
@@ -216,11 +222,11 @@ t_matrix_4	translation(double x, double y, double z);
 t_matrix_4	scaling(double x, double y, double z);
 
 /* MATRIX ROTATIONS */
-t_matrix_4	rotation_x(float rad);
-t_matrix_4	rotation_y(float rad);
-t_matrix_4	rotation_z(float rad);
+t_matrix_4	rotation_x(double rad);
+t_matrix_4	rotation_y(double rad);
+t_matrix_4	rotation_z(double rad);
 
-t_matrix_4	shearing(float xy, float xz, float yx, float yz, float zx, float zy);
+t_matrix_4	shearing(double xy, double xz, double yx, double yz, double zx, double zy);
 
 /* RAYS */
 t_ray		create_ray(t_tuple origin, t_tuple direction);
@@ -243,6 +249,8 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 /* WORLD */
 t_world		create_world(void);
 t_world		default_world(void);
+t_xs_world	intersect_world(t_world w, t_ray r);
+void		sort_list(t_xs_world *xs_world);
 
 /* SHADOW */
 int	is_shadowed(t_world world, t_tuple point);

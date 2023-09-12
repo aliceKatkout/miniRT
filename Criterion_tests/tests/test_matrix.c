@@ -4,7 +4,7 @@
 Test(matrix, matrix_4_1)
 {
 	//Arrange
-	float	tab[16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+	double	tab[16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 	t_matrix_4 matrix;
 	//Act
 	matrix = create_matrix_4(tab);
@@ -19,8 +19,8 @@ Test(matrix, matrix_4_1)
 Test(matrix, matrix_cmp1)
 {
 	//Arrange
-	float	tab_a[16] = {0, 1.2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-	float	tab_b[16] = {0, 1.2, 2, 3, 4, 5, 7, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+	double	tab_a[16] = {0, 1.2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+	double	tab_b[16] = {0, 1.2, 2, 3, 4, 5, 7, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 	t_matrix_4 mat_a;
 	t_matrix_4 mat_b;
 	//Act
@@ -33,8 +33,8 @@ Test(matrix, matrix_cmp1)
 Test(matrix, matrix_cmp2)
 {
 	//Arrange
-	float	tab_a[16] = {0, 1.2, 2, 3, 4, 5, 6.236, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-	float	tab_b[16] = {0, 1.2, 2, 3, 4, 5, 6.236, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+	double	tab_a[16] = {0, 1.2, 2, 3, 4, 5, 6.236, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+	double	tab_b[16] = {0, 1.2, 2, 3, 4, 5, 6.236, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 	t_matrix_4 mat_a;
 	t_matrix_4 mat_b;
 	//Act
@@ -47,8 +47,8 @@ Test(matrix, matrix_cmp2)
 Test(matrix, matrix_mult1)
 {
 	//Arrange
-	float	tab_a[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2};
-	float	tab_b[16] = {-2, 1, 2, 3, 3, 2, 1, -1, 4, 3, 6, 5, 1, 2, 7, 8};
+	double	tab_a[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2};
+	double	tab_b[16] = {-2, 1, 2, 3, 3, 2, 1, -1, 4, 3, 6, 5, 1, 2, 7, 8};
 	t_matrix_4 mat_a;
 	t_matrix_4 mat_b;
 	t_matrix_4 mat_c;
@@ -67,7 +67,7 @@ Test(matrix, matrix_mult1)
 
 Test(matrix, matrix_mult1_tuple1)
 {
-	float	tab_a[16] = {1, 2, 3, 4, 2, 4, 4, 2, 8, 6, 4, 1, 0, 0, 0, 1};
+	double	tab_a[16] = {1, 2, 3, 4, 2, 4, 4, 2, 8, 6, 4, 1, 0, 0, 0, 1};
 	t_tuple	point;
 	t_matrix_4 mat_a;
 	t_tuple point_c;
@@ -82,7 +82,7 @@ Test(matrix, matrix_mult1_tuple1)
 
 Test(matrix, matrix_id1)
 {
-	float	tab_a[16] = {0, 1, 2, 4, 1, 2, 4, 8, 2, 4, 8, 16, 4, 8, 16, 32};
+	double	tab_a[16] = {0, 1, 2, 4, 1, 2, 4, 8, 2, 4, 8, 16, 4, 8, 16, 32};
 	t_matrix_4 mat_a;
 	t_matrix_4	id;
 	t_matrix_4 mult;
@@ -112,7 +112,7 @@ Test(matrix, transpose_1)
 {
 	t_matrix_4	a;
 	t_matrix_4	b;
-	float	tab_a[16] = {10, 9, 3, 10, 9, 8, 10, 8, 1, 8, 5, 3, 10, 10, 5, 8};
+	double	tab_a[16] = {10, 9, 3, 10, 9, 8, 10, 8, 1, 8, 5, 3, 10, 10, 5, 8};
 
 	a = create_matrix_4(tab_a);
 	b = transpose_mat(a);
@@ -139,7 +139,7 @@ Test(matrix, matrix2_1)
 {
 	t_matrix_2	a;
 	int	b;
-	float	tab_a[4] = {1, 5, -3, 2};
+	double	tab_a[4] = {1, 5, -3, 2};
 
 	a = create_matrix_2(tab_a);
 	b = determine_two(a);
@@ -150,7 +150,7 @@ Test(matrix, sub_matrix_1)
 {
 	t_matrix_3	a;
 	t_matrix_2	b;
-	float	tab_a[9] = {1, 5, 10, -3, 2, 7, 10, 6, -3};
+	double	tab_a[9] = {1, 5, 10, -3, 2, 7, 10, 6, -3};
 
 	a = create_matrix_3(tab_a);
 	b = submatrix_3(a, 0, 2);
@@ -164,7 +164,7 @@ Test(matrix, sub_matrix_2)
 {
 	t_matrix_4	a;
 	t_matrix_3	b;
-	float	tab_a[16] = {-6, 1, 1, 6, -8, 5, 8, 6, -1, 10, 8, 2, -7, 1, -1, 1};
+	double	tab_a[16] = {-6, 1, 1, 6, -8, 5, 8, 6, -1, 10, 8, 2, -7, 1, -1, 1};
 
 	a = create_matrix_4(tab_a);
 	b = submatrix_4(a, 2, 1);
@@ -182,7 +182,7 @@ Test(matrix, sub_matrix_2)
 Test(matrix, minor_1)
 {
 	t_matrix_3	a;
-	float	tab_a[9] = {3, 5, 0, 2, -1, -7, 6, -1, 5};
+	double	tab_a[9] = {3, 5, 0, 2, -1, -7, 6, -1, 5};
 	int		minor1;
 	int		minor2;
 	int		minor3;
@@ -203,7 +203,7 @@ Test(matrix, minor_1)
 Test(matrix, determ_1)
 {
 	t_matrix_3	a;
-	float tab_a[9] = {1, 2, 6, -5, 8, -4, 2, 6, 4};
+	double tab_a[9] = {1, 2, 6, -5, 8, -4, 2, 6, 4};
 
 	a = create_matrix_3(tab_a);
 	cr_expect(cofactor_3(a, 0, 0) == 56);
@@ -215,7 +215,7 @@ Test(matrix, determ_1)
 Test(matrix, determ_2)
 {
 	t_matrix_4	a;
-	float tab_a[16] = {-2, -8, 3, 5, -3, 1, 7, 3,
+	double tab_a[16] = {-2, -8, 3, 5, -3, 1, 7, 3,
 		1, 2, -9, 6, -6, 7, 7, -9};
 
 	a = create_matrix_4(tab_a);
@@ -229,10 +229,10 @@ Test(matrix, determ_2)
 Test(matrix, is_invertible1)
 {
 	t_matrix_4	a;
-	float tab_a[16] = {6, 4, 4, 4, 5, 5, 7, 6,
+	double tab_a[16] = {6, 4, 4, 4, 5, 5, 7, 6,
 		4, -9, 3, -7, 9, 1, 7, -6};
 	t_matrix_4	b;
-	float tab_b[16] = {-4, 2, -2, -3, 9, 6, 2, 6,
+	double tab_b[16] = {-4, 2, -2, -3, 9, 6, 2, 6,
 		0, -5, 1, -5, 0, 0, 0, 0};
 
 	a = create_matrix_4(tab_a);
@@ -244,7 +244,7 @@ Test(matrix, is_invertible1)
 Test(matrix, inversion_4_1)
 {
 	t_matrix_4	a;
-	float tab[16] = {-5, 2, 6, -8, 1, -5, 1, 8,
+	double tab[16] = {-5, 2, 6, -8, 1, -5, 1, 8,
 		7, 7, -6, -7, 1, -3, 7, 4};
 	t_matrix_4	b;
 
@@ -257,7 +257,7 @@ Test(matrix, inversion_4_1)
 Test(matrix, inversion_4_2)
 {
 	t_matrix_4	a;
-	float tab[16] = {8, -5, 9, 2, 7, 5, 6, 1,
+	double tab[16] = {8, -5, 9, 2, 7, 5, 6, 1,
 		-6, 0, 9, 6, -3, 0, -9, -4};
 	t_matrix_4	b;
 
@@ -273,7 +273,7 @@ Test(matrix, inversion_4_2)
 Test(matrix, inversion_4_3)
 {
 	t_matrix_4	a;
-	float tab[16] = {9, 3, 0, 9, -5, -2, -6, -3,
+	double tab[16] = {9, 3, 0, 9, -5, -2, -6, -3,
 		-4, 9, 6, 4, -7, 6, 6, 2};
 	t_matrix_4	b;
 
@@ -289,10 +289,10 @@ Test(matrix, inversion_4_3)
 Test(matrix, inversion_4_4)
 {
 	t_matrix_4	a;
-	float tab[16] = {3, -9, 7, 3, 3, -8, 2, -9,
+	double tab[16] = {3, -9, 7, 3, 3, -8, 2, -9,
 		-4, 4, 4, 1, -6, 5, -1, 1};
 	t_matrix_4	b;
-	float tab2[16] = {8, 2, 2, 2, 3, -1, 7, 0,
+	double tab2[16] = {8, 2, 2, 2, 3, -1, 7, 0,
 		7, 0, 5, 4, 6, -2, 0, 5};
 	t_matrix_4	c;
 	t_matrix_4	cmp;
