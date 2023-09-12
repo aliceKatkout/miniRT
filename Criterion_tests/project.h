@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/12 13:52:20 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:50:23 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,12 @@ typedef struct s_xs
 	struct s_obj	*obj;
 }	t_xs;
 
+typedef struct s_xs_world
+{
+	int		count;
+	t_xs	tab_xs[100];
+}	t_xs_world;
+
 typedef struct s_light
 {
 	t_tuple	position;
@@ -135,7 +141,7 @@ typedef struct s_obj
 
 typedef struct s_world
 {
-	t_light		*light;
+	t_light		light;
 	t_list		*objs;
 
 } t_world;
@@ -247,4 +253,6 @@ int			ft_free_all(t_data *data);
 /* WORLD */
 t_world		create_world(void);
 t_world		default_world(void);
+t_xs_world	intersect_world(t_world w, t_ray r);
+void		sort_list(t_xs_world xs_world);
 #endif

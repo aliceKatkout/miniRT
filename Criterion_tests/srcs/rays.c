@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/11 18:24:45 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/12 17:13:17 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,12 @@ t_xs	intersect(t_obj *s, t_ray r)
 	}
 	else
 		xs.count = 0;
+	printf("xs.count : %d\n", xs.count);
+		printf("xs.x0 : %f\n", xs.x0);
+		printf("xs.x1 : %f\n", xs.x1);
+		printf("xs.t : %f\n", xs.t);
+		printf("id : %d\n", s->id);
+		printf("tab : %f\n", s->transform.tab[0][0]);
 	return (xs);
 }
 
