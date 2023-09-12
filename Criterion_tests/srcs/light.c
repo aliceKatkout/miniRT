@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 18:23:59 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:52:43 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_tuple		normal_at(t_obj *s, t_tuple p)
 -the light source
 -the eye
 -and normal vectors from thePhong reflection model.*/
-t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv)
+t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv, int in_shadow)
 {
 	t_tuple	eff_color;
 	t_tuple	lightv;
@@ -54,8 +54,7 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 	lightv = normalize(sub_tuples(l.position, pos));
 	ambient = mult_tuples(eff_color, m.ambient);
 	light_dot_normal = dot_product(lightv, normalv);
-	printf("light dot normal: %f\n", light_dot_normal);
-	if (light_dot_normal < 0)
+	if (light_dot_normal < 0 || in_shadow == 1)
 	{
 		diff = create_color(0, 0, 0);
 		spec = create_color(0, 0, 0);
@@ -76,10 +75,6 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 			spec = mult_tuples(spec, factor);
 		}
 	}
-	// (void) diff;
-	// (void) ambient;
-	// (void) spec;
-	// res = ambient;
 	res = add_tuples(ambient, diff);
 	res = add_tuples(res, spec);
 	return (res);

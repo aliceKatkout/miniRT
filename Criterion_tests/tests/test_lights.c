@@ -85,8 +85,9 @@ Test(light, lighting1)
 	t_tuple	result;
 	t_tuple	eyev = create_vector(0, 0, -1);
 	t_tuple	normalv = create_vector(0, 0, -1);
+	int	in_shadow = 0;
 	light = point_light(create_point(0, 0, -10), create_color(1, 1, 1));
-	result = lighting(m, light, position, eyev, normalv);
+	result = lighting(m, light, position, eyev, normalv, in_shadow);
 	cr_expect(result.x == 1.9);
 	cr_expect(result.y == 1.9);
 	cr_expect(result.z == 1.9);
@@ -101,8 +102,9 @@ Test(light, lighting2)
 	t_tuple	result;
 	t_tuple	eyev = create_vector(0, sqrt(2)/2, -sqrt(2)/2);
 	t_tuple	normalv = create_vector(0, 0, -1);
+	int	in_shadow = 0;
 	light = point_light(create_point(0, 0, -10), create_color(1, 1, 1));
-	result = lighting(m, light, position, eyev, normalv);
+	result = lighting(m, light, position, eyev, normalv, in_shadow);
 	cr_expect(result.x == 1.0);
 	cr_expect(result.y == 1.0);
 	cr_expect(result.z == 1.0);
@@ -117,8 +119,9 @@ Test(light, lighting3)
 	t_tuple	result;
 	t_tuple	eyev = create_vector(0, 0, -1);
 	t_tuple	normalv = create_vector(0, 0, -1);
+	int	in_shadow = 0;
 	light = point_light(create_point(0, 10, -10), create_color(1, 1, 1));
-	result = lighting(m, light, position, eyev, normalv);
+	result = lighting(m, light, position, eyev, normalv, in_shadow);
 	cr_expect(fabs(result.x - 0.7364) < EPSILON);
 	cr_expect(fabs(result.y - 0.7364) < EPSILON);
 	cr_expect(fabs(result.z - 0.7364) < EPSILON);
@@ -136,8 +139,9 @@ Test(light, lighting4)
 	t_tuple	result;
 	t_tuple	eyev = create_vector(0, -sqrt(2)/2, -sqrt(2)/2);
 	t_tuple	normalv = create_vector(0, 0, -1);
+	int	in_shadow = 0;
 	light = point_light(create_point(0, 10, -10), create_color(1, 1, 1));
-	result = lighting(m, light, position, eyev, normalv);
+	result = lighting(m, light, position, eyev, normalv, in_shadow);
 	cr_expect(fabs(result.x - 1.6364) < EPSILON);
 	cr_expect(fabs(result.y - 1.6364) < EPSILON);
 	cr_expect(fabs(result.z - 1.6364) < EPSILON);
@@ -155,8 +159,26 @@ Test(light, lighting5)
 	t_tuple	result;
 	t_tuple	eyev = create_vector(0, 0, -1);
 	t_tuple	normalv = create_vector(0, 0, -1);
+	int	in_shadow = 0;
 	light = point_light(create_point(0, 0, 10), create_color(1, 1, 1));
-	result = lighting(m, light, position, eyev, normalv);
+	result = lighting(m, light, position, eyev, normalv, in_shadow);
+	cr_expect(result.x == 0.1);
+	cr_expect(result.y == 0.1);
+	cr_expect(result.z == 0.1);
+}
+
+Test(light, lighting_shadow1)
+{
+	//page 110
+	t_material	m = init_material();
+	t_tuple position = create_point(0, 0, 0);
+	t_light	light;
+	t_tuple	result;
+	t_tuple	eyev = create_vector(0, 0, -1);
+	t_tuple	normalv = create_vector(0, 0, -1);
+	int	in_shadow = 1;
+	light = point_light(create_point(0, 0, -10), create_color(1, 1, 1));
+	result = lighting(m, light, position, eyev, normalv, in_shadow);
 	cr_expect(result.x == 0.1);
 	cr_expect(result.y == 0.1);
 	cr_expect(result.z == 0.1);

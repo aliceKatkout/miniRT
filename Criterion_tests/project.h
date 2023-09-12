@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 18:52:38 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:21:53 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ t_ray	transform_ray(t_ray r, t_matrix_4 m);
 t_xs	intersect(t_obj *s, t_ray r);
 t_intersection	create_intersection(double t, t_obj *s);
 
-/* objS */
+/* OBJS */
 t_obj	*void_obj(void);
 void	set_transform(t_obj *s, t_matrix_4 m);
 
@@ -239,12 +239,16 @@ t_tuple		normal_at(t_obj *s, t_tuple p);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple intensity);
 t_material	init_material(void);
-t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv);
-
-/* EXIT */
-int			ft_free_all(t_data *data);
+t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv, int in_shadow);
 
 /* WORLD */
 t_world		create_world(void);
 t_world		default_world(void);
+
+/* SHADOW */
+int	is_shadowed(t_world world, t_tuple point);
+
+/* EXIT */
+int			ft_free_all(t_data *data);
+
 #endif

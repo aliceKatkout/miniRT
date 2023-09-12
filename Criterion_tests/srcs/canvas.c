@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/09/11 18:20:34 by mrabourd         ###   ########.fr       */
-=======
-/*   Updated: 2023/09/11 18:38:27 by avedrenn         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2023/09/12 14:56:23 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +58,7 @@ void	render_map(t_data *data)
 	t_tuple	origin;
 	t_tuple	pos;
 	t_tuple	point;
-<<<<<<< HEAD
-	t_sphere	sphere;
-=======
-	t_obj	*obj;
->>>>>>> main
+	t_obj	obj;
 	t_xs	xs;
 	int	world_x;
 	int	world_y;
@@ -113,12 +105,9 @@ void	render_map(t_data *data)
 		}
 		y++;
 	}
-<<<<<<< HEAD
-=======
 	printf("obj color x:%f\n", obj->material.color.x);
 	printf("obj color y:%f\n", obj->material.color.y);
 	printf("obj color z:%f\n", obj->material.color.z);
->>>>>>> main
 	printf("Done!\n");
 }
 
