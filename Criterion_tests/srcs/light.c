@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 15:10:29 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:53:37 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_tuple		normal_at(t_obj *s, t_tuple p)
 	m = transpose_mat(m);
 	world_normal = matrix_mult_tuple(m, obj_normal);
 	world_normal.w = 0;
-	return (world_normal);
+	return (normalize(world_normal));
 }
 
 /*It expects five arguments:
