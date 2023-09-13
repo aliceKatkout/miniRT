@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 18:09:50 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:05:53 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,17 @@ typedef struct s_intersection
 	t_obj	*s;
 }	t_intersection;
 
+typedef struct s_cam
+{
+	double		hsize;
+	double		vsize;
+	double		fov;
+	double		pixel_size;
+	double		half_width;
+	double		half_height;
+	t_matrix_4	transform;
+}	t_cam;
+
 
 void print_matrix_4(t_matrix_4 a);
 
@@ -274,6 +285,10 @@ t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 /* SHADOW */
 int		is_shadowed(t_world world, t_tuple point);
 t_tuple	shade_hit(t_world w, t_comp	comp);
+
+/* CAMERA */
+t_cam	create_camera(double hsize, double vsize, double fov);
+t_ray	ray_for_pixel(t_cam c, int px, int py);
 
 /* EXIT */
 int			ft_free_all(t_data *data);
