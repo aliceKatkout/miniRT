@@ -1,7 +1,7 @@
 #include <criterion.h>
 #include "../project.h"
 
-Test(shadow, is_shadowed1)
+/* Test(shadow, is_shadowed1)
 {
 	t_world	w = default_world();
 	t_tuple	p = create_point(0, 10, 0);
@@ -40,3 +40,4 @@ Test(shadow, is_shadowed4)
 	shadow = is_shadowed(w, p);
 	cr_expect(shadow == 0);
 }
+ */

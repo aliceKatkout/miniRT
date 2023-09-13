@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 11:56:28 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/13 12:10:26 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,8 @@ void		sort_list(t_xs_world *xs_world);
 t_comp	prepare_comp(t_xs xs, t_ray r);
 
 /* SHADOW */
-int	is_shadowed(t_world world, t_tuple point);
+int		is_shadowed(t_world world, t_tuple point);
+t_tuple	shade_hit(t_world w, t_comp	comp);
 
 /* EXIT */
 int			ft_free_all(t_data *data);

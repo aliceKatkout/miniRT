@@ -34,15 +34,55 @@ Test(World, default)
 	cr_expect(matrix_cmp_4(content->transform, s1->transform) == 0);
 	content = (t_obj *)w.objs->next->content;
 	cr_expect(matrix_cmp_4(content->transform, s2->transform) == 0);
-	// cr_assert(false, "scaling :%f\n", s2->transform.tab[0][0]);
-	/* cr_expect(matrix_cmp_4(w->objs->(t_obj *)content->material.color, s1->material.color) == 0);
-	cr_expect(w.objs->(t_obj *)content->material.diffuse == s1->material.diffuse);
-	cr_expect(w.objs->(t_obj *)content->material.specular == s1->material.specular);
-	cr_expect(matrix_cmp_4(w.objs->next->(t_obj *)content->transform, s2->transform) == 0); */
-
-
 }
 
+Test(World, shadow_hit)
+{
+	t_world		w;
+	t_ray		r;
+	t_xs_world	xs_world;
+	t_comp		comp;
+	t_tuple 	c;
+
+	w = default_world();
+	r = create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
+	xs_world = intersect_world(w, r);
+	comp = prepare_comp(xs_world.tab_xs[0], r);
+	printf("first xs.t = %f\n", xs_world.tab_xs[0].t);
+	c = shade_hit(w, comp);
+	cr_expect(fabs(c.x - 0.38066) < EPSILON);
+	cr_expect(fabs(c.y - 0.47583) < EPSILON);
+	cr_expect(fabs(c.z - 0.2855) < EPSILON);
+}
+
+Test(World, shadow_hit2)
+{
+	t_world		w;
+	t_ray		r;
+	t_xs		xs;
+	t_comp		comp;
+	t_tuple 	c;
+	t_obj		*obj;
+
+	w = default_world();
+	w.light = point_light(create_point(0, 0.25, 0), create_color(1, 1, 1));
+	r = create_ray(create_point(0, 0, 0), create_vector(0, 0, 1));
+	obj = (t_obj *)w.objs->next->content;
+	xs = intersect(obj, r);
+	printf("xs.t = %f\n", xs.t);
+	printf("xs.obj->id = %d\n",xs.obj->id);
+	//xs.t = 0.5;
+	comp = prepare_comp(xs, r);
+	printf("xs.t = %f\n", xs.t);
+	c = shade_hit(w, comp);
+	printf("c.x = %f\n", c.x);
+	printf("c.y = %f\n", c.y);
+	printf("c.z = %f\n", c.z);
+	cr_expect(fabs(c.x - 0.90498) < EPSILON);
+
+	cr_expect(fabs(c.y - 0.90498) < EPSILON);
+	cr_expect(fabs(c.z - 0.90498) < EPSILON);
+}
 // Test(World, intersect1)
 // {
 // 	t_world		w;
