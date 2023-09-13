@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/12 18:23:59 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/13 11:56:28 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,17 @@ typedef struct s_world
 
 } t_world;
 
+typedef struct s_comp
+{
+	double		t;
+	t_obj		*obj;
+	t_tuple		point;
+	t_tuple		eyev;
+	t_tuple		normalv;
+	t_tuple		reflectv;
+	int			inside;
+} t_comp;
+
 typedef struct s_intersection
 {
 	double		t;
@@ -251,6 +262,9 @@ t_world		create_world(void);
 t_world		default_world(void);
 t_xs_world	intersect_world(t_world w, t_ray r);
 void		sort_list(t_xs_world *xs_world);
+
+/* INTERSECTIONS */
+t_comp	prepare_comp(t_xs xs, t_ray r);
 
 /* SHADOW */
 int	is_shadowed(t_world world, t_tuple point);
