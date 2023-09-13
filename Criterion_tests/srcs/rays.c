@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/12 18:53:29 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:10:14 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ t_tuple	position(t_ray ray, double t)
 	return (pos);
 }
 
-// void print_matrix_4(t_matrix_4 a)
-// {
-// 	int	x;
-// 	int	y;
+void print_matrix_4(t_matrix_4 a)
+{
+	int	x;
+	int	y;
 
-// 	x = 0;
-// 	while (x < 4)
-// 	{
-// 		y = 0;
-// 		while (y < 4)
-// 		{
-// 			printf("a.tab[%d][%d]: %f\n", x, y, a.tab[x][y]);
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }
+	x = 0;
+	while (x < 4)
+	{
+		y = 0;
+		while (y < 4)
+		{
+			printf("a.tab[%d][%d]: %f\n", x, y, a.tab[x][y]);
+			y++;
+		}
+		x++;
+	}
+}
 
 //A modifier pour rnvoyer une liste de xs/ ou de t_intersection
 t_xs	intersect(t_obj *s, t_ray r)
@@ -62,18 +62,11 @@ t_xs	intersect(t_obj *s, t_ray r)
 
 	r = transform_ray(r, mat_inversion_4(s->transform));
 	obj_to_ray = sub_tuples(r.origin, create_point(s->x, s->y, s->z));
-	// printf("r.direction.x: %f\n", r.direction.x);
-	// printf("r.direction.y: %f\n", r.direction.y);
-	// printf("r.direction.z: %f\n", r.direction.z);
 	xs.obj = s;
 	a = dot_product(r.direction, r.direction);
 	b = 2 * dot_product(r.direction, obj_to_ray);
 	c = dot_product(obj_to_ray, obj_to_ray) - 1;
 	discriminant = b * b - 4 * a * c;
-	// printf("discriminant: %f\n", discriminant);
-	// printf("a: %f\n", a);
-	// printf("b: %f\n", b);
-	// printf("c: %f\n", c);
 	if (discriminant < 0)
 	{
 		ft_bzero(&xs, sizeof(xs));

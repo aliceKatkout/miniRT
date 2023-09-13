@@ -6,25 +6,25 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 19:36:52 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/01 12:52:05 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:03:33 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-int	determine_two(t_matrix_2 a)
+double	determine_two(t_matrix_2 a)
 {
-	int	b;
+	double	b;
 
 	b = (a.tab[0][0] * a.tab[1][1])
 		- (a.tab[0][1] * a.tab[1][0]);
 	return (b);
 }
 
-int	determine_three(t_matrix_3 a)
+double	determine_three(t_matrix_3 a)
 {
-	int	cof;
-	int	deter;
+	double	cof;
+	double	deter;
 
 	deter = 0;
 	cof = cofactor_3(a, 0, 0);
@@ -65,26 +65,22 @@ t_matrix_2	submatrix_3(t_matrix_3 a, int row, int col)
 	return (b);
 }
 
-int	minor_3(t_matrix_3 a, int row, int col)
+double	minor_3(t_matrix_3 a, int row, int col)
 {
 	t_matrix_2	b;
-	int			minor;
+	double			minor;
 
 	b = submatrix_3(a, row, col);
 	minor = determine_two(b);
 	return (minor);
 }
 
-int	cofactor_3(t_matrix_3 a, int row, int col)
+double	cofactor_3(t_matrix_3 a, int row, int col)
 {
-	int	minor;
-	int	signe;
+	double	minor;
 
 	minor = minor_3(a, row, col);
-	signe = row + col;
-	if (signe % 2 != 0)
-		signe = -1;
-	else
-		signe = 1;
-	return (minor * signe);
+	if ((row + col) % 2 != 0)
+		minor *= -1;
+	return (minor);
 }

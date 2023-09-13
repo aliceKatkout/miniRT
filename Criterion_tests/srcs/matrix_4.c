@@ -6,16 +6,16 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 19:36:52 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/07 14:48:44 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:10:04 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-int	determine_four(t_matrix_4 a)
+double	determine_four(t_matrix_4 a)
 {
-	int	cof;
-	int	deter;
+	double	cof;
+	double	deter;
 
 	deter = 0;
 	cof = 0;
@@ -59,10 +59,10 @@ t_matrix_3	submatrix_4(t_matrix_4 a, int row, int col)
 	return (b);
 }
 
-int	minor_4(t_matrix_4 a, int row, int col)
+double	minor_4(t_matrix_4 a, int row, int col)
 {
 	t_matrix_3	b;
-	int			minor;
+	double			minor;
 
 	minor = 0;
 	b = submatrix_4(a, row, col);
@@ -70,18 +70,13 @@ int	minor_4(t_matrix_4 a, int row, int col)
 	return (minor);
 }
 
-int	cofactor_4(t_matrix_4 a, int row, int col)
+double	cofactor_4(t_matrix_4 a, int row, int col)
 {
-	int	minor;
-	int	signe;
+	double	minor;
 
 	minor = 0;
-	signe = 0;
 	minor = minor_4(a, row, col);
-	signe = row + col;
-	if (signe % 2 != 0)
-		signe = -1;
-	else
-		signe = 1;
-	return (minor * signe);
+	if ((row + col) % 2 != 0)
+		minor *= -1;
+	return (minor);
 }

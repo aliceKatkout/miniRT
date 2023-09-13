@@ -37,7 +37,7 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/world.c \
 					srcs/shadow.c 	\
 					srcs/intersections.c \
-					#srcs/canvas.c	\
+					# srcs/canvas.c	\
 					srcs/hook.c		\
 					srcs/exit.c
 MAIN_SRCS		=	srcs/main.c
@@ -81,6 +81,7 @@ ${OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 CR_HEADER_PATH	=	-I${HOME}/Criterion/include/criterion
 T_NAME			= 	test_project
 T_SRCS			=	tests/test_tuples.c \
+					tests/test_world.c \
 					tests/test_tuples_ops.c	\
 					tests/test_colors.c	\
 					tests/test_matrix.c	\
@@ -91,7 +92,6 @@ T_SRCS			=	tests/test_tuples.c \
 					tests/test_rays.c	\
 					tests/test_lights.c	\
 					tests/test_reflection.c\
-					tests/test_world.c \
 					tests/test_shadow.c \
 					tests/test_intersections.c
 T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)

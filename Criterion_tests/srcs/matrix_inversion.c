@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:34:52 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/07 15:23:12 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:07:09 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	is_invertible(t_matrix_4 a)
 
 t_matrix_4	mat_inversion_4(t_matrix_4 a)
 {
-	int	x;
-	int	y;
-	int	deter;
-	int	cofact;
+	int		x;
+	int		y;
+	double	deter;
+	double	cofact;
 	t_matrix_4	res;
 
 	x = 0;

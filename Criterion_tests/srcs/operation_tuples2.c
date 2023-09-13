@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_tuples2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:56:06 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/02 13:24:34 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:40:19 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ double	dot_product(t_tuple a, t_tuple b)
 {
 	double	ret;
 
-	ret = (a.x * b.x) + (a.y * b.y)
-		+ (a.z * b.z) + (a.w * b.w);
+	ret = (a.x * b.x)
+		+ (a.y * b.y)
+		+ (a.z * b.z)
+		+ (a.w * b.w);
 	return (ret);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 12:10:26 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:55:59 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,9 @@ typedef struct s_intersection
 	t_obj	*s;
 }	t_intersection;
 
+
+void print_matrix_4(t_matrix_4 a);
+
 /* TUPLES CREATE */
 t_tuple		create_point(double x, double y, double z);
 t_tuple		create_vector(double x, double y, double z);
@@ -212,17 +215,17 @@ t_matrix_4	identity_matrix(void);
 t_matrix_4	transpose_mat(t_matrix_4 mat);
 
 /* SUBMATRICES */
-int			determine_two(t_matrix_2 a);
-int			determine_three(t_matrix_3 a);
-int			determine_four(t_matrix_4 a);
+double			determine_two(t_matrix_2 a);
+double			determine_three(t_matrix_3 a);
+double			determine_four(t_matrix_4 a);
 
 t_matrix_2	submatrix_3(t_matrix_3 a, int row, int col);
 t_matrix_3	submatrix_4(t_matrix_4 a, int row, int col);
-int			minor_3(t_matrix_3 a, int row, int col);
-int			cofactor_3(t_matrix_3 a, int row, int col);
+double			minor_3(t_matrix_3 a, int row, int col);
+double			cofactor_3(t_matrix_3 a, int row, int col);
 
-int			minor_4(t_matrix_4 a, int row, int col);
-int			cofactor_4(t_matrix_4 a, int row, int col);
+double			minor_4(t_matrix_4 a, int row, int col);
+double 		cofactor_4(t_matrix_4 a, int row, int col);
 
 /* MATRIX INVERSION */
 int			is_invertible(t_matrix_4 a);

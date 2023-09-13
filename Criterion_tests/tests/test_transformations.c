@@ -91,6 +91,20 @@ Test(matrix, scaling_3)
 	cr_expect(fabs(res.z - cmp.z) < EPSILON);
 }
 
+Test(matrix, scaling_4)
+{
+	t_matrix_4	scaled;
+	t_tuple	point;
+	t_tuple	res;
+
+	scaled = scaling(0.5, 0.5, 0.5);
+	point = create_point(-3, 6, 8);
+	res = matrix_mult_tuple(scaled, point);
+	cr_expect(res.x == -1.5);
+	cr_expect(res.y == 3);
+	cr_expect(res.z == 4);
+}
+
 Test(matrix, reflection_1)
 {
 	t_matrix_4	transform;

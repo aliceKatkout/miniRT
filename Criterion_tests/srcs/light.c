@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 12:38:58 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:10:29 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 	lightv = normalize(sub_tuples(l.position, pos));
 	ambient = mult_tuples(eff_color, m.ambient);
 	light_dot_normal = dot_product(lightv, normalv);
-	if (light_dot_normal < 0) //|| in_shadow == 1)
+	if (light_dot_normal < 0 || in_shadow == 1)
 	{
 		diff = create_color(0, 0, 0);
 		spec = create_color(0, 0, 0);
