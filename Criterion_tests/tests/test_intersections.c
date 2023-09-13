@@ -98,3 +98,63 @@ Test(color_at, behind_the_ray)
 	cr_expect(c.y == inner->material.color.y);
 	cr_expect(c.z == inner->material.color.z);
 }
+
+Test(View, view_transform0)
+{
+	t_tuple		from;
+	t_tuple		to;
+	t_tuple		up;
+	t_matrix_4	t;
+
+	from = create_point(0, 0, 0);
+	to = create_point(0, 0, -1);
+	up = create_vector(0, 1, 0);
+	t = view_transform(from, to, up);
+	cr_expect(matrix_cmp_4(t, identity_matrix()) == 0);
+}
+
+Test(View, view_transform1)
+{
+	t_tuple		from;
+	t_tuple		to;
+	t_tuple		up;
+	t_matrix_4	t;
+
+	from = create_point(0, 0, 0);
+	to = create_point(0, 0, 1);
+	up = create_vector(0, 1, 0);
+	t = view_transform(from, to, up);
+	cr_expect(matrix_cmp_4(t, scaling(-1, 1, -1)) == 0);
+}
+
+Test(View, view_transform2)
+{
+	t_tuple		from;
+	t_tuple		to;
+	t_tuple		up;
+	t_matrix_4	t;
+
+	from = create_point(0, 0, 8);
+	to = create_point(0, 0, 0);
+	up = create_vector(0, 1, 0);
+	t = view_transform(from, to, up);
+	cr_expect(matrix_cmp_4(t, translation(0, 0, -8)) == 0);
+}
+
+Test(View, view_transform5)
+{
+	t_tuple		from;
+	t_tuple		to;
+	t_tuple		up;
+	t_matrix_4	t;
+	double o[16] = {-0.50709, 0.50709, 0.67612, -2.36643,
+			0.76772, 0.60609, 0.12122, -2.82843,
+			-0.35857, 0.59761, -0.71714, 0.00000,
+			0.00000, 0.00000, 0.00000, 1.00000};
+
+	from = create_point(1, 3, 2);
+	to = create_point(4, -2, 8);
+	up = create_vector(1, 1, 0);
+	t = view_transform(from, to, up);
+	cr_expect(matrix_cmp_4(t, create_matrix_4(o)) == 0);
+}

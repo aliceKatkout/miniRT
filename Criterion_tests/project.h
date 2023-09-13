@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 17:12:13 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:09:50 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,6 +269,7 @@ void		sort_list(t_xs_world *xs_world);
 /* INTERSECTIONS */
 t_comp	prepare_comp(t_xs xs, t_ray r);
 t_tuple	color_at(t_world w, t_ray r);
+t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* SHADOW */
 int		is_shadowed(t_world world, t_tuple point);
