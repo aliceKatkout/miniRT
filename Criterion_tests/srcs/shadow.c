@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:54:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 12:15:35 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:35:39 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_tuple	shade_hit(t_world w, t_comp	comp)
 	t_tuple		res;
 
 	res = lighting(comp.obj->material, w.light,
-			comp.point, comp.eyev, comp.normalv, is_shadowed(w, comp.point));
+			comp.point, comp.eyev, comp.normalv, 0);
 	return (res);
 }
 

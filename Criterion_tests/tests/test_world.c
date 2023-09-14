@@ -46,8 +46,6 @@ Test(World, default1)
 	s2->transform = scaling(0.5, 0.5, 0.5);
 	r = create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
 	xs = intersect(s2, r);
-	printf("xs.x0: %f\n", xs.x0);
-	printf("xs.x1: %f\n", xs.x1);
 	cr_expect(xs.count == 2);
 	cr_expect(xs.x0 == 4.5);
 	cr_expect(xs.x1 == 5.5);
@@ -89,11 +87,15 @@ Test(World, shadow_hit2)
 	r = create_ray(create_point(0, 0, 0), create_vector(0, 0, 1));
 	obj = (t_obj *)w.objs->next->content;
 	xs = intersect(obj, r);
-
-	//xs.t = 0.5;
-	comp = prepare_comp(xs, r);
+	printf("shadow_hit2:\n");
 	printf("xs.t = %f\n", xs.t);
+	printf("xs.x0 = %f\n", xs.x0);
+	printf("xs.x1 = %f\n", xs.x1);
+	comp = prepare_comp(xs, r);
 	c = shade_hit(w, comp);
+	printf("c.x = %f\n", c.x);
+	printf("c.y = %f\n", c.y);
+	printf("c.z = %f\n", c.z);
 	cr_expect(fabs(c.x - 0.90498) < EPSILON);
 	cr_expect(fabs(c.y - 0.90498) < EPSILON);
 	cr_expect(fabs(c.z - 0.90498) < EPSILON);
