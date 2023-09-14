@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:54:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/14 14:20:00 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:07:50 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 t_tuple	shade_hit(t_world w, t_comp	comp)
 {
 	t_tuple		res;
+	// int			shadowed;
 
+	// shadowed = is_shadowed(w, comp.point);
 	res = lighting(comp.obj->material, w.light,
 			comp.point, comp.eyev, comp.normalv, 0);
 	return (res);
@@ -36,7 +38,7 @@ int	is_shadowed(t_world world, t_tuple point)
 	r = create_ray(point, direction);
 	intersections = intersect_world(world, r);
 	h = intersections.tab_xs[0];
-	if (h.count != 0 && h.t < distance)
+	if (intersections.count != 0 && h.t < distance)
 		return (1);
 	else
 		return (0);

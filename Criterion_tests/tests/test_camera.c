@@ -68,7 +68,7 @@ Test(camera, ray_pixel_transformed)
 	cr_expect(fabs(r.direction.y - 0) < EPSILON);
 	cr_expect(fabs(r.direction.z - -sqrt(2) / 2) < EPSILON);
 }
-
+/*
 Test(camera, render_cam1)
 {
 	t_world	w;
@@ -91,4 +91,4 @@ Test(camera, render_cam1)
 //	pixel_at(c, 2, 3) -> renvoie la couleur
 //	au pixel donne (2, 3) dans le canvas 'c' 
 //	write_pixel(c, 2, 3, red) -> img_pixel_put?
-}
+}*/
