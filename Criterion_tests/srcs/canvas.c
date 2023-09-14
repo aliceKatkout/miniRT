@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/12 15:28:25 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:49:43 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,124 @@ void	render_background(t_image *img, int color)
 	}
 }
 
+// void	print_list(t_world world)
+// {
+// 	t_list	*tmp;
+
+// 	tmp = world.objs;
+// 	while (tmp != NULL)
+// 	{
+// 		printf("obj: %s\n", tmp->content->type);
+// 		tmp = tmp->next;
+// 	}
+// }
+
+void	set_scene(t_data *data)
+{
+	t_obj	*floor;
+	t_obj	*left_wall;
+	t_obj	*right_wall;
+	t_obj	*middle;
+	t_obj	*right;
+	t_obj	*left;
+	t_world w;
+	t_cam	cam;
+	t_list	*new;
+
+	floor = void_obj();
+	floor->transform = scaling(10, 0.01, 10);
+	floor->material = init_material();
+	floor->material.color = create_color(1, 0.9, 0.9);
+	floor->material.specular = 0;
+	new = ft_lstnew((void *) floor);
+	// ft_lstadd_back(&w.objs, new);
+	left_wall = void_obj();
+	left_wall->transform = matrix_mult_4(left_wall->transform, scaling(10, 0.01, 10));
+	left_wall->transform = matrix_mult_4(left_wall->transform, rotation_x(M_PI / 2));
+	left_wall->transform = matrix_mult_4(left_wall->transform, rotation_y(-(M_PI) / 4));
+	left_wall->transform = matrix_mult_4(left_wall->transform, translation(0, 0, 5));
+	left_wall->material = floor->material;
+	new = ft_lstnew((void *) left_wall);
+	ft_lstadd_back(&w.objs, new);
+	right_wall = void_obj();
+	right_wall->transform = matrix_mult_4(right_wall->transform, translation(0, 0, 5));
+	right_wall->transform = matrix_mult_4(right_wall->transform, rotation_y(M_PI / 4));
+	right_wall->transform = matrix_mult_4(right_wall->transform, rotation_x(M_PI / 2));
+	right_wall->transform = matrix_mult_4(right_wall->transform, scaling(10, 0.01, 10));
+	right_wall->material = floor->material;
+	new = ft_lstnew((void *) right_wall);
+	ft_lstadd_back(&w.objs, new);
+	middle = void_obj();
+	middle->transform = translation(-0.5, 1, 0.5);
+	middle->material = init_material();
+	middle->material.color = create_color(0.1, 1, 0.5);
+	middle->material.diffuse = 0.7;
+	middle->material.specular = 0.3;
+	new = ft_lstnew((void *) middle);
+	ft_lstadd_back(&w.objs, new);
+	right = void_obj();
+	right->transform = matrix_mult_4(translation(1.5, 0.5, -0.5), scaling(0.5, 0.5, 0.5));
+	right->material = init_material();
+	right->material.color = create_color(0.5, 1, 0.1);
+	right->material.diffuse = 0.7;
+	right->material.specular = 0.3;
+	new = ft_lstnew((void *) right);
+	ft_lstadd_back(&w.objs, new);
+	left = void_obj();
+	left->transform = matrix_mult_4(translation(-1.5, 0.33, -0.75), scaling(0.33, 0.33, 0.33));
+	left->material = init_material();
+	left->material.color = create_color(1, 0.8, 0.1);
+	left->material.diffuse = 0.7;
+	left->material.specular = 0.3;
+	new = ft_lstnew((void *) left);
+	ft_lstadd_back(&w.objs, new);
+	w.light = point_light(create_point(-10, 10, -10), create_color(1, 1, 1));
+	cam = create_camera(100, 50, M_PI / 3);
+	cam.transform = view_transform(create_point(0, 1.5, -5), create_point(0, 1, 0), create_vector(0, 1, 0));
+
+	data->cam = cam;
+	data->world = w;
+	// print_list(data->world);
+}
+
+void	render_map(t_data *data)
+{
+	t_ray	ray;
+	int x;
+	int y;
+	t_tuple	color;
+	t_light	light;
+	// t_tuple	eye;
+	// t_tuple	normal;
+
+	set_scene(data);
+	x = 0;
+	y = 0;
+	render_background(&data->img, 0x000000);
+	light.position = create_point(-3, 4, -5);
+	light.intensity = create_color(1, 1, 1);
+	light = point_light(light.position, light.intensity);
+	data->world.light = light;
+	printf("coucou\n");
+	while (y < data->cam.vsize)
+	{
+		x = 0;
+		while (x < data->cam.hsize)
+		{
+			ray = ray_for_pixel(data->cam, x, y);
+			color = color_at(data->world, ray);
+			img_pxl_put(&data->img, x, y, transform_color(color));
+			x++;
+		}
+		y++;
+	}
+	// printf("obj color x:%f\n", obj->material.color.x);
+	// printf("obj color y:%f\n", obj->material.color.y);
+	// printf("obj color z:%f\n", obj->material.color.z);
+	printf("Done!\n");
+}
+
+/* OLD:
 void	render_map(t_data *data)
 {
 
@@ -109,52 +227,7 @@ void	render_map(t_data *data)
 	printf("obj color y:%f\n", obj->material.color.y);
 	printf("obj color z:%f\n", obj->material.color.z);
 	printf("Done!\n");
-}
-
-/*
-void	render_map(t_data *data)
-{
-
-	t_ray	ray;
-	t_tuple	origin;
-	t_tuple	pos;
-	t_tuple	red;
-	int		red2;
-	t_obj	obj;
-	t_xs	xs;
-	int	world_x;
-	int	world_y;
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	world_x = 0;
-	world_y = 0;
-	red = create_color(255, 0, 0);
-	red2 = transform_color(red);
-	origin = create_point(0, 0, -50);
-	render_background(&data->img, 0x000000);
-	obj = void_obj();
-	set_transform(&obj, scaling(300, 100, 10));
-	while (y < 1000)
-	{
-		x = 0;
-		world_y = WINDOW_HEIGHT - (y * 2);
-		while (x < 1000)
-		{
-			world_x = -WINDOW_WIDTH + (x * 2);
-			pos = create_point(world_x, world_y, 10);
-			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
-			xs = intersect(obj, ray);
-			if (xs.count > 0)
-				img_pxl_put(&data->img, x, y, red2);
-			x++;
-		}
-		y++;
-	}
-}
-*/
+}*/
 
 int	render(t_data *data)
 {

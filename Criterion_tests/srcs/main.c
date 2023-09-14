@@ -6,21 +6,11 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/07 17:48:23 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:19:24 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
-
-t_projectile	ft_tick(t_env env, t_projectile proj)
-{
-	t_projectile	ret;
-
-	ret.position = add_tuples(proj.position, proj.velocity);
-	ret.velocity = add_tuples(proj.velocity, env.gravity);
-	ret.velocity = add_tuples(ret.velocity, env.wind);
-	return (ret);
-}
 
 void	print_matrix_3(t_matrix_3 a)
 {

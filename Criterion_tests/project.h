@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 14:55:59 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:28:48 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,11 @@ typedef struct s_tuple
 	double	w;
 }	t_tuple;
 
-
-
-
 typedef struct s_ray
 {
 	t_tuple	origin;
 	t_tuple	direction;
 }	t_ray;
-
-typedef struct s_projectile
-{
-	t_tuple	position;
-	t_tuple	velocity;
-}	t_projectile;
-
-typedef struct s_env
-{
-	t_tuple	gravity;
-	t_tuple	wind;
-}	t_env;
 
 typedef struct s_image
 {
@@ -83,8 +68,6 @@ typedef struct s_matrix_2
 {
 	double	tab[2][2];
 }	t_matrix_2;
-
-
 
 typedef struct s_xs
 {
@@ -115,16 +98,6 @@ typedef struct s_material
 	double	specular;
 	double	shininess;
 } t_material;
-
-typedef struct s_data
-{
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_light			light;
-	t_image			img;
-	t_projectile	proj;
-	t_env			env;
-}	t_data;
 
 typedef struct s_obj
 {
@@ -163,6 +136,27 @@ typedef struct s_intersection
 	t_obj	*s;
 }	t_intersection;
 
+typedef struct s_cam
+{
+	double		hsize;
+	double		vsize;
+	double		fov;
+	double		pixel_size;
+	double		half_width;
+	double		half_height;
+	t_matrix_4	transform;
+}	t_cam;
+
+typedef struct s_data
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_world			world;
+	t_cam			cam;
+	t_image			img;
+}	t_data;
+
+
 
 void print_matrix_4(t_matrix_4 a);
 
@@ -186,7 +180,6 @@ double		dot_product(t_tuple a, t_tuple b);
 t_tuple		cross_product(t_tuple a, t_tuple b);
 
 /* PRINT ON CANVAS */
-t_projectile	ft_tick(t_env env, t_projectile proj);
 t_tuple		create_color(double red, double green, double blue);
 t_tuple		mult_colors(t_tuple a, t_tuple b);
 int			transform_color(t_tuple color);
@@ -268,10 +261,16 @@ void		sort_list(t_xs_world *xs_world);
 
 /* INTERSECTIONS */
 t_comp	prepare_comp(t_xs xs, t_ray r);
+t_tuple	color_at(t_world w, t_ray r);
+t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* SHADOW */
 int		is_shadowed(t_world world, t_tuple point);
 t_tuple	shade_hit(t_world w, t_comp	comp);
+
+/* CAMERA */
+t_cam	create_camera(double hsize, double vsize, double fov);
+t_ray	ray_for_pixel(t_cam c, int px, int py);
 
 /* EXIT */
 int			ft_free_all(t_data *data);
