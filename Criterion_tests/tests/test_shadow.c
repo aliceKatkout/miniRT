@@ -33,7 +33,7 @@ Test(shadow, is_shadowed4)
 	cr_expect(is_shadowed(w, p) == 0);
 }
 
-Test(hadow, shade_hit_inshadow)
+Test(shadow, shade_hit_inshadow)
 {
 	t_world	w;
 	t_obj	*obj1;
@@ -48,13 +48,29 @@ Test(hadow, shade_hit_inshadow)
 	obj1 = void_obj();
 	obj2 = void_obj();
 	obj2->transform = translation(0, 0, 10);
-	obj1 = (t_obj *)w.objs->content;
-	obj2 = (t_obj *)w.objs->next->content;
+	w.objs->content = (void *)obj1;
+	w.objs->next->content = (void *)obj2;
 	r = create_ray(create_point(0, 0, 5), create_vector(0, 0, 1));
 	xs = intersect_world(w, r);
-	comp = prepare_comp(xs, r);
+	comp = prepare_comp(xs.tab_xs[0], r);
 	c = shade_hit(w, comp);
 	cr_expect(fabs(c.x - 0.1) < EPSILON);
 	cr_expect(fabs(c.y - 0.1) < EPSILON);
 	cr_expect(fabs(c.z - 0.1) < EPSILON);
+}
+
+Test(shadow, over_point)
+{
+	t_obj	*obj1;
+	t_ray	r;
+	t_xs	xs;
+	t_comp	comp;
+
+	r = create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
+	obj1 = void_obj();
+	obj1->transform = translation(0, 0, 1);
+	xs = intersect(obj1, r);
+	comp = prepare_comp(xs, r);
+	cr_expect(comp.over_point.z < -EPSILON/2);
+	cr_expect(comp.point.z > comp.over_point.z);
 }
