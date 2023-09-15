@@ -6,27 +6,24 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/14 14:21:13 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:04:43 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-t_tuple		normal_at(t_obj *s, t_tuple p)
+t_tuple	normal_at(t_obj *obj, t_tuple point)
 {
-	t_tuple	obj_point;
-	t_tuple	obj_normal;
+	t_tuple	local_point;
+	t_tuple	local_normal;
 	t_tuple	world_normal;
-	t_matrix_4	inversion;
-	t_matrix_4	m;
 
-	// print_matrix_4(s->transform);
-	inversion = mat_inversion_4(s->transform);
-	obj_point = matrix_mult_tuple(inversion, p);
-	obj_normal = sub_tuples(obj_point, create_point(0, 0, 0));
-	m = mat_inversion_4(s->transform);
-	m = transpose_mat(m);
-	world_normal = matrix_mult_tuple(m, obj_normal);
+	local_point = matrix_mult_tuple(mat_inversion_4(obj->transform), point);
+	if (obj->shape == SPHERE)
+		local_normal = sub_tuples(local_point, create_point(obj->x, obj->y, obj->z));
+	if (obj->shape == PLANE)
+		local_normal = create_vector(0, 1, 0);
+	world_normal = matrix_mult_tuple(transpose_mat(mat_inversion_4(obj->transform)), local_normal);
 	world_normal.w = 0;
 	return (normalize(world_normal));
 }

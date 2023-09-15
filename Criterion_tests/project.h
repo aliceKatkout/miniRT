@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/15 15:31:00 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:15:41 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define WINDOW_HEIGHT 860
 # define PI 3.14159265359
 
+# define SPHERE 1
+# define PLANE 2
+# define CYLINDER 3
 
 typedef struct s_tuple
 {
@@ -102,7 +105,7 @@ typedef struct s_material
 typedef struct s_obj
 {
 	int			id;
-	char		*name;
+	int			shape;
 	t_matrix_4	transform;
 	double		x;
 	double		y;
@@ -249,7 +252,7 @@ t_obj	*void_plane(void);
 void	set_transform(t_obj *s, t_matrix_4 m);
 
 /* LIGHTS */
-t_tuple		normal_at(t_obj *s, t_tuple p);
+t_tuple		normal_at(t_obj *obj, t_tuple p);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple intensity);
 t_material	init_material(void);
@@ -267,7 +270,8 @@ t_tuple	color_at(t_world w, t_ray r);
 t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 void	find_hit(t_xs *xs);
 t_xs	intersect(t_obj *obj, t_ray ray);
-t_xs	local_intersect(t_obj *s, t_ray r);
+t_xs	intersect_sphere(t_obj *s, t_ray r);
+t_xs	intersect_plane(t_obj *obj, t_ray r);
 
 
 /* SHADOW */

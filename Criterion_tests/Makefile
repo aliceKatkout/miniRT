@@ -95,7 +95,8 @@ T_SRCS			=	tests/test_tuples.c \
 					tests/test_reflection.c\
 					tests/test_shadow.c \
 					tests/test_intersections.c\
-					tests/test_camera.c
+					tests/test_camera.c \
+					tests/test_plane.c
 T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)
 CR_LIB_PATH		=	-Wl,-rpath=${HOME}/Criterion/build/src -L${HOME}/Criterion/build/src
 T_FLAGS			=	-lcriterion

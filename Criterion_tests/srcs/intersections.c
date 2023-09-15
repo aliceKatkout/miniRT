@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/15 15:30:31 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:18:00 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,29 @@
 
 t_xs	intersect(t_obj *obj, t_ray ray)
 {
+	t_xs	xs;
+
 	obj->saved_ray = transform_ray(ray, mat_inversion_4(obj->transform));
-	return (local_intersect(obj, obj->saved_ray));
+	if (obj->shape == PLANE)
+		xs = intersect_plane(obj, ray);
+	else
+		xs = intersect_sphere(obj, obj->saved_ray);
+	return (xs);
+}
+
+t_xs	intersect_plane(t_obj *obj, t_ray r)
+{
+	t_xs	xs;
+
+	if (fabs(r.direction.y) < EPSILON)
+	{
+		xs.count = 0;
+		return (xs);
+	}
+	xs.count = 1;
+	xs.t = -r.origin.y / r.direction.y;
+	xs.obj = obj;
+	return (xs);
 }
 
 void	find_hit(t_xs *xs)
@@ -42,7 +63,7 @@ void	find_hit(t_xs *xs)
 		xs->count = 0;
 }
 
-t_xs	local_intersect(t_obj *s, t_ray r)
+t_xs	intersect_sphere(t_obj *s, t_ray r)
 {
 	t_xs	xs;
 	t_tuple	obj_to_ray;

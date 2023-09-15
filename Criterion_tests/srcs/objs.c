@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/15 15:09:34 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/15 15:59:33 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_obj	*void_obj(void)
 
 	obj = ft_calloc(1, sizeof(t_obj));
 	obj->id = id++;
-	obj->name = "sphere";
+	obj->shape = SPHERE;
 	obj->x = 0;
 	obj->y = 0;
 	obj->z = 0;
@@ -37,7 +37,7 @@ t_obj	*void_plane(void)
 
 	obj = ft_calloc(1, sizeof(t_obj));
 	obj->id = id++;
-	obj->name = "plane";
+	obj->shape = PLANE;
 	obj->x = 0;
 	obj->y = 0;
 	obj->z = 0;
