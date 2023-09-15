@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/14 18:28:48 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:15:40 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_comp
 	double		t;
 	t_obj		*obj;
 	t_tuple		point;
+	t_tuple		over_point;
 	t_tuple		eyev;
 	t_tuple		normalv;
 	t_tuple		reflectv;

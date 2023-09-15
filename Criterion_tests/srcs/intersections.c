@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/13 18:08:45 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:20:50 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_comp	prepare_comp(t_xs xs, t_ray r)
 	}
 	else
 		comp.inside = 0;
+	comp.over_point = mult_tuples(comp.normalv, EPSILON);
+	comp.over_point = add_tuples(comp.point, comp.over_point);
 	return (comp);
 }
 
