@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/14 18:28:48 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:30:28 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <math.h>
 
 # define EPSILON 0.0001
-# define WINDOW_WIDTH 720
-# define WINDOW_HEIGHT 480
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 860
 # define PI 3.14159265359
 
 
