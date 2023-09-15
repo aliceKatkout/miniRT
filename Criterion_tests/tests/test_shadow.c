@@ -5,7 +5,7 @@ Test(shadow, is_shadowed1)
 {
 	t_world	w = default_world();
 	t_tuple	p = create_point(0, 10, 0);
-	
+
 	cr_expect(is_shadowed(w, p) == 0);
 }
 
@@ -13,7 +13,7 @@ Test(shadow, is_shadowed2)
 {
 	t_world	w = default_world();
 	t_tuple	p = create_point(10, -10, 10);
-	
+
 	cr_expect(is_shadowed(w, p) == 1);
 }
 

@@ -108,3 +108,42 @@ Test(rays, transform2)
 	cr_expect(r2.direction.y == 3);
 	cr_expect(r2.direction.z == 0);
 }
+
+Test(Intersections, local_intersect)
+{
+	t_obj		*obj;
+	t_ray		ray;
+	//t_xs		xs;
+
+	obj = void_obj();
+	set_transform(obj, scaling(2, 2, 2));
+	ray = create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
+	intersect(obj, ray);
+
+	cr_expect(obj->saved_ray.origin.x == 0);
+	cr_expect(obj->saved_ray.origin.y == 0);
+	cr_expect(obj->saved_ray.origin.z == -2.5);
+	cr_expect(obj->saved_ray.direction.x == 0);
+	cr_expect(obj->saved_ray.direction.y == 0);
+	cr_expect(obj->saved_ray.direction.z == 0.5);
+}
+
+Test(Intersections, local_intersect2)
+{
+	t_obj		*obj;
+	t_ray		ray;
+	//t_xs		xs;
+
+	ray = create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
+	obj = void_obj();
+	set_transform(obj, translation(5, 0, 0));
+
+	intersect(obj, ray);
+
+	cr_expect(obj->saved_ray.origin.x == -5);
+	cr_expect(obj->saved_ray.origin.y == 0);
+	cr_expect(obj->saved_ray.origin.z == -5);
+	cr_expect(obj->saved_ray.direction.x == 0);
+	cr_expect(obj->saved_ray.direction.y == 0);
+	cr_expect(obj->saved_ray.direction.z == 1);
+}

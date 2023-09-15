@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/11 18:35:55 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/15 15:09:34 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,29 @@ t_obj	*void_obj(void)
 
 	obj = ft_calloc(1, sizeof(t_obj));
 	obj->id = id++;
+	obj->name = "sphere";
 	obj->x = 0;
 	obj->y = 0;
 	obj->z = 0;
 	obj->diameter = 1;
+	obj->transform = identity_matrix();
+	obj->color = create_color(0, 0, 0);
+	obj->material = init_material();
+	return (obj);
+}
+
+t_obj	*void_plane(void)
+{
+	t_obj	*obj;
+	static int	id = 0;
+
+	obj = ft_calloc(1, sizeof(t_obj));
+	obj->id = id++;
+	obj->name = "plane";
+	obj->x = 0;
+	obj->y = 0;
+	obj->z = 0;
+
 	obj->transform = identity_matrix();
 	obj->color = create_color(0, 0, 0);
 	obj->material = init_material();

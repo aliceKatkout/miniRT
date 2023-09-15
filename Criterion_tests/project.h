@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/15 13:49:13 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/15 15:31:00 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_material
 typedef struct s_obj
 {
 	int			id;
-	char		*type;
+	char		*name;
 	t_matrix_4	transform;
 	double		x;
 	double		y;
@@ -110,6 +110,7 @@ typedef struct s_obj
 	double		diameter;
 	t_material	material;
 	t_tuple 	color;
+	t_ray		saved_ray;
 }	t_obj;
 
 typedef struct s_world
@@ -240,11 +241,11 @@ t_matrix_4	shearing(double xy, double xz, double yx, double yz, double zx, doubl
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
 t_ray	transform_ray(t_ray r, t_matrix_4 m);
-t_xs	intersect(t_obj *s, t_ray r);
 t_intersection	create_intersection(double t, t_obj *s);
 
 /* OBJS */
 t_obj	*void_obj(void);
+t_obj	*void_plane(void);
 void	set_transform(t_obj *s, t_matrix_4 m);
 
 /* LIGHTS */
@@ -264,6 +265,10 @@ void		sort_list(t_xs_world *xs_world);
 t_comp	prepare_comp(t_xs xs, t_ray r);
 t_tuple	color_at(t_world w, t_ray r);
 t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
+void	find_hit(t_xs *xs);
+t_xs	intersect(t_obj *obj, t_ray ray);
+t_xs	local_intersect(t_obj *s, t_ray r);
+
 
 /* SHADOW */
 int		is_shadowed(t_world world, t_tuple point);
