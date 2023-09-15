@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/15 10:57:21 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:46:31 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,10 @@ void	set_scene(t_data *data)
 	new = ft_lstnew((void *) left);
 	ft_lstadd_back(&w.objs, new);
 	w.light = point_light(create_point(-10, 10, -10), create_color(1, 1, 1));
-	cam = create_camera(100, 50, M_PI / 3);
+	//cam = create_camera(100, 50, M_PI / 3);
+	cam = create_camera(WINDOW_HEIGHT, WINDOW_WIDTH,  1.7);
 	cam.transform = view_transform(create_point(0, 1.5, -5), create_point(0, 1, 0), create_vector(0, 1, 0));
-
+	//cam.transform = identity_matrix();
 	data->cam = cam;
 	data->world = w;
 	// print_list(data->world);
@@ -138,6 +139,8 @@ void	render_map(t_data *data)
 	int y;
 	t_tuple	color;
 	t_light	light;
+//	int	world_x;
+	//int	world_y;
 	// t_tuple	eye;
 	// t_tuple	normal;
 
@@ -150,11 +153,13 @@ void	render_map(t_data *data)
 	light = point_light(light.position, light.intensity);
 	data->world.light = light;
 	printf("coucou\n");
-	while (y < data->cam.vsize)
+	while (y < data->cam.hsize)
 	{
 		x = 0;
-		while (x < data->cam.hsize)
+		//world_y = data->cam.hsize - (y * 2);
+		while (x < data->cam.vsize)
 		{
+			//world_x = -data->cam.vsize + (x * 2);
 			ray = ray_for_pixel(data->cam, x, y);
 			color = color_at(data->world, ray);
 			img_pxl_put(&data->img, x, y, transform_color(color));
