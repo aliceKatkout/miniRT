@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/14 18:49:43 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/15 10:57:21 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	set_scene(t_data *data)
 	floor->material = init_material();
 	floor->material.color = create_color(1, 0.9, 0.9);
 	floor->material.specular = 0;
-	new = ft_lstnew((void *) floor);
+	w.objs = ft_lstnew((void *) floor);
 	// ft_lstadd_back(&w.objs, new);
 	left_wall = void_obj();
 	left_wall->transform = matrix_mult_4(left_wall->transform, scaling(10, 0.01, 10));
@@ -89,7 +89,7 @@ void	set_scene(t_data *data)
 	left_wall->transform = matrix_mult_4(left_wall->transform, translation(0, 0, 5));
 	left_wall->material = floor->material;
 	new = ft_lstnew((void *) left_wall);
-	ft_lstadd_back(&w.objs, new);
+	ft_lstadd_back(&w.objs, new); //SEFGAULT
 	right_wall = void_obj();
 	right_wall->transform = matrix_mult_4(right_wall->transform, translation(0, 0, 5));
 	right_wall->transform = matrix_mult_4(right_wall->transform, rotation_y(M_PI / 4));

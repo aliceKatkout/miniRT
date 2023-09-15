@@ -89,6 +89,6 @@ Test(camera, render_cam1)
 		== color(0.38066, 0.47583, 0.2855))
 
 //	pixel_at(c, 2, 3) -> renvoie la couleur
-//	au pixel donne (2, 3) dans le canvas 'c' 
+//	au pixel donne (2, 3) dans le canvas 'c'
 //	write_pixel(c, 2, 3, red) -> img_pixel_put?
 }
