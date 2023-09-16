@@ -38,7 +38,7 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/shadow.c 	\
 					srcs/intersections.c \
 					srcs/camera.c \
-					# srcs/canvas.c	\
+					srcs/canvas.c	\
 					srcs/hook.c		\
 					srcs/exit.c
 MAIN_SRCS		=	srcs/main.c

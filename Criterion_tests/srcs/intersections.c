@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/15 16:18:00 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:10:46 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ t_xs	intersect_plane(t_obj *obj, t_ray r)
 	}
 	xs.count = 1;
 	xs.t = -r.origin.y / r.direction.y;
+	if (xs.t < 0)
+	{
+		xs.count = 0;
+		return (xs);
+	}
 	xs.obj = obj;
 	return (xs);
 }

@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/15 15:29:53 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:01:24 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	render_background(t_image *img, int color)
 void	set_scene(t_data *data)
 {
 	t_obj	*floor;
-	t_obj	*left_wall;
-	t_obj	*right_wall;
+	//t_obj	*left_wall;
+	//t_obj	*right_wall;
 	t_obj	*middle;
 	t_obj	*right;
 	t_obj	*left;
@@ -75,14 +75,14 @@ void	set_scene(t_data *data)
 	t_cam	cam;
 	t_list	*new;
 
-	floor = void_obj();
+	floor = void_plane();
 	floor->transform = scaling(10, 0.01, 10);
 	floor->material = init_material();
 	floor->material.color = create_color(1, 0.9, 0.9);
 	floor->material.specular = 0;
 	w.objs = ft_lstnew((void *) floor);
 	// ft_lstadd_back(&w.objs, new);
-	left_wall = void_obj();
+	/* left_wall = void_obj();
 	left_wall->transform = matrix_mult_4(left_wall->transform, scaling(10, 0.01, 10));
 	left_wall->transform = matrix_mult_4(left_wall->transform, rotation_x(M_PI / 2));
 	left_wall->transform = matrix_mult_4(left_wall->transform, rotation_y(-(M_PI) / 4));
@@ -97,7 +97,7 @@ void	set_scene(t_data *data)
 	right_wall->transform = matrix_mult_4(right_wall->transform, scaling(10, 0.01, 10));
 	right_wall->material = floor->material;
 	new = ft_lstnew((void *) right_wall);
-	ft_lstadd_back(&w.objs, new);
+	ft_lstadd_back(&w.objs, new); */
 	middle = void_obj();
 	middle->transform = translation(-0.5, 1, 0.5);
 	middle->material = init_material();
