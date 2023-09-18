@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 14:37:48 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:03:54 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_xs	intersect(t_obj *obj, t_ray ray)
 
 	obj->saved_ray = transform_ray(ray, mat_inversion_4(obj->transform));
 	if (obj->shape == PLANE)
-		xs = intersect_plane(obj, ray);
+		xs = intersect_plane(obj, obj->saved_ray);
 	else if (obj->shape == SPHERE)
 		xs = intersect_sphere(obj, obj->saved_ray);
 	else if (obj->shape == CYLINDER)
@@ -144,7 +144,8 @@ void	find_hit_cylinder(t_xs *xs)
 	int	i;
 
 	i = 0;
-	ft_sort_double_tab(xs->xs, 4);
+	if (xs->xs[0] > xs->xs[1])
+		ft_swap_double(&xs->xs[0], &xs->xs[1]);
 	while(xs->xs[i] < 0 && i < 3)
 		i++;
 	xs->t = xs->xs[i];

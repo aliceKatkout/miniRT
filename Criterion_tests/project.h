@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 14:35:44 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:02:30 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <math.h>
 
 # define EPSILON 0.0001
-# define WINDOW_WIDTH 1080
-# define WINDOW_HEIGHT 860
+# define WINDOW_WIDTH 860
+# define WINDOW_HEIGHT 640
 # define PI 3.14159265359
 
 # define SPHERE 1
@@ -290,8 +290,8 @@ t_obj	*void_cylinder(void);
 t_tuple	normal_at_cylinder(t_obj *cyl, t_tuple point);
 t_xs	intersect_cylinder(t_obj *obj, t_ray r);
 void	find_xs_cylinder(t_xs *xs, t_obj *obj, t_ray r);
-double check_cap(t_ray ray, double t);
-void intersect_caps(t_obj *obj, t_ray r, t_xs *xs);
+double	check_cap(t_ray ray, double t);
+void 	intersect_caps(t_obj *obj, t_ray r, t_xs *xs);
 void	find_hit_cylinder(t_xs *xs);
 
 /* EXIT */

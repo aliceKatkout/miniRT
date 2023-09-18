@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/16 16:01:24 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:05:20 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	set_scene(t_data *data)
 	t_obj	*floor;
 	//t_obj	*left_wall;
 	//t_obj	*right_wall;
+	t_obj	*cylinder;
 	t_obj	*middle;
 	t_obj	*right;
 	t_obj	*left;
@@ -79,7 +80,7 @@ void	set_scene(t_data *data)
 	floor->transform = scaling(10, 0.01, 10);
 	floor->material = init_material();
 	floor->material.color = create_color(1, 0.9, 0.9);
-	floor->material.specular = 0;
+	floor->material.specular = 0.8;
 	w.objs = ft_lstnew((void *) floor);
 	// ft_lstadd_back(&w.objs, new);
 	/* left_wall = void_obj();
@@ -98,6 +99,19 @@ void	set_scene(t_data *data)
 	right_wall->material = floor->material;
 	new = ft_lstnew((void *) right_wall);
 	ft_lstadd_back(&w.objs, new); */
+	cylinder = void_cylinder();
+	//cylinder->transform = matrix_mult_4(translation(-1.5, 0, 0), scaling(0.5, 1, 0.5));
+	cylinder->closed = 0;
+	cylinder->min = 0;
+	cylinder->max = 5;
+	cylinder->material = init_material();
+	cylinder->material.color = create_color(1, 0.8, 0.1);
+	cylinder->material.diffuse = 0.7;
+	cylinder->material.specular = 0.9;
+
+	new = ft_lstnew((void *) cylinder);
+	ft_lstadd_back(&w.objs, new);
+
 	middle = void_obj();
 	middle->transform = translation(-0.5, 1, 0.5);
 	middle->material = init_material();
