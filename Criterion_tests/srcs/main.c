@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/14 18:19:24 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:05:32 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ void	print_matrix_2(t_matrix_2 b)
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	data;
-	// (void)data;
+	(void)argc;
+	parse_scene(argv[1], &data);
  	init_canvas(&data);
 
 	ft_free_all(&data);

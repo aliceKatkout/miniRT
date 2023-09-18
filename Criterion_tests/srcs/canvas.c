@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/16 16:01:24 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:35:59 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,12 @@ void	render_background(t_image *img, int color)
 void	set_scene(t_data *data)
 {
 	t_obj	*floor;
-	//t_obj	*left_wall;
+	t_obj	*cylinder;
 	//t_obj	*right_wall;
 	t_obj	*middle;
 	t_obj	*right;
 	t_obj	*left;
 	t_world w;
-	t_cam	cam;
 	t_list	*new;
 
 	floor = void_plane();
@@ -82,15 +81,21 @@ void	set_scene(t_data *data)
 	floor->material.specular = 0;
 	w.objs = ft_lstnew((void *) floor);
 	// ft_lstadd_back(&w.objs, new);
-	/* left_wall = void_obj();
-	left_wall->transform = matrix_mult_4(left_wall->transform, scaling(10, 0.01, 10));
-	left_wall->transform = matrix_mult_4(left_wall->transform, rotation_x(M_PI / 2));
-	left_wall->transform = matrix_mult_4(left_wall->transform, rotation_y(-(M_PI) / 4));
-	left_wall->transform = matrix_mult_4(left_wall->transform, translation(0, 0, 5));
-	left_wall->material = floor->material;
-	new = ft_lstnew((void *) left_wall);
+	cylinder = void_cylinder();
+	cylinder->transform = matrix_mult_4(cylinder->transform, translation(-5, 0, 1));
+	// cylinder->transform = matrix_mult_4(cylinder->transform, scaling(10, 0.01, 10));
+	// cylinder->transform = matrix_mult_4(cylinder->transform, rotation_x(M_PI / 2));
+	// cylinder->transform = matrix_mult_4(cylinder->transform, rotation_y(-(M_PI) / 4));
+	cylinder->min = 0;
+	cylinder->max = 10;
+	cylinder->transform = matrix_mult_4(cylinder->transform, translation(0, 0, 5));
+	cylinder->material = init_material();
+	cylinder->material.color = create_color(0, 1, 0.2);
+	cylinder->material.diffuse = 0.7;
+	cylinder->material.specular = 0.3;
+	new = ft_lstnew((void *) cylinder);
 	ft_lstadd_back(&w.objs, new); //SEFGAULT
-	right_wall = void_obj();
+	/* right_wall = void_obj();
 	right_wall->transform = matrix_mult_4(right_wall->transform, translation(0, 0, 5));
 	right_wall->transform = matrix_mult_4(right_wall->transform, rotation_y(M_PI / 4));
 	right_wall->transform = matrix_mult_4(right_wall->transform, rotation_x(M_PI / 2));
@@ -122,12 +127,6 @@ void	set_scene(t_data *data)
 	left->material.specular = 0.3;
 	new = ft_lstnew((void *) left);
 	ft_lstadd_back(&w.objs, new);
-	w.light = point_light(create_point(-10, 10, -10), create_color(1, 1, 1));
-	//cam = create_camera(100, 50, M_PI / 3);
-	cam = create_camera(WINDOW_HEIGHT, WINDOW_WIDTH,  1.7);
-	cam.transform = view_transform(create_point(0, 1.5, -5), create_point(0, 1, 0), create_vector(0, 1, 0));
-	//cam.transform = identity_matrix();
-	data->cam = cam;
 	data->world = w;
 	// print_list(data->world);
 }
@@ -138,7 +137,6 @@ void	render_map(t_data *data)
 	int x;
 	int y;
 	t_tuple	color;
-	t_light	light;
 //	int	world_x;
 	//int	world_y;
 	// t_tuple	eye;
@@ -148,10 +146,6 @@ void	render_map(t_data *data)
 	x = 0;
 	y = 0;
 	render_background(&data->img, 0x000000);
-	light.position = create_point(-3, 4, -5);
-	light.intensity = create_color(1, 1, 1);
-	light = point_light(light.position, light.intensity);
-	data->world.light = light;
 	printf("coucou\n");
 	while (y < data->cam.hsize)
 	{
@@ -246,7 +240,7 @@ void	init_canvas(t_data *data)
 	if (data->mlx_ptr == NULL)
 		return ;
 	data->win_ptr = mlx_new_window(data->mlx_ptr,
-			WINDOW_WIDTH, WINDOW_HEIGHT, "MiniRT");
+			WINDOW_WIDTH, WINDOW_HEIGHT, "project");
 	if (data->win_ptr == NULL)
 		return ;
 	data->img.image = mlx_new_image(data->mlx_ptr,

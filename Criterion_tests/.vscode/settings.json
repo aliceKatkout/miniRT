@@ -4,6 +4,7 @@
 		"doublen.h": "c",
 		"project.h": "c",
 		"stdio.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"minirt.h": "c"
 	}
 }

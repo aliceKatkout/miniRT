@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:27:42 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/14 16:39:58 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:34:20 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,49 +38,66 @@ t_cam	create_camera(double hsize, double vsize, double fov)
 	return (c);
 }
 
-t_ray	ray_for_pixel(t_cam c, int px, int py)
+t_tuple	conv_vec(char **param)
 {
-	double	xoffset;
-	double	yoffset;
-	double	world_x;
-	double	world_y;
-	t_tuple pixel;
-	t_ray	r;
+	t_tuple		pos;
 
-	xoffset = (px + 0.5) * c.pixel_size;
-	yoffset = (py + 0.5) * c.pixel_size;
-	world_x = c.half_width - xoffset;
-	world_y = c.half_height - yoffset;
-	pixel = matrix_mult_tuple(mat_inversion_4(c.transform),
-		create_point(world_x, world_y, -1));
-	r.origin = matrix_mult_tuple(mat_inversion_4(c.transform),
-		create_point(0, 0, 0));
-	r.direction = normalize(sub_tuples(pixel, r.origin));
-	return (r);
+	pos.x = ft_atof(param[0]);
+	pos.y = ft_atof(param[1]);
+	pos.z = ft_atof(param[2]);
+	pos.w = 1;
+	ft_free_arr((void **) param);
+	return (pos);
 }
-/*
-t_image	render_cam(t_cam c, t_world w)
+
+t_tuple		conv_cam_orientation(char **vec)
 {
-	int		x;
-	int		y;
-	t_ray	r;
-	t_tuple	color;
-	t_image	img;
+	t_tuple		to;
 
-	y = 0;
-	img = canvas(c.hsize, c.vsize);
-	while (y < c.vsize - 1)
-	{
-		x = 0;
-		while (x < c.hsize - 1)
-		{
-			r = ray_for_pixel(c, x, y);
-			color = color_at(w, r);
-			// write_pixel(image, x, y, color);
-			x++;
-		}
-		y++;
-	}
-	return (img);
+	to.x = ft_atof(vec[0]);
+	to.y = ft_atof(vec[1]);
+	to.z = ft_atof(vec[2]);
+	if (to.z == 0)
+		to.z = EPSILON;
+	to.w = 0;
+	ft_free_arr((void **) vec);
+	return (to);
 }
-*/
+
+int		init_cam(t_data *data, char **info)
+{
+	char	**vec;
+    char	**param;
+	t_tuple	from;
+	t_tuple	to;
+
+	param = get_new_params(info[1], 3, ',');
+	if (!param)
+		return (1);
+	from = conv_vec(param);
+	vec = check_vectors(info[2]);
+    if (!vec)
+    {
+        ft_free_arr((void **)info);
+        return (1);
+    }
+	to = conv_cam_orientation(vec);
+	data->cam = create_camera(WINDOW_HEIGHT, WINDOW_WIDTH, ft_atoi(info[3]));
+	data->cam.transform = view_transform(from, to, create_vector(0, 1, 0));
+	// print_cam(&data->env.cam);
+	return (0);
+}
+
+int		parse_cam(char *line, t_data *data)
+{
+    char    **info;
+
+	info = get_params_from_line(line, 4);
+	if (!info)
+		return (1);
+	ft_bzero((void *)&data->cam, sizeof(t_cam));
+	if (init_cam(data, info))
+		return (1);
+	ft_free_arr((void **) info);
+	return (0);
+}

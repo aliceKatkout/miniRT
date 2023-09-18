@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 11:39:48 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:04:25 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ typedef struct s_light
 {
 	t_tuple	position;
 	t_tuple	intensity;
+	t_tuple	amb;
+	t_tuple	diff;
+	t_tuple	spec;
 }	t_light;
 
 typedef struct s_material
@@ -152,11 +155,13 @@ typedef struct s_cam
 	double		pixel_size;
 	double		half_width;
 	double		half_height;
+	t_tuple		orientation;
 	t_matrix_4	transform;
 }	t_cam;
 
 typedef struct s_data
 {
+	int				rt_file;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_world			world;
@@ -248,6 +253,7 @@ t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
 t_ray	transform_ray(t_ray r, t_matrix_4 m);
 t_intersection	create_intersection(double t, t_obj *s);
+t_ray	ray_for_pixel(t_cam c, int px, int py);
 
 /* OBJS */
 t_obj	*void_obj(void);
@@ -282,8 +288,12 @@ int		is_shadowed(t_world world, t_tuple point);
 t_tuple	shade_hit(t_world w, t_comp	comp);
 
 /* CAMERA */
-t_cam	create_camera(double hsize, double vsize, double fov);
-t_ray	ray_for_pixel(t_cam c, int px, int py);
+t_tuple		conv_vec(char **param);
+t_tuple		conv_cam_orientation(char **vec);
+t_cam		create_camera(double hsize, double vsize, double fov);
+int			init_cam(t_data *data, char **info);
+int			parse_cam(char *line, t_data *data);
+
 
 /* CYLINDERS */
 t_obj	*void_cylinder(void);
@@ -291,7 +301,35 @@ t_tuple	normal_at_cylinder(t_tuple point);
 t_xs	intersect_cylinder(t_obj *obj, t_ray r);
 void	find_hit_cylinder(t_xs *xs, t_obj *obj, t_ray r);
 
+
+/* PARSING */
+void	parse_scene(char *argv, t_data *data);
+void	init_scene(t_data *data);
+void	print_list_prefix(t_list *lst, char *prefix);
+
+/* PARSE LIGHT */
+int		create_light(char *line, t_data *data);
+t_tuple	conv_color(char **param);
+
+/* PARSE ENV */
+int    parse_env(t_data *data, t_list *buf);
+
+/* P_UTILS */
+void	ft_error_parse(char *error, t_data *data, t_list *buf);
+void	ft_error(char *error);
+int		ft_arrlen(void **array);
+int		ft_free_arr(void **array);
+void	ft_free_parse(t_data *data, t_list *buf);
+double  ft_atof(char *str);
+char	**check_vectors(char *line);
+char	**get_new_params(char *line, int wanted_nb, char sep);
+char	**check_rgb(char *line);
+char	**get_params_from_line(char *line, int wanted_nb);
+int		is_in_range(double val, double min, double max);
+int		is_number(char *str);
+// double	set_diameter(char	*param);
+
 /* EXIT */
-int			ft_free_all(t_data *data);
+int		ft_free_all(t_data *data);
 
 #endif

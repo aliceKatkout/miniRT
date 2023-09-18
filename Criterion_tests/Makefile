@@ -38,8 +38,15 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/shadow.c 	\
 					srcs/intersections.c \
 					srcs/camera.c \
-					#srcs/canvas.c	\
+					srcs/canvas.c	\
 					srcs/hook.c		\
+					srcs/p_parsing.c \
+					srcs/p_utils.c \
+					srcs/p_parse_env.c \
+					srcs/p_parse_light.c \
+					srcs/p_ft_atof.c \
+					srcs/p_forms_utils.c \
+					srcs/p_checks.c \
 					srcs/exit.c
 MAIN_SRCS		=	srcs/main.c
 NAME			= 	project
