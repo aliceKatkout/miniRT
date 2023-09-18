@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 12:31:56 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 14:37:48 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_xs	intersect_cylinder(t_obj *obj, t_ray r)
 
 
 	a = r.direction.x * r.direction.x + r.direction.z * r.direction.z;
-	if (fabs(a) < EPSILON)
+	if (fabs(a) < EPSILON && !obj->closed)
 	{
 		ft_bzero(&xs, sizeof(xs));
 		return (xs);
@@ -120,7 +120,7 @@ t_xs	intersect_cylinder(t_obj *obj, t_ray r)
 	b = 2 * r.direction.x * r.origin.x + 2 * r.direction.z * r.origin.z;
 	c = r.origin.x * r.origin.x + r.origin.z * r.origin.z - 1;
 	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
+	if (discriminant < 0 && !obj->closed)
 	{
 		ft_bzero(&xs, sizeof(xs));
 		return (xs);
@@ -129,8 +129,12 @@ t_xs	intersect_cylinder(t_obj *obj, t_ray r)
 	xs.xs[1] = (-b + sqrt(discriminant)) / (2 * a);
 	find_xs_cylinder(&xs, obj, r);
 	if (obj->closed)
+	{
 		intersect_caps(obj, r, &xs);
-	find_hit_cylinder(&xs);
+		find_hit_cylinder(&xs);
+	}
+	else
+		find_hit(&xs);
 	xs.obj = obj;
 	return (xs);
 }
@@ -140,8 +144,8 @@ void	find_hit_cylinder(t_xs *xs)
 	int	i;
 
 	i = 0;
-	ft_sort_double_tab(xs->xs, xs->count);
-	while(xs->xs[i] < 0 && i < xs->count)
+	ft_sort_double_tab(xs->xs, 4);
+	while(xs->xs[i] < 0 && i < 3)
 		i++;
 	xs->t = xs->xs[i];
 }
@@ -173,13 +177,13 @@ void	intersect_caps(t_obj *obj, t_ray r, t_xs *xs)
 	t =(obj->min - r.origin.y) / r.direction.y;
 	if (check_cap(r, t))
 	{
-		xs->xs[xs->count] = t;
+		xs->xs[2] = t;
 		xs->count++;
 	}
 	t =(obj->max - r.origin.y) / r.direction.y;
 	if (check_cap(r, t))
 	{
-		xs->xs[xs->count] = t;
+		xs->xs[3] = t;
 		xs->count++;
 	}
 }
