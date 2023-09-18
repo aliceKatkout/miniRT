@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 16:03:54 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:44:51 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,7 @@ void	find_hit_cylinder(t_xs *xs)
 	int	i;
 
 	i = 0;
-	if (xs->xs[0] > xs->xs[1])
-		ft_swap_double(&xs->xs[0], &xs->xs[1]);
+	ft_sort_double_tab(xs->xs, 4);
 	while(xs->xs[i] < 0 && i < 3)
 		i++;
 	xs->t = xs->xs[i];
@@ -247,8 +246,12 @@ t_tuple	color_at(t_world w, t_ray r)
 
 	xs = intersect_world(w, r);
 	h = xs.tab_xs[0];
+	printf("h.t : %f\n", h.t);
 	if (h.count == 0)
+	{
+		printf("h.count == 0\n");
 		return (create_color(0, 0, 0));
+	}
 	comp = prepare_comp(h, r);
 	res = shade_hit(w, comp);
 	return (res);

@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 16:05:20 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:48:49 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ void	set_scene(t_data *data)
 	ft_lstadd_back(&w.objs, new); */
 	cylinder = void_cylinder();
 	//cylinder->transform = matrix_mult_4(translation(-1.5, 0, 0), scaling(0.5, 1, 0.5));
-	cylinder->closed = 0;
+	cylinder->closed = 1;
 	cylinder->min = 0;
-	cylinder->max = 5;
+	cylinder->max = 1;
 	cylinder->material = init_material();
 	cylinder->material.color = create_color(1, 0.8, 0.1);
 	cylinder->material.diffuse = 0.7;
