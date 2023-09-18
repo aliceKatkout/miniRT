@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 16:02:30 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:41:20 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ double		dot_product(t_tuple a, t_tuple b);
 t_tuple		cross_product(t_tuple a, t_tuple b);
 
 /* PRINT ON CANVAS */
+t_tuple		color_at(t_world w, t_ray r);
 t_tuple		create_color(double red, double green, double blue);
 t_tuple		mult_colors(t_tuple a, t_tuple b);
 int			transform_color(t_tuple color);
@@ -259,7 +260,7 @@ t_tuple		normal_at(t_obj *obj, t_tuple p);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple intensity);
 t_material	init_material(void);
-t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv, int in_shadow);
+t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow);
 
 /* WORLD */
 t_world		create_world(void);
@@ -269,7 +270,7 @@ void		sort_list(t_xs_world *xs_world);
 
 /* INTERSECTIONS */
 t_comp	prepare_comp(t_xs xs, t_ray r);
-t_tuple	color_at(t_world w, t_ray r);
+
 t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 void	find_hit(t_xs *xs);
 t_xs	intersect(t_obj *obj, t_ray ray);

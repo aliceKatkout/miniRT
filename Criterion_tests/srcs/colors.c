@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:25:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/11 18:08:28 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:19:55 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
 /* ADD TRANPARENCY? --> w */
+t_tuple	color_at(t_world w, t_ray r)
+{
+	t_xs_world	xs;
+	t_xs		h;
+	t_comp		comp;
+	t_tuple		res;
+
+	xs = intersect_world(w, r);
+	h = xs.tab_xs[0];
+	if (h.count == 0)
+		return (create_color(0, 0, 0));
+	comp = prepare_comp(h, r);
+	res = shade_hit(w, comp);
+	return (res);
+}
+
 t_tuple	create_color(double red, double green, double blue)
 {
 	t_tuple	color;

@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 14:36:25 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:41:08 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ t_tuple	normal_at(t_obj *obj, t_tuple point)
 
 	local_point = matrix_mult_tuple(mat_inversion_4(obj->transform), point);
 	if (obj->shape == SPHERE)
-		local_normal = sub_tuples(local_point, create_point(obj->x, obj->y, obj->z));
+		local_normal = sub_tuples(local_point,
+				create_point(obj->x, obj->y, obj->z));
 	else if (obj->shape == PLANE)
 		local_normal = create_vector(0, 1, 0);
 	else if (obj->shape == CYLINDER)
 		local_normal = normal_at_cylinder(obj, local_point);
-	world_normal = matrix_mult_tuple(transpose_mat(mat_inversion_4(obj->transform)), local_normal);
+	world_normal = matrix_mult_tuple(
+			transpose_mat(mat_inversion_4(obj->transform)), local_normal);
 	world_normal.w = 0;
 	return (normalize(world_normal));
 }
@@ -49,7 +51,7 @@ t_tuple	normal_at(t_obj *obj, t_tuple point)
 -the light source
 -the eye
 -and normal vectors from thePhong reflection model.*/
-t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv, int in_shadow)
+t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow)
 {
 	t_tuple	eff_color;
 	t_tuple	lightv;
@@ -62,11 +64,10 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 	double	factor;
 	t_tuple	res;
 
-	(void)in_shadow;
 	eff_color = mult_colors(m.color, l.intensity);
-	lightv = normalize(sub_tuples(l.position, pos));
+	lightv = normalize(sub_tuples(l.position, comp.point));
 	ambient = mult_tuples(eff_color, m.ambient);
-	light_dot_normal = dot_product(lightv, normalv);
+	light_dot_normal = dot_product(lightv, comp.normalv);
 	if (light_dot_normal < 0 || in_shadow == 1)
 	{
 		diff = create_color(0, 0, 0);
@@ -77,8 +78,8 @@ t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple nor
 		diff = mult_tuples(eff_color, m.diffuse);
 		diff = mult_tuples(diff, light_dot_normal);
 		lightv = reverse_tuple(lightv);
-		reflectv = reflect(lightv, normalv);
-		reflect_dot_eye = dot_product(reflectv, eyev);
+		reflectv = reflect(lightv, comp.normalv);
+		reflect_dot_eye = dot_product(reflectv, comp.eyev);
 		if (reflect_dot_eye <= 0)
 			spec = create_color(0, 0, 0);
 		else

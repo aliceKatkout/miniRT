@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 16:44:51 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:19:48 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,13 @@ t_xs	intersect_sphere(t_obj *s, t_ray r)
 	t_tuple	obj_to_ray;
 	double	a;
 	double	b;
-	double	c;
 	double	discriminant;
 
 	obj_to_ray = sub_tuples(r.origin, create_point(s->x, s->y, s->z));
 	xs.obj = s;
 	a = dot_product(r.direction, r.direction);
 	b = 2 * dot_product(r.direction, obj_to_ray);
-	c = dot_product(obj_to_ray, obj_to_ray) - 1;
-	discriminant = b * b - 4 * a * c;
+	discriminant = b * b - 4 * a * (dot_product(obj_to_ray, obj_to_ray) - 1);
 	if (discriminant < 0)
 	{
 		ft_bzero(&xs, sizeof(xs));
@@ -109,22 +107,13 @@ t_xs	intersect_cylinder(t_obj *obj, t_ray r)
 	double	c;
 	double	discriminant;
 
-
+	ft_bzero(&xs, sizeof(xs));
 	a = r.direction.x * r.direction.x + r.direction.z * r.direction.z;
-	if (fabs(a) < EPSILON && !obj->closed)
-	{
-		ft_bzero(&xs, sizeof(xs));
-		return (xs);
-	}
-
 	b = 2 * r.direction.x * r.origin.x + 2 * r.direction.z * r.origin.z;
 	c = r.origin.x * r.origin.x + r.origin.z * r.origin.z - 1;
 	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0 && !obj->closed)
-	{
-		ft_bzero(&xs, sizeof(xs));
+	if ((fabs(a) < EPSILON || discriminant < 0 ) && !obj->closed)
 		return (xs);
-	}
 	xs.xs[0] = (-b - sqrt(discriminant)) / (2 * a);
 	xs.xs[1] = (-b + sqrt(discriminant)) / (2 * a);
 	find_xs_cylinder(&xs, obj, r);
@@ -145,9 +134,11 @@ void	find_hit_cylinder(t_xs *xs)
 
 	i = 0;
 	ft_sort_double_tab(xs->xs, 4);
-	while(xs->xs[i] < 0 && i < 3)
+	while (xs->xs[i] < 0 && i < 3)
 		i++;
 	xs->t = xs->xs[i];
+	if (xs->t < 0)
+		xs->count = 0;
 }
 
 double check_cap(t_ray ray, double t)
@@ -174,13 +165,13 @@ void	intersect_caps(t_obj *obj, t_ray r, t_xs *xs)
 
 	if (!obj->closed || fabs(r.direction.y) < EPSILON)
 		return ;
-	t =(obj->min - r.origin.y) / r.direction.y;
+	t = (obj->min - r.origin.y) / r.direction.y;
 	if (check_cap(r, t))
 	{
 		xs->xs[2] = t;
 		xs->count++;
 	}
-	t =(obj->max - r.origin.y) / r.direction.y;
+	t = (obj->max - r.origin.y) / r.direction.y;
 	if (check_cap(r, t))
 	{
 		xs->xs[3] = t;
@@ -203,7 +194,6 @@ void	find_xs_cylinder(t_xs *xs, t_obj *obj, t_ray r)
 		xs->xs[0] = xs->xs[1];
 		xs->xs[1] = a;
 	}
-
 	y0 = r.origin.y + xs->xs[0] * r.direction.y;
 	if (obj->min < y0 && y0 < obj->max)
 		xs->count++;
@@ -237,25 +227,7 @@ t_comp	prepare_comp(t_xs xs, t_ray r)
 	return (comp);
 }
 
-t_tuple	color_at(t_world w, t_ray r)
-{
-	t_xs_world	xs;
-	t_xs		h;
-	t_comp		comp;
-	t_tuple		res;
 
-	xs = intersect_world(w, r);
-	h = xs.tab_xs[0];
-	printf("h.t : %f\n", h.t);
-	if (h.count == 0)
-	{
-		printf("h.count == 0\n");
-		return (create_color(0, 0, 0));
-	}
-	comp = prepare_comp(h, r);
-	res = shade_hit(w, comp);
-	return (res);
-}
 
 t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up)
 {

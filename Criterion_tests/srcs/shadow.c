@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:54:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/16 16:12:44 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:42:31 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ t_tuple	shade_hit(t_world w, t_comp	comp)
 	int			shadowed;
 
 	shadowed = is_shadowed(w, comp.over_point);
-	res = lighting(comp.obj->material, w.light,
-			comp.over_point, comp.eyev, comp.normalv, shadowed);
+	res = lighting(comp.obj->material, comp, w.light, shadowed);
 	return (res);
 }
 
