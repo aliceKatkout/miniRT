@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 11:50:45 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:29:53 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,9 +289,15 @@ t_ray	ray_for_pixel(t_cam c, int px, int py);
 t_obj	*void_cylinder(void);
 t_tuple	normal_at_cylinder(t_tuple point);
 t_xs	intersect_cylinder(t_obj *obj, t_ray r);
-void	find_hit_cylinder(t_xs *xs, t_obj *obj, t_ray r);
+void	find_xs_cylinder(t_xs *xs, t_obj *obj, t_ray r);
+double check_cap(t_ray ray, double t);
+void intersect_caps(t_obj *obj, t_ray r, t_xs *xs);
+void	find_hit_cylinder(t_xs *xs);
 
 /* EXIT */
 int			ft_free_all(t_data *data);
+
+void	ft_swap_double(double	*a, double	*b);
+void	ft_sort_double_tab(double *tab, int size);
 
 #endif
