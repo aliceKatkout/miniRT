@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/15 15:59:33 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 11:28:36 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,26 @@ t_obj	*void_plane(void)
 	obj->y = 0;
 	obj->z = 0;
 
+	obj->transform = identity_matrix();
+	obj->color = create_color(0, 0, 0);
+	obj->material = init_material();
+	return (obj);
+}
+
+t_obj	*void_cylinder(void)
+{
+	t_obj	*obj;
+	static int	id = 0;
+
+	obj = ft_calloc(1, sizeof(t_obj));
+	obj->id = id++;
+	obj->shape = CYLINDER;
+	obj->x = 0;
+	obj->y = 0;
+	obj->z = 0;
+	obj->radius = 1;
+	obj->min = -INFINITY;
+	obj->max = INFINITY;
 	obj->transform = identity_matrix();
 	obj->color = create_color(0, 0, 0);
 	obj->material = init_material();

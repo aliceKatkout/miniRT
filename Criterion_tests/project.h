@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/15 16:15:41 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 11:39:48 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,10 @@ typedef struct s_obj
 	double		x;
 	double		y;
 	double		z;
+	double		radius;
 	double		diameter;
+	double		min;
+	double		max;
 	t_material	material;
 	t_tuple 	color;
 	t_ray		saved_ray;
@@ -281,6 +284,12 @@ t_tuple	shade_hit(t_world w, t_comp	comp);
 /* CAMERA */
 t_cam	create_camera(double hsize, double vsize, double fov);
 t_ray	ray_for_pixel(t_cam c, int px, int py);
+
+/* CYLINDERS */
+t_obj	*void_cylinder(void);
+t_tuple	normal_at_cylinder(t_tuple point);
+t_xs	intersect_cylinder(t_obj *obj, t_ray r);
+void	find_hit_cylinder(t_xs *xs, t_obj *obj, t_ray r);
 
 /* EXIT */
 int			ft_free_all(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/16 16:10:46 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 11:40:15 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@ t_xs	intersect(t_obj *obj, t_ray ray)
 	obj->saved_ray = transform_ray(ray, mat_inversion_4(obj->transform));
 	if (obj->shape == PLANE)
 		xs = intersect_plane(obj, ray);
-	else
+	else if (obj->shape == SPHERE)
 		xs = intersect_sphere(obj, obj->saved_ray);
+	else if (obj->shape == CYLINDER)
+		xs = intersect_cylinder(obj, obj->saved_ray);
+	else
+	{
+		ft_bzero(&xs, sizeof(xs));
+		return (xs);
+	}
 	return (xs);
 }
 
@@ -92,6 +99,62 @@ t_xs	intersect_sphere(t_obj *s, t_ray r)
 	xs.x1 = (-b + sqrt(discriminant)) / (2 * a);
 	find_hit(&xs);
 	return (xs);
+}
+
+t_xs	intersect_cylinder(t_obj *obj, t_ray r)
+{
+	t_xs	xs;
+	double	a;
+	double	b;
+	double	c;
+	double	discriminant;
+
+	a = r.direction.x * r.direction.x + r.direction.z * r.direction.z;
+	if (fabs(a) < EPSILON)
+	{
+		ft_bzero(&xs, sizeof(xs));
+		return (xs);
+	}
+
+	b = 2 * r.direction.x * r.origin.x + 2 * r.direction.z * r.origin.z;
+	c = r.origin.x * r.origin.x + r.origin.z * r.origin.z - 1;
+	discriminant = b * b - 4 * a * c;
+	if (discriminant < 0)
+	{
+		ft_bzero(&xs, sizeof(xs));
+		return (xs);
+	}
+	xs.x0 = (-b - sqrt(discriminant)) / (2 * a);
+	xs.x1 = (-b + sqrt(discriminant)) / (2 * a);
+	find_hit_cylinder(&xs, obj, r);
+	find_hit(&xs);
+	xs.obj = obj;
+	return (xs);
+}
+
+void	find_hit_cylinder(t_xs *xs, t_obj *obj, t_ray r)
+{
+	double	a;
+	double	y0;
+	double	y1;
+
+	if (xs->x0 > xs->x1)
+	{
+		a = xs->x0;
+		xs->x0 = xs->x1;
+		xs->x1 = a;
+	}
+
+	y0 = r.origin.y + xs->x0 * r.direction.y;
+	if (obj->min < y0 && y0 < obj->max)
+		xs->count++;
+	else
+		xs->x0 = -1;
+	y1 = r.origin.y + xs->x1 * r.direction.y;
+	if (obj->min < y1 && y1 < obj->max)
+		xs->count++;
+	else
+		xs->x1 = -1;
 }
 
 t_comp	prepare_comp(t_xs xs, t_ray r)
