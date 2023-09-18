@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 19:36:52 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 15:10:04 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:52:48 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_matrix_3	submatrix_4(t_matrix_4 a, int row, int col)
 double	minor_4(t_matrix_4 a, int row, int col)
 {
 	t_matrix_3	b;
-	double			minor;
+	double		minor;
 
 	minor = 0;
 	b = submatrix_4(a, row, col);

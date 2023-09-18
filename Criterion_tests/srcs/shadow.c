@@ -6,11 +6,32 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:54:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 17:42:31 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:44:12 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
+
+t_comp	prepare_comp(t_xs xs, t_ray r)
+{
+	t_comp	comp;
+
+	comp.t = xs.t;
+	comp.obj = xs.obj;
+	comp.point = position(r, comp.t);
+	comp.eyev = neg_tuples(r.direction);
+	comp.normalv = normal_at(comp.obj, comp.point);
+	if (dot_product(comp.normalv, comp.eyev) < 0)
+	{
+		comp.inside = 1;
+		comp.normalv = neg_tuples(comp.normalv);
+	}
+	else
+		comp.inside = 0;
+	comp.over_point = mult_tuples(comp.normalv, EPSILON);
+	comp.over_point = add_tuples(comp.point, comp.over_point);
+	return (comp);
+}
 
 t_tuple	shade_hit(t_world w, t_comp	comp)
 {

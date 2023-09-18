@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 17:41:20 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:45:32 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,9 +269,9 @@ t_xs_world	intersect_world(t_world w, t_ray r);
 void		sort_list(t_xs_world *xs_world);
 
 /* INTERSECTIONS */
-t_comp	prepare_comp(t_xs xs, t_ray r);
 
-t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
+
+
 void	find_hit(t_xs *xs);
 t_xs	intersect(t_obj *obj, t_ray ray);
 t_xs	intersect_sphere(t_obj *s, t_ray r);
@@ -279,12 +279,14 @@ t_xs	intersect_plane(t_obj *obj, t_ray r);
 
 
 /* SHADOW */
-int		is_shadowed(t_world world, t_tuple point);
-t_tuple	shade_hit(t_world w, t_comp	comp);
+t_comp		prepare_comp(t_xs xs, t_ray r);
+t_tuple		shade_hit(t_world w, t_comp	comp);
+int			is_shadowed(t_world world, t_tuple point);
 
 /* CAMERA */
-t_cam	create_camera(double hsize, double vsize, double fov);
-t_ray	ray_for_pixel(t_cam c, int px, int py);
+t_cam		create_camera(double hsize, double vsize, double fov);
+t_ray		ray_for_pixel(t_cam c, int px, int py);
+t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* CYLINDERS */
 t_obj	*void_cylinder(void);
