@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 11:39:48 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 11:50:45 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ typedef struct s_matrix_2
 
 typedef struct s_xs
 {
-	double			x0;
-	double			x1;
+	double			xs[4];
 	double			t;
 	int				count;
 	struct s_obj	*obj;
@@ -114,6 +113,7 @@ typedef struct s_obj
 	double		diameter;
 	double		min;
 	double		max;
+	int			closed;
 	t_material	material;
 	t_tuple 	color;
 	t_ray		saved_ray;

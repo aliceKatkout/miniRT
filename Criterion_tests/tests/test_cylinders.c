@@ -37,22 +37,22 @@ Test(cylinder, intersect)
 	ray = create_ray(create_point(1, 0, -5), direction);
 	xs = intersect (obj, ray);
 	cr_expect(xs.count == 2);
-	cr_expect(xs.x0 == 5);
-	cr_expect(xs.x1 == 5);
+	cr_expect(xs.xs[0] == 5);
+	cr_expect(xs.xs[1] == 5);
 
 	direction = normalize(create_vector(0, 0, 1));
 	ray = create_ray(create_point(0, 0, -5), direction);
 	xs = intersect (obj, ray);
 	cr_expect(xs.count == 2);
-	cr_expect(xs.x0 == 4);
-	cr_expect(xs.x1 == 6);
+	cr_expect(xs.xs[0] == 4);
+	cr_expect(xs.xs[1] == 6);
 
 	direction = normalize(create_vector(0.1, 1, 1));
 	ray = create_ray(create_point(0.5, 0, -5), direction);
 	xs = intersect (obj, ray);
 	cr_expect(xs.count == 2);
-	cr_expect(fabs(xs.x0 - 6.80798) < EPSILON);
-	cr_expect(fabs(xs.x1 - 7.08872) < EPSILON);
+	cr_expect(fabs(xs.xs[0] - 6.80798) < EPSILON);
+	cr_expect(fabs(xs.xs[1] - 7.08872) < EPSILON);
 }
 
 Test(cylinder, normal_at)

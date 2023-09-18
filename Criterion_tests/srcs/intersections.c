@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 11:40:15 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 11:53:20 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,23 @@ t_xs	intersect_plane(t_obj *obj, t_ray r)
 
 void	find_hit(t_xs *xs)
 {
-	if (xs->x0 < 0 && xs->x1 < 0)
+	if (xs->xs[0] < 0 && xs->xs[1] < 0)
 		xs->count = 0;
-	else if (xs->x0 < 0 || xs->x1 < 0)
+	else if (xs->xs[0] < 0 || xs->xs[1] < 0)
 	{
 		xs->count = 1;
-		if (xs->x0 >= 0)
-			xs->t = xs->x0;
-		else if (xs->x1 >= 0)
-			xs->t = xs->x1;
+		if (xs->xs[0] >= 0)
+			xs->t = xs->xs[0];
+		else if (xs->xs[1] >= 0)
+			xs->t = xs->xs[1];
 	}
-	else if (xs->x0 >= 0 && xs->x1 >= 0)
+	else if (xs->xs[0] >= 0 && xs->xs[1] >= 0)
 	{
 		xs->count = 2;
-		if (xs->x0 <= xs->x1)
-			xs->t = xs->x0;
-		else if (xs->x1 < xs->x0 && xs->x1 >= 0)
-			xs->t = xs->x1;
+		if (xs->xs[0] <= xs->xs[1])
+			xs->t = xs->xs[0];
+		else if (xs->xs[1] < xs->xs[0] && xs->xs[1] >= 0)
+			xs->t = xs->xs[1];
 	}
 	else
 		xs->count = 0;
@@ -95,8 +95,8 @@ t_xs	intersect_sphere(t_obj *s, t_ray r)
 		ft_bzero(&xs, sizeof(xs));
 		return (xs);
 	}
-	xs.x0 = (-b - sqrt(discriminant)) / (2 * a);
-	xs.x1 = (-b + sqrt(discriminant)) / (2 * a);
+	xs.xs[0] = (-b - sqrt(discriminant)) / (2 * a);
+	xs.xs[1] = (-b + sqrt(discriminant)) / (2 * a);
 	find_hit(&xs);
 	return (xs);
 }
@@ -124,8 +124,8 @@ t_xs	intersect_cylinder(t_obj *obj, t_ray r)
 		ft_bzero(&xs, sizeof(xs));
 		return (xs);
 	}
-	xs.x0 = (-b - sqrt(discriminant)) / (2 * a);
-	xs.x1 = (-b + sqrt(discriminant)) / (2 * a);
+	xs.xs[0] = (-b - sqrt(discriminant)) / (2 * a);
+	xs.xs[1] = (-b + sqrt(discriminant)) / (2 * a);
 	find_hit_cylinder(&xs, obj, r);
 	find_hit(&xs);
 	xs.obj = obj;
@@ -138,23 +138,23 @@ void	find_hit_cylinder(t_xs *xs, t_obj *obj, t_ray r)
 	double	y0;
 	double	y1;
 
-	if (xs->x0 > xs->x1)
+	if (xs->xs[0] > xs->xs[1])
 	{
-		a = xs->x0;
-		xs->x0 = xs->x1;
-		xs->x1 = a;
+		a = xs->xs[0];
+		xs->xs[0] = xs->xs[1];
+		xs->xs[1] = a;
 	}
 
-	y0 = r.origin.y + xs->x0 * r.direction.y;
+	y0 = r.origin.y + xs->xs[0] * r.direction.y;
 	if (obj->min < y0 && y0 < obj->max)
 		xs->count++;
 	else
-		xs->x0 = -1;
-	y1 = r.origin.y + xs->x1 * r.direction.y;
+		xs->xs[0] = -1;
+	y1 = r.origin.y + xs->xs[1] * r.direction.y;
 	if (obj->min < y1 && y1 < obj->max)
 		xs->count++;
 	else
-		xs->x1 = -1;
+		xs->xs[1] = -1;
 }
 
 t_comp	prepare_comp(t_xs xs, t_ray r)

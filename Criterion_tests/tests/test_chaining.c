@@ -52,8 +52,8 @@ Test(transform, set_transform2)
 
 	xs = intersect(s, r);
 	cr_expect(xs.count == 2);
-	cr_expect(fabs(xs.x0 - 3) < EPSILON);
-	cr_expect(fabs(xs.x1 - 7) < EPSILON);
+	cr_expect(fabs(xs.xs[0] - 3) < EPSILON);
+	cr_expect(fabs(xs.xs[1] - 7) < EPSILON);
 }
 
 Test(transform, set_transform3)
