@@ -47,8 +47,8 @@ Test(World, default1)
 	r = create_ray(create_point(0, 0, -5), create_vector(0, 0, 1));
 	xs = intersect(s2, r);
 	cr_expect(xs.count == 2);
-	cr_expect(xs.x0 == 4.5);
-	cr_expect(xs.x1 == 5.5);
+	cr_expect(xs.xs[0] == 4.5);
+	cr_expect(xs.xs[1] == 5.5);
 }
 
 Test(World, shadow_hit)

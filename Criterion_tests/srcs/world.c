@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:08:55 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/15 15:29:53 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:46:39 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_xs_world	intersect_world(t_world w, t_ray r)
 		obj = (t_obj *)lst->content;
 		// printf("obj->id : %d\n", obj->id);
 		xs = intersect(obj, r);
-		if (xs.count > 0)
+		if (xs.count > 0 && xs.t > 0)
 		{
 			xs_world.tab_xs[i] = xs;
 			xs_world.count++;

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 18:04:25 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:16:05 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <math.h>
 
 # define EPSILON 0.0001
-# define WINDOW_WIDTH 1080
-# define WINDOW_HEIGHT 860
+# define WINDOW_WIDTH 860
+# define WINDOW_HEIGHT 640
 # define PI 3.14159265359
 
 # define SPHERE 1
@@ -74,8 +74,7 @@ typedef struct s_matrix_2
 
 typedef struct s_xs
 {
-	double			x0;
-	double			x1;
+	double			xs[4];
 	double			t;
 	int				count;
 	struct s_obj	*obj;
@@ -87,11 +86,17 @@ typedef struct s_xs_world
 	t_xs	tab_xs[100];
 }	t_xs_world;
 
+typedef struct s_amb
+{
+	t_tuple	color;
+	double	lighting;
+} t_amb;
+
 typedef struct s_light
 {
 	t_tuple	position;
 	t_tuple	intensity;
-	t_tuple	amb;
+	t_amb	amb;
 	t_tuple	diff;
 	t_tuple	spec;
 }	t_light;
@@ -117,6 +122,7 @@ typedef struct s_obj
 	double		diameter;
 	double		min;
 	double		max;
+	int			closed;
 	t_material	material;
 	t_tuple 	color;
 	t_ray		saved_ray;
@@ -193,6 +199,7 @@ double		dot_product(t_tuple a, t_tuple b);
 t_tuple		cross_product(t_tuple a, t_tuple b);
 
 /* PRINT ON CANVAS */
+t_tuple		color_at(t_world w, t_ray r);
 t_tuple		create_color(double red, double green, double blue);
 t_tuple		mult_colors(t_tuple a, t_tuple b);
 int			transform_color(t_tuple color);
@@ -265,7 +272,7 @@ t_tuple		normal_at(t_obj *obj, t_tuple p);
 t_tuple	reflect(t_tuple in, t_tuple normal);
 t_light	point_light(t_tuple position, t_tuple intensity);
 t_material	init_material(void);
-t_tuple	lighting(t_material m, t_light l, t_tuple pos, t_tuple eyev, t_tuple normalv, int in_shadow);
+t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow);
 
 /* WORLD */
 t_world		create_world(void);
@@ -274,9 +281,9 @@ t_xs_world	intersect_world(t_world w, t_ray r);
 void		sort_list(t_xs_world *xs_world);
 
 /* INTERSECTIONS */
-t_comp	prepare_comp(t_xs xs, t_ray r);
-t_tuple	color_at(t_world w, t_ray r);
-t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
+
+
+
 void	find_hit(t_xs *xs);
 t_xs	intersect(t_obj *obj, t_ray ray);
 t_xs	intersect_sphere(t_obj *s, t_ray r);
@@ -284,8 +291,9 @@ t_xs	intersect_plane(t_obj *obj, t_ray r);
 
 
 /* SHADOW */
-int		is_shadowed(t_world world, t_tuple point);
-t_tuple	shade_hit(t_world w, t_comp	comp);
+t_comp		prepare_comp(t_xs xs, t_ray r);
+t_tuple		shade_hit(t_world w, t_comp	comp);
+int			is_shadowed(t_world world, t_tuple point);
 
 /* CAMERA */
 t_tuple		conv_vec(char **param);
@@ -293,13 +301,17 @@ t_tuple		conv_cam_orientation(char **vec);
 t_cam		create_camera(double hsize, double vsize, double fov);
 int			init_cam(t_data *data, char **info);
 int			parse_cam(char *line, t_data *data);
-
+t_ray		ray_for_pixel(t_cam c, int px, int py);
+t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* CYLINDERS */
 t_obj	*void_cylinder(void);
-t_tuple	normal_at_cylinder(t_tuple point);
+t_tuple	normal_at_cylinder(t_obj *cyl, t_tuple point);
 t_xs	intersect_cylinder(t_obj *obj, t_ray r);
-void	find_hit_cylinder(t_xs *xs, t_obj *obj, t_ray r);
+void	find_xs_cylinder(t_xs *xs, t_obj *obj, t_ray r);
+double	check_cap(t_ray ray, double t);
+void 	intersect_caps(t_obj *obj, t_ray r, t_xs *xs);
+void	find_hit_cylinder(t_xs *xs);
 
 
 /* PARSING */
@@ -310,6 +322,7 @@ void	print_list_prefix(t_list *lst, char *prefix);
 /* PARSE LIGHT */
 int		create_light(char *line, t_data *data);
 t_tuple	conv_color(char **param);
+int		create_amb(char *line, t_data *data);
 
 /* PARSE ENV */
 int    parse_env(t_data *data, t_list *buf);
@@ -331,5 +344,8 @@ int		is_number(char *str);
 
 /* EXIT */
 int		ft_free_all(t_data *data);
+
+void	ft_swap_double(double	*a, double	*b);
+void	ft_sort_double_tab(double *tab, int size);
 
 #endif

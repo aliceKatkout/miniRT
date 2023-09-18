@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:14:03 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 16:43:47 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:15:58 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int    parse_env(t_data *data, t_list *buf)
 		return (1);
     tmp = buf;
 	err = 0;
+    printf("dans parse env\n");
     while(tmp)
     {
 		if (ft_strncmp(tmp->content, "C", 1) == 0)
@@ -54,11 +55,11 @@ int    parse_env(t_data *data, t_list *buf)
 			err = parse_cam(tmp->content, data);
             err = check_nb_env(tmp, "C");
         }
-        // if (ft_strncmp(tmp->content, "A", 1) == 0)
-        // {
-		// 	err = create_amb(tmp->content, data);
-        //     err = check_nb_env(tmp, "A");
-        // }
+        if (ft_strncmp(tmp->content, "A", 1) == 0)
+        {
+			err = create_amb(tmp->content, data);
+            err = check_nb_env(tmp, "A");
+        }
 		if (ft_strncmp(tmp->content, "L", 1) == 0)
         {
 			err = create_light(tmp->content, data);

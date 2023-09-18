@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 11:28:36 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 14:46:11 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_obj	*void_cylinder(void)
 	obj->radius = 1;
 	obj->min = -INFINITY;
 	obj->max = INFINITY;
+	obj->closed = 0;
 	obj->transform = identity_matrix();
 	obj->color = create_color(0, 0, 0);
 	obj->material = init_material();

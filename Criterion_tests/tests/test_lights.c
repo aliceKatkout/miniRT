@@ -183,4 +183,3 @@ Test(light, lighting_shadow1)
 	cr_expect(result.y == 0.1);
 	cr_expect(result.z == 0.1);
 }
-

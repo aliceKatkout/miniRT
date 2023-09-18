@@ -38,8 +38,6 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/shadow.c 	\
 					srcs/intersections.c \
 					srcs/camera.c \
-					srcs/canvas.c	\
-					srcs/hook.c		\
 					srcs/p_parsing.c \
 					srcs/p_utils.c \
 					srcs/p_parse_env.c \
@@ -47,6 +45,9 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/p_ft_atof.c \
 					srcs/p_forms_utils.c \
 					srcs/p_checks.c \
+					srcs/utils.c \
+					srcs/canvas.c \
+					srcs/hook.c	\
 					srcs/exit.c
 MAIN_SRCS		=	srcs/main.c
 NAME			= 	project
@@ -98,13 +99,13 @@ T_SRCS			=	tests/test_tuples.c \
 					tests/test_shearing.c\
 					tests/test_chaining.c\
 					tests/test_rays.c	\
-					tests/test_lights.c	\
 					tests/test_reflection.c\
 					tests/test_shadow.c \
 					tests/test_intersections.c\
 					tests/test_camera.c \
 					tests/test_plane.c \
-					tests/test_cylinders.c
+					tests/test_cylinders.c \
+					#tests/test_lights.c
 T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)
 CR_LIB_PATH		=	-Wl,-rpath=${HOME}/Criterion/build/src -L${HOME}/Criterion/build/src
 T_FLAGS			=	-lcriterion

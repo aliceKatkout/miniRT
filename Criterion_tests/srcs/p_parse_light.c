@@ -6,35 +6,40 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 16:17:05 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 18:00:51 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:40:48 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../project.h"
 
-// int	create_amb(char *line, t_data *data)
-// {
-//     char    **info;
-// 	char	**param;
+int	create_amb(char *line, t_data *data)
+{
+    char    **info;
+	char	**param;
+	t_tuple	color;
 
-// 	info = get_params_from_line(line, 3);
-// 	if (!info)
-// 		return (1);
-// 	data->env.amb.lighting = ft_atof(info[1]);
-//     param = check_rgb(info[2]);
-//     if (!param)
-//     {
-//         ft_free_arr((void **)info);
-// 		return (1);
-//     }
-// 	data->env.amb.r = ft_atoi(param[0]);
-// 	data->env.amb.g = ft_atoi(param[1]);
-// 	data->env.amb.b = ft_atoi(param[2]);
-// 	ft_free_arr((void **) param);
-// 	ft_free_arr((void **) info);
-// 	// print_amb(&data->env.amb);
-// 	return (0);
-// }
+	info = get_params_from_line(line, 3);
+	if (!info)
+		return (1);
+	data->world.light.amb.lighting = ft_atof(info[1]);
+	//check si lighting < 0 ou > 1;
+    param = check_rgb(info[2]);
+    if (!param)
+    {
+        ft_free_arr((void **)info);
+		return (1);
+    }
+	color.x = ft_atoi(param[0]);
+	color.y = ft_atoi(param[1]);
+	color.z = ft_atoi(param[2]);
+	data->world.light.amb.color = color;
+	ft_free_arr((void **) param);
+	ft_free_arr((void **) info);
+	data->world.light.amb.color = mult_tuples(data->world.light.amb.color,
+		data->world.light.amb.lighting);
+	// print_amb(&data->light.amb);
+	return (0);
+}
 
 t_tuple		conv_color(char **param)
 {
@@ -75,6 +80,7 @@ int	create_light(char *line, t_data *data)
 			return (1);
 		data->world.light.intensity = conv_color(param);
 	}
+	data->world.light.intensity = mult_tuples(data->world.light.intensity, ft_atof(info[2]));
 	ft_free_arr((void **) info);
 	// print_light(&data->env.light);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 18:05:32 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:45:48 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ void	print_matrix_2(t_matrix_2 b)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	(void)argc;
+	
+	if (argc != 2)
+	{
+		printf("One argument expected. \n");
+		return (1);
+	}
 	parse_scene(argv[1], &data);
  	init_canvas(&data);
 

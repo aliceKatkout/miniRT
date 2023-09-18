@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 16:35:59 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:47:26 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	set_scene(t_data *data)
 	floor->transform = scaling(10, 0.01, 10);
 	floor->material = init_material();
 	floor->material.color = create_color(1, 0.9, 0.9);
-	floor->material.specular = 0;
+	floor->material.specular = 0.8;
 	w.objs = ft_lstnew((void *) floor);
 	// ft_lstadd_back(&w.objs, new);
 	cylinder = void_cylinder();
@@ -87,7 +87,8 @@ void	set_scene(t_data *data)
 	// cylinder->transform = matrix_mult_4(cylinder->transform, rotation_x(M_PI / 2));
 	// cylinder->transform = matrix_mult_4(cylinder->transform, rotation_y(-(M_PI) / 4));
 	cylinder->min = 0;
-	cylinder->max = 10;
+	cylinder->max = 1;
+	cylinder->closed = 1;
 	cylinder->transform = matrix_mult_4(cylinder->transform, translation(0, 0, 5));
 	cylinder->material = init_material();
 	cylinder->material.color = create_color(0, 1, 0.2);
@@ -103,6 +104,19 @@ void	set_scene(t_data *data)
 	right_wall->material = floor->material;
 	new = ft_lstnew((void *) right_wall);
 	ft_lstadd_back(&w.objs, new); */
+	cylinder = void_cylinder();
+	//cylinder->transform = matrix_mult_4(translation(-1.5, 0, 0), scaling(0.5, 1, 0.5));
+	cylinder->closed = 1;
+	cylinder->min = 0;
+	cylinder->max = 1;
+	cylinder->material = init_material();
+	cylinder->material.color = create_color(1, 0.8, 0.1);
+	cylinder->material.diffuse = 0.7;
+	cylinder->material.specular = 0.9;
+
+	new = ft_lstnew((void *) cylinder);
+	ft_lstadd_back(&w.objs, new);
+
 	middle = void_obj();
 	middle->transform = translation(-0.5, 1, 0.5);
 	middle->material = init_material();
@@ -147,6 +161,10 @@ void	render_map(t_data *data)
 	y = 0;
 	render_background(&data->img, 0x000000);
 	printf("coucou\n");
+	t_light	light;
+	light.position = create_point(-3, 4, -5);
+	light.intensity = create_color (1, 1, 1);
+	data->world.light = light;
 	while (y < data->cam.hsize)
 	{
 		x = 0;
@@ -166,67 +184,6 @@ void	render_map(t_data *data)
 	// printf("obj color z:%f\n", obj->material.color.z);
 	printf("Done!\n");
 }
-
-/* OLD:
-void	render_map(t_data *data)
-{
-
-	t_ray	ray;
-	t_tuple	origin;
-	t_tuple	pos;
-	t_tuple	point;
-	t_obj	*obj;
-	t_xs	xs;
-	int	world_x;
-	int	world_y;
-	int x;
-	int y;
-	t_tuple	color;
-	int	color2;
-	t_light	light;
-	t_tuple	eye;
-	t_tuple	normal;
-
-	x = 0;
-	y = 0;
-	world_x = 0;
-	world_y = 0;
-	origin = create_point(0, 0, -1.5);
-	render_background(&data->img, 0x000000);
-	obj = void_obj();
-	set_transform(obj, scaling(1, 1, 1));
-	obj->material.color = create_color(1, 0.2, 1);
-	light.position = create_point(-3, 4, -5);
-	light.intensity = create_color(1, 1, 1);
-	light = point_light(light.position, light.intensity);
-	while (y < WINDOW_HEIGHT)
-	{
-		x = 0;
-		world_y = WINDOW_HEIGHT - (y * 2);
-		while (x < WINDOW_WIDTH)
-		{
-			world_x = -WINDOW_WIDTH + (x * 2);
-			pos = create_point(world_x, world_y, 60);
-			ray = create_ray(origin, normalize(sub_tuples(pos, origin)));
-			xs = intersect(obj, ray);
-			if (xs.count > 0)
-			{
-				point = position(ray, xs.t);
-				normal = normal_at(xs.obj, point);
-				eye = reverse_tuple(ray.direction);
-				color = lighting(xs.obj->material, light, point, eye, normal, 0);
-				color2 = transform_color(color);
-				img_pxl_put(&data->img, x, y, color2);
-			}
-			x++;
-		}
-		y++;
-	}
-	printf("obj color x:%f\n", obj->material.color.x);
-	printf("obj color y:%f\n", obj->material.color.y);
-	printf("obj color z:%f\n", obj->material.color.z);
-	printf("Done!\n");
-}*/
 
 int	render(t_data *data)
 {

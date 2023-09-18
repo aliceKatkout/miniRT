@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:24:50 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/08/10 14:49:03 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:20:40 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
+void		ft_swap(int	*a, int	*b);
+void		ft_sort_int_tab(int *tab, int size);
 
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t n);

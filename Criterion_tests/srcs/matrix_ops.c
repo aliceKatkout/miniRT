@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_ops.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:44:29 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/12 17:59:23 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:53:09 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_tuple	matrix_mult_tuple(t_matrix_4 a, t_tuple point)
 {
 	t_tuple	c;
 
-	// ft_bzero(&c, sizeof(c));
 	c.x = res_mult(a, point, 0);
 	c.y = res_mult(a, point, 1);
 	c.z = res_mult(a, point, 2);

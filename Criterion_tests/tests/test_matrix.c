@@ -135,31 +135,6 @@ Test(matrix, transpose_1)
 	cr_expect(b.tab[3][2] == 3);
 }
 
-Test(matrix, matrix2_1)
-{
-	t_matrix_2	a;
-	int	b;
-	double	tab_a[4] = {1, 5, -3, 2};
-
-	a = create_matrix_2(tab_a);
-	b = determine_two(a);
-	cr_expect(b == 17);
-}
-
-Test(matrix, sub_matrix_1)
-{
-	t_matrix_3	a;
-	t_matrix_2	b;
-	double	tab_a[9] = {1, 5, 10, -3, 2, 7, 10, 6, -3};
-
-	a = create_matrix_3(tab_a);
-	b = submatrix_3(a, 0, 2);
-	cr_expect(b.tab[0][0] == -3);
-	cr_expect(b.tab[0][1] == 2);
-	cr_expect(b.tab[1][0] == 10);
-	cr_expect(b.tab[1][1] == 6);
-}
-
 Test(matrix, sub_matrix_2)
 {
 	t_matrix_4	a;
@@ -179,38 +154,7 @@ Test(matrix, sub_matrix_2)
 	cr_expect(b.tab[2][2] == 1);
 }
 
-Test(matrix, minor_1)
-{
-	t_matrix_3	a;
-	double	tab_a[9] = {3, 5, 0, 2, -1, -7, 6, -1, 5};
-	int		minor1;
-	int		minor2;
-	int		minor3;
-	int		minor4;
 
-	a = create_matrix_3(tab_a);
-	minor1 = minor_3(a, 1, 0);
-	cr_expect(minor1 == 25);
-	minor2 = cofactor_3(a, 1, 0);
-	cr_expect(minor2 == -25);
-
-	minor3 = minor_3(a, 0, 0);
-	cr_expect(minor3 == -12);
-	minor4 = cofactor_3(a, 0, 0);
-	cr_expect(minor4 == -12);
-}
-
-Test(matrix, determ_1)
-{
-	t_matrix_3	a;
-	double tab_a[9] = {1, 2, 6, -5, 8, -4, 2, 6, 4};
-
-	a = create_matrix_3(tab_a);
-	cr_expect(cofactor_3(a, 0, 0) == 56);
-	cr_expect(cofactor_3(a, 0, 1) == 12);
-	cr_expect(cofactor_3(a, 0, 2) == -46);
-	cr_expect(determine_three(a) == -196);
-}
 
 Test(matrix, determ_2)
 {

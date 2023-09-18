@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 14:37:06 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:11:55 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,3 @@ t_ray	transform_ray(t_ray r, t_matrix_4 m)
 	return (new);
 }
 
-t_ray	ray_for_pixel(t_cam c, int px, int py)
-{
-	double	xoffset;
-	double	yoffset;
-	double	world_x;
-	double	world_y;
-	t_tuple pixel;
-	t_ray	r;
-
-	xoffset = (px + 0.5) * c.pixel_size;
-	yoffset = (py + 0.5) * c.pixel_size;
-	world_x = c.half_width - xoffset;
-	world_y = c.half_height - yoffset;
-	pixel = matrix_mult_tuple(mat_inversion_4(c.transform),
-		create_point(world_x, world_y, -1));
-	r.origin = matrix_mult_tuple(mat_inversion_4(c.transform),
-		create_point(0, 0, 0));
-	r.direction = normalize(sub_tuples(pixel, r.origin));
-	return (r);
-}
