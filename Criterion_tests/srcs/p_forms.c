@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:03:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 16:30:50 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:57:47 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	create_obj(char *line, t_data *data, int shape)
 
 t_obj	*init_fill_obj(char **params, int shape)
 {
-	t_obj	*new_obj;
-	int		err;
+	t_obj		*new_obj;
+	int			err;
 	static int	id = 0;
 
 	err = 0;
@@ -95,7 +95,7 @@ t_obj	*init_fill_obj(char **params, int shape)
 	return (new_obj);
 }
 
-t_tuple	convert_color_to_unit(t_tuple color)
+t_tuple	color_to_unit(t_tuple color)
 {
 	t_tuple	res;
 

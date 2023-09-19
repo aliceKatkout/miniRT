@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   objs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 14:46:11 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:45:29 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "../project.h"
 
 t_obj	*void_obj(void)
 {
-	t_obj	*obj;
+	t_obj		*obj;
 	static int	id = 0;
 
 	obj = ft_calloc(1, sizeof(t_obj));
@@ -32,7 +32,7 @@ t_obj	*void_obj(void)
 
 t_obj	*void_plane(void)
 {
-	t_obj	*obj;
+	t_obj		*obj;
 	static int	id = 0;
 
 	obj = ft_calloc(1, sizeof(t_obj));
@@ -41,7 +41,6 @@ t_obj	*void_plane(void)
 	obj->x = 0;
 	obj->y = 0;
 	obj->z = 0;
-
 	obj->transform = identity_matrix();
 	obj->color = create_color(0, 0, 0);
 	obj->material = init_material();
@@ -50,7 +49,7 @@ t_obj	*void_plane(void)
 
 t_obj	*void_cylinder(void)
 {
-	t_obj	*obj;
+	t_obj		*obj;
 	static int	id = 0;
 
 	obj = ft_calloc(1, sizeof(t_obj));

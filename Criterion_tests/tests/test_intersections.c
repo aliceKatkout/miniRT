@@ -65,6 +65,20 @@ Test(color_at, color_at1)
 	cr_expect(c.z == 0);
 }
 
+Test(View, view_transform0)
+{
+	t_tuple		from;
+	t_tuple		to;
+	t_tuple		up;
+	t_matrix_4	t;
+
+	from = create_point(0, 0, 0);
+	to = create_point(0, 0, -1);
+	up = create_vector(0, 1, 0);
+	t = view_transform(from, to, up);
+	cr_expect(matrix_cmp_4(t, identity_matrix()) == 0);
+}
+
 Test(color_at, color_at2)
 {
 	t_world		w;
@@ -97,20 +111,6 @@ Test(color_at, behind_the_ray)
 	cr_expect(c.x == inner->material.color.x);
 	cr_expect(c.y == inner->material.color.y);
 	cr_expect(c.z == inner->material.color.z);
-}
-
-Test(View, view_transform0)
-{
-	t_tuple		from;
-	t_tuple		to;
-	t_tuple		up;
-	t_matrix_4	t;
-
-	from = create_point(0, 0, 0);
-	to = create_point(0, 0, -1);
-	up = create_vector(0, 1, 0);
-	t = view_transform(from, to, up);
-	cr_expect(matrix_cmp_4(t, identity_matrix()) == 0);
 }
 
 Test(View, view_transform1)

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 15:30:08 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:16:42 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,19 @@ void	ft_free_parse(t_data *data, t_list *buf)
 	// 	ft_lstclear(&data->cylinders, free);
 	// if (data->planes)
 	// 	ft_lstclear(&data->planes, free);
+}
+
+void	ft_replace(char *str, char old, char new)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == old)
+		{
+			str[i] = new;
+		}
+		i++;
+	}
 }

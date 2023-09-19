@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 19:36:52 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/13 15:03:33 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:43:56 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_matrix_2	submatrix_3(t_matrix_3 a, int row, int col)
 double	minor_3(t_matrix_3 a, int row, int col)
 {
 	t_matrix_2	b;
-	double			minor;
+	double		minor;
 
 	b = submatrix_3(a, row, col);
 	minor = determine_two(b);

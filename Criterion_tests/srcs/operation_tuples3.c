@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shearing.c                                         :+:      :+:    :+:   */
+/*   operation_tuples3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 16:18:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 19:06:21 by mrabourd         ###   ########.fr       */
+/*   Created: 2023/09/19 18:14:14 by mrabourd          #+#    #+#             */
+/*   Updated: 2023/09/19 18:45:52 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-t_matrix_4	shearing(double xy, double xz, double yx, double yz, double zx, double zy)
+t_tuple	mult_3(t_tuple tuple1, double vec1, double vec2)
 {
-	t_matrix_4	matrix;
+	t_tuple	res;
 
-	matrix = create_matrix_4((double [16]){
-			1, xy, xz, 0,
-			yx, 1, yz, 0,
-			zx, zy, 1, 0,
-			0, 0, 0, 1
-		});
-	return (matrix);
+	res = mult_tuples(tuple1, vec1);
+	res = mult_tuples(res, vec2);
+	return (res);
+}
+
+t_tuple	add_3_tuples(t_tuple tuple1, t_tuple tuple2, t_tuple tuple3)
+{
+	t_tuple	res;
+
+	res = add_tuples(tuple1, tuple2);
+	res = add_tuples(res, tuple3);
+	return (res);
 }

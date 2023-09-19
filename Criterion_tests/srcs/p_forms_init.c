@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:28:28 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 16:31:53 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:57:47 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	init_rgb(t_obj *obj, char *param)
 	obj->color = create_color(ft_atof(rgb[0]),
 			ft_atof(rgb[1]), ft_atof(rgb[2]));
 	ft_free_arr((void **)rgb);
-	obj->color = convert_color_to_unit(obj->color);
+	obj->color = color_to_unit(obj->color);
 	obj->material = init_material();
 	obj->material.color = obj->color;
 	return (0);

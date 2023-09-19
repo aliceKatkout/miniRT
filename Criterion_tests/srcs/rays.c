@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 18:11:55 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 19:03:24 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_tuple	position(t_ray ray, double t)
 	return (pos);
 }
 
-void print_matrix_4(t_matrix_4 a)
+void	print_matrix_4(t_matrix_4 a)
 {
 	int	x;
 	int	y;
@@ -49,8 +49,6 @@ void print_matrix_4(t_matrix_4 a)
 		x++;
 	}
 }
-
-
 
 t_intersection	create_intersection(double t, t_obj *s)
 {
@@ -69,4 +67,3 @@ t_ray	transform_ray(t_ray r, t_matrix_4 m)
 	new.origin = matrix_mult_tuple(m, r.origin);
 	return (new);
 }
-

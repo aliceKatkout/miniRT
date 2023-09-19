@@ -6,15 +6,15 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 16:17:05 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 15:03:18 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:59:08 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "../project.h"
 
 int	create_amb(char *line, t_data *data)
 {
-    char    **info;
+	char	**info;
 	char	**param;
 	t_tuple	color;
 
@@ -23,31 +23,30 @@ int	create_amb(char *line, t_data *data)
 		return (1);
 	data->world.light.amb.lighting = ft_atof(info[1]);
 	//check si lighting < 0 ou > 1;
-    param = check_rgb(info[2]);
-    if (!param)
-    {
-        ft_free_arr((void **)info);
+	param = check_rgb(info[2]);
+	if (!param)
+	{
+		ft_free_arr((void **)info);
 		return (1);
-    }
+	}
 	color.x = ft_atoi(param[0]);
 	color.y = ft_atoi(param[1]);
 	color.z = ft_atoi(param[2]);
 	data->world.light.amb.color = color;
 	ft_free_arr((void **) param);
 	ft_free_arr((void **) info);
-	data->world.light.amb.color = convert_color_to_unit(data->world.light.amb.color);
+	data->world.light.amb.color = color_to_unit(data->world.light.amb.color);
 	data->world.light.amb.color = mult_tuples(data->world.light.amb.color,
-		data->world.light.amb.lighting);
+			data->world.light.amb.lighting);
 	printf("data->world.light.amb.color.x: %f\n", data->world.light.amb.color.x);
 	printf("data->world.light.amb.color.y: %f\n", data->world.light.amb.color.y);
 	printf("data->world.light.amb.color.z: %f\n", data->world.light.amb.color.z);
-	// print_amb(&data->light.amb);
 	return (0);
 }
 
-t_tuple		conv_color(char **param)
+t_tuple	conv_color(char **param)
 {
-	t_tuple		color;
+	t_tuple	color;
 
 	color.x = ft_atof(param[0]);
 	color.y = ft_atof(param[1]);
@@ -84,15 +83,14 @@ int	create_light(char *line, t_data *data)
 			return (1);
 		data->world.light.intensity = conv_color(param);
 	}
-	data->world.light.intensity = convert_color_to_unit(data->world.light.intensity);
+	data->world.light.intensity = color_to_unit(data->world.light.intensity);
 	data->world.light.intensity = mult_tuples(data->world.light.intensity, ft_atof(info[2]));
-	printf("data->world.light.intensity.x: %f\n",data->world.light.intensity.x);
-	printf("data->world.light.intensity.y: %f\n",data->world.light.intensity.y);
-	printf("data->world.light.intensity.z: %f\n",data->world.light.intensity.z);
-	printf("data->world.light.position.x: %f\n",data->world.light.position.x);
-	printf("data->world.light.position.y: %f\n",data->world.light.position.y);
-	printf("data->world.light.position.z: %f\n",data->world.light.position.z);
+	printf("data->world.light.intensity.x: %f\n", data->world.light.intensity.x);
+	printf("data->world.light.intensity.y: %f\n", data->world.light.intensity.y);
+	printf("data->world.light.intensity.z: %f\n", data->world.light.intensity.z);
+	printf("data->world.light.position.x: %f\n", data->world.light.position.x);
+	printf("data->world.light.position.y: %f\n", data->world.light.position.y);
+	printf("data->world.light.position.z: %f\n", data->world.light.position.z);
 	ft_free_arr((void **) info);
-	// print_light(&data->env.light);
 	return (0);
 }

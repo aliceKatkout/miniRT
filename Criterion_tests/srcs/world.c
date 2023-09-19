@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:08:55 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 16:25:35 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 19:05:19 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-t_world	create_world()
+t_world	create_world(void)
 {
 	t_world	w;
-	//w.light = NULL;
+
 	w.objs = NULL;
 	return (w);
 }
 
-t_world	default_world()
+t_world	default_world(void)
 {
 	t_world	w;
 	t_obj	*s1;
@@ -78,25 +78,15 @@ t_xs_world	intersect_world(t_world w, t_ray r)
 	while (lst)
 	{
 		obj = (t_obj *)lst->content;
-		//printf("obj->id : %d\n", obj->id);
 		xs = intersect(obj, r);
-		//printf("xs.t : %f\n", xs.t);
 		if (xs.count > 0 && xs.t > 0)
 		{
-
 			xs_world.tab_xs[i] = xs;
 			xs_world.count++;
 			i++;
 		}
 		lst = lst->next;
 	}
-
 	sort_list(&xs_world);
-	// i = 0;
-	// while (i < xs_world.count)
-	// {
-	// 	printf("xs_world.tab_xs[%d].t : %f\n", i, xs_world.tab_xs[i].t);
-	// 	i++;
-	// }
 	return (xs_world);
 }

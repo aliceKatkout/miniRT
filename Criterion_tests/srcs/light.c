@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 15:37:12 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:14:25 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,56 +45,33 @@ t_tuple	normal_at(t_obj *obj, t_tuple point)
 	return (normalize(world_normal));
 }
 
-/*It expects five arguments:
--the material itself,
--the point being illuminated,
--the light source
--the eye
--and normal vectors from thePhong reflection model.*/
 t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow)
 {
-	t_tuple	eff_color;
-	t_tuple	lightv;
 	t_tuple	ambient;
-	double	light_dot_normal;
-	t_tuple	diff;
-	t_tuple	spec;
-	t_tuple	reflectv;
 	double	reflect_dot_eye;
 	double	factor;
 	t_tuple	res;
 
-	eff_color = mult_colors(m.color, l.intensity);
-	lightv = normalize(sub_tuples(l.position, comp.point));
-	// ambient = mult_tuples(eff_color, m.ambient);
-	ambient = mult_colors(eff_color, l.amb.color);//ici changement de m.ambient vers l.amb.color
-	light_dot_normal = dot_product(lightv, comp.normalv);
-	if (light_dot_normal < 0 || in_shadow == 1)
-	{
-		// printf("lighting, light dot normal < 0 ou is_shadow ==1\n");
-		diff = create_color(0, 0, 0);
-		spec = create_color(0, 0, 0);
-	}
+	l.eff_color = mult_colors(m.color, l.intensity);
+	ambient = mult_colors(l.eff_color, l.amb.color);
+	l.lightv = normalize(sub_tuples(l.position, comp.point));
+	l.light_dot_normal = dot_product(l.lightv, comp.normalv);
+	if (l.light_dot_normal < 0 || in_shadow == 1)
+		return (ambient);
 	else
 	{
-		diff = mult_tuples(eff_color, m.diffuse);
-		diff = mult_tuples(diff, light_dot_normal);
-		lightv = reverse_tuple(lightv);
-		reflectv = reflect(lightv, comp.normalv);
-		reflect_dot_eye = dot_product(reflectv, comp.eyev);
+		l.diff = mult_3(l.eff_color, m.diffuse, l.light_dot_normal);
+		l.lightv = reverse_tuple(l.lightv);
+		l.reflectv = reflect(l.lightv, comp.normalv);
+		reflect_dot_eye = dot_product(l.reflectv, comp.eyev);
 		if (reflect_dot_eye <= 0)
-			spec = create_color(0, 0, 0);
+			l.spec = create_color(0, 0, 0);
 		else
 		{
 			factor = pow(reflect_dot_eye, m.shininess);
-			spec = mult_tuples(l.intensity, m.specular);
-			spec = mult_tuples(spec, factor);
+			l.spec = mult_3(l.intensity, m.specular, factor);
 		}
 	}
-	res = add_tuples(ambient, diff);
-	res = add_tuples(res, spec);
-	// printf("res x dans lighting: %f\n", res.x);
-	// printf("res y dans lighting: %f\n", res.y);
-	// printf("res z dans lighting: %f\n", res.z);
+	res = add_3_tuples(ambient, l.diff, l.spec);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 16:57:31 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:57:47 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <math.h>
 
 # define EPSILON 0.0001
-# define WINDOW_WIDTH 350
-# define WINDOW_HEIGHT 200
+# define WINDOW_WIDTH 720
+# define WINDOW_HEIGHT 480
 # define PI 3.14159265359
 
 # define SPHERE 1
@@ -97,6 +97,12 @@ typedef struct s_light
 	t_tuple	position;
 	t_tuple	intensity;
 	t_amb	amb;
+	t_tuple	lightv;
+	t_tuple	reflectv;
+	t_tuple	diff;
+	t_tuple	spec;
+	t_tuple	eff_color;
+	double	light_dot_normal;
 }	t_light;
 
 typedef struct s_material
@@ -199,12 +205,15 @@ t_tuple		normalize(t_tuple vec);
 double		dot_product(t_tuple a, t_tuple b);
 t_tuple		cross_product(t_tuple a, t_tuple b);
 
+t_tuple		add_3_tuples(t_tuple tuple1, t_tuple tuple2, t_tuple tuple3);
+t_tuple		mult_3(t_tuple tuple1, double vec1, double vec2);
+
 /* COLOR */
 t_tuple		color_at(t_world w, t_ray r);
 t_tuple		create_color(double red, double green, double blue);
 t_tuple		mult_colors(t_tuple a, t_tuple b);
 int			transform_color(t_tuple color);
-t_tuple		convert_color_to_unit(t_tuple color);
+t_tuple		color_to_unit(t_tuple color);
 
 /* FOR MLX */
 void		render_background(t_image *img, int color);
@@ -283,9 +292,6 @@ t_xs_world	intersect_world(t_world w, t_ray r);
 void		sort_list(t_xs_world *xs_world);
 
 /* INTERSECTIONS */
-
-
-
 void	find_hit(t_xs *xs);
 t_xs	intersect(t_obj *obj, t_ray ray);
 t_xs	intersect_sphere(t_obj *s, t_ray r);
@@ -298,12 +304,8 @@ t_tuple		shade_hit(t_world w, t_comp	comp);
 int			is_shadowed(t_world world, t_tuple point);
 
 /* CAMERA */
-t_tuple		conv_vec(char **param);
-t_tuple		conv_cam_orientation(char **vec);
-t_cam		create_camera(double hsize, double vsize, double fov);
-int			init_cam(t_data *data, char **info);
-int			parse_cam(char *line, t_data *data);
 t_ray		ray_for_pixel(t_cam c, int px, int py);
+void		fill_orientation(double *o, t_tuple lft, t_tuple true_up, t_tuple fwd);
 t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* CYLINDERS */
@@ -320,6 +322,13 @@ void	find_hit_cylinder(t_xs *xs);
 void	parse_scene(char *argv, t_data *data);
 void	init_scene(t_data *data);
 void	print_list_prefix(t_list *lst, char *prefix);
+
+/* PARSE CAM */
+t_tuple		conv_vec(char **param);
+t_tuple		conv_cam_orientation(char **vec);
+t_cam		create_camera(double hsize, double vsize, double fov);
+int			init_cam(t_data *data, char **info);
+int			parse_cam(char *line, t_data *data);
 
 /* PARSE LIGHT */
 int		create_light(char *line, t_data *data);
@@ -345,13 +354,13 @@ int		is_number(char *str);
 double	set_diameter(char	*param);
 
 int		set_diam_height_rad(char *s1, char *s2, t_obj *elem);
-
+void	ft_replace(char *str, char old, char new);
 
 /* P_FORMS */
 int	create_obj(char *line, t_data *data, int shape);
 int	parse_forms(t_list *buf, t_data *data);
 t_obj	*init_fill_obj(char **params, int shape);
-t_tuple	convert_color_to_unit(t_tuple color);
+t_tuple	color_to_unit(t_tuple color);
 
 
 

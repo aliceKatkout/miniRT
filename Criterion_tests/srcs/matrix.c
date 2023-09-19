@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:25:22 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 17:57:28 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:44:21 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ double	matrix_cmp_4(t_matrix_4 a, t_matrix_4 b)
 		y = 0;
 		while (y < 4)
 		{
-			if (fabs(a.tab[x][y] - b.tab[x][y]) > EPSILON )
+			if (fabs(a.tab[x][y] - b.tab[x][y]) > EPSILON)
 				return (a.tab[x][y] - b.tab[x][y]);
 			y++;
 		}

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 16:57:52 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:18:21 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	parse_scene(char *argv, t_data *data)
 	tmp = buf;
 	while (tmp)
 	{
+		ft_replace((char *)tmp->content, '	', ' ');
 		ft_lstadd_back(&buf, ft_lstnew((void *) get_next_line(data->rt_file)));
 		tmp = tmp->next;
 	}

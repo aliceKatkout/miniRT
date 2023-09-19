@@ -6,12 +6,11 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:23:24 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/12 18:23:59 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 19:06:35 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
-
 
 t_matrix_4	rotation_x(double rad)
 {

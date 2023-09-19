@@ -6,68 +6,67 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:14:03 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 15:21:20 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:55:06 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "../project.h"
 
-void    ft_print_info(char **info)
+void	ft_print_info(char **info)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(info[i])
-    {
-        printf("info[%d]: %s\n", i, info[i]);
-        i++;
-    }
+	i = 0;
+	while (info[i])
+	{
+		printf("info[%d]: %s\n", i, info[i]);
+		i++;
+	}
 }
 
-int     check_nb_env(t_list *current, char *c)
+int	check_nb_env(t_list *current, char *c)
 {
-    t_list  *tmp;
+	t_list	*tmp;
 
-    tmp = current;
-    while(tmp)
-    {
-        tmp = tmp->next;
-        if (tmp && ft_strncmp(tmp->content, c, 1) == 0)
-            return (1);
-    }
-    return (0);
+	tmp = current;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		if (tmp && ft_strncmp(tmp->content, c, 1) == 0)
+			return (1);
+	}
+	return (0);
 }
 
-int    parse_env(t_data *data, t_list *buf)
+int	parse_env(t_data *data, t_list *buf)
 {
-    t_list  *tmp;
+	t_list	*tmp;
 	int		err;
-    
+
 	if (!buf)
 		return (1);
-    tmp = buf;
+	tmp = buf;
 	err = 0;
-    printf("dans parse env\n");
-    while(tmp)
-    {
+	while (tmp)
+	{
 		if (ft_strncmp(tmp->content, "C", 1) == 0)
-        {
+		{
 			err = parse_cam(tmp->content, data);
-            err = check_nb_env(tmp, "C");
-        }
-        if (ft_strncmp(tmp->content, "A", 1) == 0)
-        {
+			err = check_nb_env(tmp, "C");
+		}
+		if (ft_strncmp(tmp->content, "A", 1) == 0)
+		{
 			err = create_amb(tmp->content, data);
-            err = check_nb_env(tmp, "A");
-        }
+			err = check_nb_env(tmp, "A");
+		}
 		if (ft_strncmp(tmp->content, "L", 1) == 0)
-        {
+		{
 			err = create_light(tmp->content, data);
-            err = check_nb_env(tmp, "L");
-        }
+			err = check_nb_env(tmp, "L");
+		}
 		if (err)
 			return (1);
-        tmp = tmp->next;
-    }
+		tmp = tmp->next;
+	}
 	return (0);
 }
