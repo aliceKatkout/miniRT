@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 19:47:26 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:45:39 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,33 @@ void	set_scene(t_data *data)
 	// print_list(data->world);
 }
 
+void	print_objects_list(t_list *lst)
+{
+	t_list	*tmp;
+	t_obj	*obj;
+
+	tmp = lst;
+	while (tmp != NULL)
+	{
+		obj = (t_obj *) tmp->content;
+		printf("obj id:%d\n", obj->id);
+		printf("obj shape : %d\n", obj->shape);
+		if (obj->shape == SPHERE)
+		{
+			printf("obj diameter :%f\n", obj->diameter);
+		}
+		printf("obj color x:%f\n", obj->material.color.x);
+		printf("obj color y:%f\n", obj->material.color.y);
+		printf("obj color z:%f\n", obj->material.color.z);
+		printf("obj x:%f\n", obj->x);
+		printf("obj y:%f\n", obj->y);
+		printf("obj z:%f\n", obj->z);
+		printf("obj closed:%d\n", obj->closed);
+
+		tmp = tmp->next;
+	}
+}
+
 void	render_map(t_data *data)
 {
 	t_ray	ray;
@@ -156,7 +183,9 @@ void	render_map(t_data *data)
 	// t_tuple	eye;
 	// t_tuple	normal;
 
-	set_scene(data);
+	//set_scene(data);
+
+	print_objects_list(data->world.objs);
 	x = 0;
 	y = 0;
 	render_background(&data->img, 0x000000);
@@ -165,6 +194,7 @@ void	render_map(t_data *data)
 	light.position = create_point(-3, 4, -5);
 	light.intensity = create_color (1, 1, 1);
 	data->world.light = light;
+	//data->cam = create_camera(WINDOW_WIDTH, WINDOW_HEIGHT, M_PI / 3);
 	while (y < data->cam.hsize)
 	{
 		x = 0;

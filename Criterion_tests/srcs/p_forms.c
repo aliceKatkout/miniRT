@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:03:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 15:46:49 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:30:50 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_obj	*init_fill_obj(char **params, int shape)
 {
 	t_obj	*new_obj;
 	int		err;
+	static int	id = 0;
 
 	err = 0;
 	new_obj = ft_calloc(1, sizeof(t_obj));
@@ -90,5 +91,16 @@ t_obj	*init_fill_obj(char **params, int shape)
 		ft_free_arr((void **) params);
 		return (NULL);
 	}
+	new_obj->id = id++;
 	return (new_obj);
+}
+
+t_tuple	convert_color_to_unit(t_tuple color)
+{
+	t_tuple	res;
+
+	res.x = color.x / 255;
+	res.y = color.y / 255;
+	res.z = color.z / 255;
+	return (res);
 }

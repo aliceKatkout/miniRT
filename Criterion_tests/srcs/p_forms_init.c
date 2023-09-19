@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:28:28 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 15:38:17 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:31:53 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	init_rgb(t_obj *obj, char *param)
 	obj->color = create_color(ft_atof(rgb[0]),
 			ft_atof(rgb[1]), ft_atof(rgb[2]));
 	ft_free_arr((void **)rgb);
+	obj->color = convert_color_to_unit(obj->color);
+	obj->material = init_material();
+	obj->material.color = obj->color;
 	return (0);
 }
 
@@ -42,11 +45,8 @@ int	init_xyz(t_obj *obj, char *param)
 
 int	init_sp(char **params, t_obj *sp)
 {
-	static int	id = 0;
-
-
-	sp->id = id++;
 	sp->shape = SPHERE;
+	sp->closed = 0;
 	sp->diameter = set_diameter(params[2]);
 	if (sp->diameter <= 0)
 		return (ft_putstr_fdi("Sphere diameter is incorrect.\n", 2));
@@ -54,18 +54,16 @@ int	init_sp(char **params, t_obj *sp)
 		return (1);
 	if (init_rgb(sp, params[3]))
 		return (1);
-	sp->material = init_material();
 	sp->transform = identity_matrix();
 	return (0);
 }
 
 int	init_cylinder(char **params, t_obj	*cy)
 {
-	static int	id = 0;
 	char		**vec;
 
-	cy->id = id++;
 	cy->shape = CYLINDER;
+	cy->closed = 1;
 	if (set_diam_height_rad(params[3], params[4], cy))
 		return (1);
 	if (init_xyz(cy, params[1]))
@@ -79,17 +77,17 @@ int	init_cylinder(char **params, t_obj	*cy)
 			ft_atof(vec[1]), ft_atof(vec[2]));
 	ft_free_arr((void **)vec);
 	cy->transform = identity_matrix();
-	cy->material = init_material();
+	cy->min = cy->height / -2;
+	cy->max = cy->height / 2;
 	return (0);
 }
 
 int	init_plane(char **params, t_obj	*pl)
 {
-	static int	id = 0;
 	char		**vec;
 
-	pl->id = id++;
 	pl->shape = PLANE;
+	pl->closed = 0;
 	if (init_xyz(pl, params[1]))
 		return (1);
 	if (init_rgb(pl, params[3]))
