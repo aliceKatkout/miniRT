@@ -6,13 +6,13 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:52:54 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/11 18:24:45 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:06:38 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	parse_forms(t_list *buf, t_scene *scene)
+int	parse_forms(t_list *buf, t_data *data)
 {
 	t_list	*tmp;
 	int		err;
@@ -24,11 +24,11 @@ int	parse_forms(t_list *buf, t_scene *scene)
 	while (tmp)
 	{
 		if (!ft_strncmp((char *) tmp->content, "pl ", 3))
-			err = create_plane((char *) tmp->content, scene);
+			err = create_plane((char *) tmp->content, data);
 		else if (!ft_strncmp((char *) tmp->content, "sp ", 3))
-			err = create_obj((char *) tmp->content, scene);
+			err = create_obj((char *) tmp->content, data);
 		else if (!ft_strncmp((char *) tmp->content, "cy  ", 3))
-			err = create_cylinder((char *) tmp->content, scene);
+			err = create_cylinder((char *) tmp->content, data);
 		if (err)
 			return (1);
 		tmp = tmp->next;
@@ -67,7 +67,7 @@ int	create_plane(char *line, t_scene *scene)
 int	create_obj(char *line, t_scene *scene)
 {
 	char		**params;
-	t_obj	*new_sp;
+	t_obj		*new_sp;
 	t_list		*new_elem;
 
 	params = get_params_from_line(line, 4);

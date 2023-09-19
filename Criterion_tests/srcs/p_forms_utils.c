@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 18:01:32 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:56:03 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-// double	set_diameter(char	*param)
-// {
-// 	double	diameter;
+double	set_diameter(char	*param)
+{
+	double	diameter;
 
-// 	diameter = ft_atof(param);
-// 	if (diameter <= 0 || !is_number(param))
-// 		return (-1);
-// 	else
-// 		return (diameter);
-// }
+	diameter = ft_atof(param);
+	if (diameter <= 0 || !is_number(param))
+		return (-1);
+	else
+		return (diameter);
+}
 
 char	**get_params_from_line(char *line, int wanted_nb)
 {
@@ -50,7 +50,7 @@ char	**check_rgb(char *line)
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = ',';
 	rgb = ft_split(line, ',');
-	if (ft_arrlen((void **)rgb) != 3 || !is_number(rgb[0]) 
+	if (ft_arrlen((void **)rgb) != 3 || !is_number(rgb[0])
 		|| !is_number(rgb[1]) || !is_number(rgb[2]))
 	{
 		ft_free_arr((void **)rgb);
@@ -59,7 +59,7 @@ char	**check_rgb(char *line)
 	r = ft_atof(rgb[0]);
 	g = ft_atof(rgb[1]);
 	b = ft_atof(rgb[2]);
-	if (!is_in_range(r, 0.0, 255.0) || !is_in_range(b, 0.0, 255.0) 
+	if (!is_in_range(r, 0.0, 255.0) || !is_in_range(b, 0.0, 255.0)
 		|| !is_in_range(g, 0.0, 255.0))
 	{
 		ft_free_arr((void **)rgb);
@@ -78,7 +78,7 @@ char	**check_vectors(char *line)
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = ',';
 	vec = ft_split(line, ',');
-	if (ft_arrlen((void **)vec) != 3 || !is_number(vec[0]) 
+	if (ft_arrlen((void **)vec) != 3 || !is_number(vec[0])
 		|| !is_number(vec[1]) || !is_number(vec[2]))
 	{
 		ft_free_arr((void **)vec);
@@ -87,7 +87,7 @@ char	**check_vectors(char *line)
 	x = ft_atof(vec[0]);
 	y = ft_atof(vec[1]);
 	z = ft_atof(vec[2]);
-	if (!is_in_range(x, -1.0, 1.0) || !is_in_range(y, -1.0, 1.0) 
+	if (!is_in_range(x, -1.0, 1.0) || !is_in_range(y, -1.0, 1.0)
 		|| !is_in_range(z, -1.0, 1.0))
 	{
 		ft_free_arr((void **)vec);

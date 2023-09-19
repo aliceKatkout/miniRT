@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 19:16:05 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:01:45 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,12 @@ typedef struct s_obj
 	double		diameter;
 	double		min;
 	double		max;
+	double 		height;
 	int			closed;
 	t_material	material;
 	t_tuple 	color;
 	t_ray		saved_ray;
+	t_tuple		direction;
 }	t_obj;
 
 typedef struct s_world
@@ -340,7 +342,15 @@ char	**check_rgb(char *line);
 char	**get_params_from_line(char *line, int wanted_nb);
 int		is_in_range(double val, double min, double max);
 int		is_number(char *str);
-// double	set_diameter(char	*param);
+double	set_diameter(char	*param);
+
+int		set_diam_height_rad(char *s1, char *s2, t_obj *elem);
+
+
+/* P_FORMS */
+int	create_obj(char *line, t_data *data, int shape);
+int	parse_forms(t_list *buf, t_data *data);
+int	init_rgb(t_obj *obj, char **param);
 
 /* EXIT */
 int		ft_free_all(t_data *data);

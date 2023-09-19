@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_checks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:25:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 18:04:35 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:57:44 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,20 @@ int	is_number(char *str)
 		i ++;
 	}
 	return (1);
+}
+
+int	set_diam_height_rad(char *s1, char *s2, t_obj *elem)
+{
+	float	diam_hght[2];
+
+	diam_hght[0] = ft_atof(s1);
+	if (!is_number(s1) || diam_hght[0] <= 0)
+		return (ft_putstr_fdi("Wrong diameter value for cylinder", 2));
+	elem->height = diam_hght[0];
+	diam_hght[1] = ft_atof(s2);
+	if (!is_number(s2) || diam_hght[1] <= 0)
+		return (ft_putstr_fdi("Wrong heigth value for cylinder", 2));
+	elem->diameter = diam_hght[1];
+	elem->radius = diam_hght[1] / 2;
+	return (0);
 }

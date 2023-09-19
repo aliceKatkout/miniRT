@@ -1,5 +1,5 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*	                                                                        */
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -10,34 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../project.h"
+#include "../project.h"
 
-double  ft_atof(char *str)
+double	ft_atof(char *str)
 {
-    double  ret;
-    double  ret2;
-    int     minus;
-    int     i;
+	double	ret;
+	double	ret2;
+	int		minus;
+	int		i;
 
-    i = 0;
+	i = 0;
 	minus = 1;
-    ret = (double)ft_atoi(str);
+	ret = (double)ft_atoi(str);
 	if (ret < 0)
 	{
 		minus = -1;
 		ret *= -1;
 	}
-    ret2 = 0;
-	while(str[i] && str[i] != '.')
-        i++; 
-    if (str[i] && str[i] == '.')
+	ret2 = 0;
+	while (str[i] && str[i] != '.')
+	i++;
+	if (str[i] && str[i] == '.')
 	{
-        i++;
-		ret2 = (double)ft_atoi(&str[i]);
+		ret2 = (double)ft_atoi(&str[++i]);
 		i = ft_strlen(&str[i]);
-		while(i--)
+		while (i--)
 			ret2 /= 10;
 	}
 	ret += ret2;
-    return (minus * ret);
+	return (minus * ret);
 }
