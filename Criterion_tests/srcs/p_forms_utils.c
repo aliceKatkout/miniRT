@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 18:01:32 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:56:45 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ char	**get_params_from_line(char *line, int wanted_nb)
 
 	params = ft_split(line, 32);
 	if (!params)
+	{
+		ft_putstr_fd("Error in \"get_params from line\"❌\n ", 2);
 		return (NULL);
+	}
 	params_nb = ft_arrlen((void **) params);
 	if (params_nb != wanted_nb)
 	{
+		ft_putstr_fd("Error in \"get_params from line\"❌\n ", 2);
 		ft_free_arr((void **) params);
 		return (NULL);
 	}
@@ -53,6 +57,7 @@ char	**check_rgb(char *line)
 	if (ft_arrlen((void **)rgb) != 3 || !is_number(rgb[0]) 
 		|| !is_number(rgb[1]) || !is_number(rgb[2]))
 	{
+		ft_putstr_fd("Error in \"check_rgb\"❌\n ", 2);
 		ft_free_arr((void **)rgb);
 		return (NULL);
 	}
@@ -62,6 +67,7 @@ char	**check_rgb(char *line)
 	if (!is_in_range(r, 0.0, 255.0) || !is_in_range(b, 0.0, 255.0) 
 		|| !is_in_range(g, 0.0, 255.0))
 	{
+		ft_putstr_fd("Error in \"check_rgb\"❌\n ", 2);
 		ft_free_arr((void **)rgb);
 		return (NULL);
 	}
@@ -75,12 +81,14 @@ char	**check_vectors(char *line)
 	double	y;
 	double	z;
 
+	printf("line:%s\n", line);
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = ',';
 	vec = ft_split(line, ',');
 	if (ft_arrlen((void **)vec) != 3 || !is_number(vec[0]) 
 		|| !is_number(vec[1]) || !is_number(vec[2]))
 	{
+		ft_putstr_fd("Error in \"check_vectors\"❌\n ", 2);
 		ft_free_arr((void **)vec);
 		return (NULL);
 	}
@@ -90,6 +98,7 @@ char	**check_vectors(char *line)
 	if (!is_in_range(x, -1.0, 1.0) || !is_in_range(y, -1.0, 1.0) 
 		|| !is_in_range(z, -1.0, 1.0))
 	{
+		ft_putstr_fd("Error in \"check_vectors\"❌\n ", 2);
 		ft_free_arr((void **)vec);
 		return (NULL);
 	}
@@ -107,6 +116,7 @@ char	**get_new_params(char *line, int wanted_nb, char sep)
 	params_nb = ft_arrlen((void **) params);
 	if (params_nb != wanted_nb)
 	{
+		ft_putstr_fd("Error in \"get_new_params\"❌\n ", 2);
 		ft_free_arr((void **) params);
 		return (NULL);
 	}

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 16:17:05 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 19:40:48 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:03:18 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ int	create_amb(char *line, t_data *data)
 	data->world.light.amb.color = color;
 	ft_free_arr((void **) param);
 	ft_free_arr((void **) info);
+	data->world.light.amb.color = convert_color_to_unit(data->world.light.amb.color);
 	data->world.light.amb.color = mult_tuples(data->world.light.amb.color,
 		data->world.light.amb.lighting);
+	printf("data->world.light.amb.color.x: %f\n", data->world.light.amb.color.x);
+	printf("data->world.light.amb.color.y: %f\n", data->world.light.amb.color.y);
+	printf("data->world.light.amb.color.z: %f\n", data->world.light.amb.color.z);
 	// print_amb(&data->light.amb);
 	return (0);
 }
@@ -80,7 +84,14 @@ int	create_light(char *line, t_data *data)
 			return (1);
 		data->world.light.intensity = conv_color(param);
 	}
+	data->world.light.intensity = convert_color_to_unit(data->world.light.intensity);
 	data->world.light.intensity = mult_tuples(data->world.light.intensity, ft_atof(info[2]));
+	printf("data->world.light.intensity.x: %f\n",data->world.light.intensity.x);
+	printf("data->world.light.intensity.y: %f\n",data->world.light.intensity.y);
+	printf("data->world.light.intensity.z: %f\n",data->world.light.intensity.z);
+	printf("data->world.light.position.x: %f\n",data->world.light.position.x);
+	printf("data->world.light.position.y: %f\n",data->world.light.position.y);
+	printf("data->world.light.position.z: %f\n",data->world.light.position.z);
 	ft_free_arr((void **) info);
 	// print_light(&data->env.light);
 	return (0);

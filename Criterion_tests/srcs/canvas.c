@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 19:47:26 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:55:15 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ void	set_scene(t_data *data)
 	t_list	*new;
 
 	floor = void_plane();
-	floor->transform = scaling(10, 0.01, 10);
+	// floor->transform = scaling(10, 0.01, 10);
 	floor->material = init_material();
-	floor->material.color = create_color(1, 0.9, 0.9);
+	floor->material.color = create_color(1, 0.8, 0.8);
+	floor->material.diffuse = 0.5;
 	floor->material.specular = 0.8;
 	w.objs = ft_lstnew((void *) floor);
 	// ft_lstadd_back(&w.objs, new);
@@ -91,7 +92,7 @@ void	set_scene(t_data *data)
 	cylinder->closed = 1;
 	cylinder->transform = matrix_mult_4(cylinder->transform, translation(0, 0, 5));
 	cylinder->material = init_material();
-	cylinder->material.color = create_color(0, 1, 0.2);
+	cylinder->material.color = create_color(0, 1, 0.1);
 	cylinder->material.diffuse = 0.7;
 	cylinder->material.specular = 0.3;
 	new = ft_lstnew((void *) cylinder);
@@ -157,6 +158,13 @@ void	render_map(t_data *data)
 	// t_tuple	normal;
 
 	set_scene(data);
+	printf("cam fov: %f\n", data->cam.fov);
+	printf("cam orientation.x: %f\n", data->cam.orientation.x);
+	printf("cam orientation.y: %f\n", data->cam.orientation.y);
+	printf("cam orientation.z: %f\n", data->cam.orientation.z);
+	// printf("world.lightcolor.x: %f\n", data->world.light.intensity.x);
+	// printf("world.lightcolor.y: %f\n", data->world.light.intensity.y);
+	// printf("world.lightcolor.z: %f\n", data->world.light.intensity.z);
 	x = 0;
 	y = 0;
 	render_background(&data->img, 0x000000);
@@ -174,6 +182,7 @@ void	render_map(t_data *data)
 			//world_x = -data->cam.vsize + (x * 2);
 			ray = ray_for_pixel(data->cam, x, y);
 			color = color_at(data->world, ray);
+			// printf("color.x: %f\n", color.x);
 			img_pxl_put(&data->img, x, y, transform_color(color));
 			x++;
 		}

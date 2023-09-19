@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 19:16:05 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:39:12 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <math.h>
 
 # define EPSILON 0.0001
-# define WINDOW_WIDTH 860
-# define WINDOW_HEIGHT 640
+# define WINDOW_WIDTH 350
+# define WINDOW_HEIGHT 200
 # define PI 3.14159265359
 
 # define SPHERE 1
@@ -97,8 +97,6 @@ typedef struct s_light
 	t_tuple	position;
 	t_tuple	intensity;
 	t_amb	amb;
-	t_tuple	diff;
-	t_tuple	spec;
 }	t_light;
 
 typedef struct s_material
@@ -162,6 +160,7 @@ typedef struct s_cam
 	double		half_width;
 	double		half_height;
 	t_tuple		orientation;
+	t_tuple		position;
 	t_matrix_4	transform;
 }	t_cam;
 
@@ -198,11 +197,12 @@ t_tuple		normalize(t_tuple vec);
 double		dot_product(t_tuple a, t_tuple b);
 t_tuple		cross_product(t_tuple a, t_tuple b);
 
-/* PRINT ON CANVAS */
+/* COLOR */
 t_tuple		color_at(t_world w, t_ray r);
 t_tuple		create_color(double red, double green, double blue);
 t_tuple		mult_colors(t_tuple a, t_tuple b);
 int			transform_color(t_tuple color);
+t_tuple		convert_color_to_unit(t_tuple color);
 
 /* FOR MLX */
 void		render_background(t_image *img, int color);

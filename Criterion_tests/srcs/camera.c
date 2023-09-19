@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:27:42 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 18:12:54 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:48:25 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,17 +116,29 @@ int		init_cam(t_data *data, char **info)
 	t_tuple	to;
 
 	param = get_new_params(info[1], 3, ',');
+	data->cam = create_camera(WINDOW_HEIGHT, WINDOW_WIDTH, ft_atoi(info[3]));
 	if (!param)
+	{
+		ft_putstr_fd("Error\n❌ ", 2);
 		return (1);
+	}
 	from = conv_vec(param);
+	data->cam.position = from;
 	vec = check_vectors(info[2]);
     if (!vec)
     {
+		ft_putstr_fd("Error\n❌ ", 2);
         ft_free_arr((void **)info);
         return (1);
     }
 	to = conv_cam_orientation(vec);
-	data->cam = create_camera(WINDOW_HEIGHT, WINDOW_WIDTH, ft_atoi(info[3]));
+	printf("to.x: %f\n", to.x);
+	printf("to.y: %f\n", to.y);
+	printf("to.z: %f\n", to.z);
+	data->cam.orientation = to;
+	printf("dans init cam data->cam.orientation.x: %f\n", data->cam.orientation.x);
+	printf("dans init cam data->cam.orientation.y: %f\n", data->cam.orientation.y);
+	printf("dans init cam data->cam.orientation.z: %f\n", data->cam.orientation.z);
 	data->cam.transform = view_transform(from, to, create_vector(0, 1, 0));
 	// print_cam(&data->env.cam);
 	return (0);

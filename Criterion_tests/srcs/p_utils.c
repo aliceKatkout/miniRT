@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/18 16:42:42 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:30:08 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_arrlen(void **array)
 	if (!array)
 		return (i);
 	while (array[i])
-		i ++;
+		i++;
 	return (i);
 }
 

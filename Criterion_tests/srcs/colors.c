@@ -6,13 +6,12 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:25:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 19:46:02 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:04:34 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-/* ADD TRANPARENCY? --> w */
 t_tuple	color_at(t_world w, t_ray r)
 {
 	t_xs_world	xs;
@@ -75,4 +74,14 @@ int	transform_color(t_tuple color)
 	return ((int)res.x << 16
 		| (int)res.y << 8
 		| (int)res.z);
+}
+
+t_tuple	convert_color_to_unit(t_tuple color)
+{
+	t_tuple	res;
+
+	res.x = color.x / 255;
+	res.y = color.y / 255;
+	res.z = color.z / 255;
+	return (res);
 }

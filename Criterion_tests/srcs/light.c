@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/18 19:07:54 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:37:12 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow)
 
 	eff_color = mult_colors(m.color, l.intensity);
 	lightv = normalize(sub_tuples(l.position, comp.point));
-	ambient = mult_tuples(eff_color, m.ambient);
+	// ambient = mult_tuples(eff_color, m.ambient);
+	ambient = mult_colors(eff_color, l.amb.color);//ici changement de m.ambient vers l.amb.color
 	light_dot_normal = dot_product(lightv, comp.normalv);
 	if (light_dot_normal < 0 || in_shadow == 1)
 	{
+		// printf("lighting, light dot normal < 0 ou is_shadow ==1\n");
 		diff = create_color(0, 0, 0);
 		spec = create_color(0, 0, 0);
 	}
@@ -91,5 +93,8 @@ t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow)
 	}
 	res = add_tuples(ambient, diff);
 	res = add_tuples(res, spec);
+	// printf("res x dans lighting: %f\n", res.x);
+	// printf("res y dans lighting: %f\n", res.y);
+	// printf("res z dans lighting: %f\n", res.z);
 	return (res);
 }
