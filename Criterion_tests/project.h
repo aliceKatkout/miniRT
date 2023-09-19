@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 16:39:12 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:57:31 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,12 @@ typedef struct s_obj
 	double		diameter;
 	double		min;
 	double		max;
+	double 		height;
 	int			closed;
 	t_material	material;
 	t_tuple 	color;
 	t_ray		saved_ray;
+	t_tuple		direction;
 }	t_obj;
 
 typedef struct s_world
@@ -340,7 +342,25 @@ char	**check_rgb(char *line);
 char	**get_params_from_line(char *line, int wanted_nb);
 int		is_in_range(double val, double min, double max);
 int		is_number(char *str);
-// double	set_diameter(char	*param);
+double	set_diameter(char	*param);
+
+int		set_diam_height_rad(char *s1, char *s2, t_obj *elem);
+
+
+/* P_FORMS */
+int	create_obj(char *line, t_data *data, int shape);
+int	parse_forms(t_list *buf, t_data *data);
+t_obj	*init_fill_obj(char **params, int shape);
+t_tuple	convert_color_to_unit(t_tuple color);
+
+
+
+/* P_FORMS_INIT */
+int	init_rgb(t_obj *obj, char *param);
+int	init_xyz(t_obj *obj, char *param);
+int	init_sp(char **params, t_obj *sp);
+int	init_cylinder(char **params, t_obj	*cy);
+int	init_plane(char **params, t_obj *pl);
 
 /* EXIT */
 int		ft_free_all(t_data *data);

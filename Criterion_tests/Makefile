@@ -44,6 +44,8 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/p_parse_light.c \
 					srcs/p_ft_atof.c \
 					srcs/p_forms_utils.c \
+					srcs/p_forms_init.c \
+					srcs/p_forms.c \
 					srcs/p_checks.c \
 					srcs/utils.c \
 					srcs/canvas.c \

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 15:20:34 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:57:52 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	init_scene(t_data *data)
 {
-	/* data->cylinders = ft_calloc(1, sizeof(t_list *));
-	data->planes = ft_calloc(1, sizeof(t_list *));
-	data->objs = ft_calloc(1, sizeof(t_list *)); */
+	data->world.objs = ft_calloc(1, sizeof(t_list *));
 	ft_bzero(&data->world.light, sizeof(data->world.light));
 	ft_bzero(&data->cam, sizeof(data->cam));
 	data->rt_file = -1;
@@ -43,8 +41,8 @@ void	parse_scene(char *argv, t_data *data)
 		tmp = tmp->next;
 	}
 	//print_list_prefix(buf, NULL);
-	// if (parse_forms(buf, data))
-	// 	return (ft_error_parse("Occured when parsing forms.\n", data, buf));
+	if (parse_forms(buf, data))
+		return (ft_error_parse("Occured when parsing forms.\n", data, buf));
 	if (parse_env(data, buf))
 		return (ft_error_parse("Occured when parsing env.\n", data, buf));
 	//free_buf;
