@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 15:01:45 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:37:39 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,7 +350,16 @@ int		set_diam_height_rad(char *s1, char *s2, t_obj *elem);
 /* P_FORMS */
 int	create_obj(char *line, t_data *data, int shape);
 int	parse_forms(t_list *buf, t_data *data);
-int	init_rgb(t_obj *obj, char **param);
+t_obj	*init_fill_obj(char **params, int shape);
+
+
+
+/* P_FORMS_INIT */
+int	init_rgb(t_obj *obj, char *param);
+int	init_xyz(t_obj *obj, char *param);
+int	init_sp(char **params, t_obj *sp);
+int	init_cylinder(char **params, t_obj	*cy);
+int	init_plane(char **params, t_obj *pl);
 
 /* EXIT */
 int		ft_free_all(t_data *data);

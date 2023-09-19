@@ -6,7 +6,7 @@
 /*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 14:16:13 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:35:56 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	parse_scene(char *argv, t_data *data)
 		tmp = tmp->next;
 	}
 	//print_list_prefix(buf, NULL);
-	// if (parse_forms(buf, data))
-	// 	return (ft_error_parse("Occured when parsing forms.\n", data, buf));
+	if (parse_forms(buf, data))
+		return (ft_error_parse("Occured when parsing forms.\n", data, buf));
 	if (parse_env(data, buf))
 		return (ft_error_parse("Occured when parsing env.\n", data, buf));
 	//free_buf;
