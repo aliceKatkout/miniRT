@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 19:07:36 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:37:39 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,20 +89,29 @@ void	render_map(t_data *data)
 	printf("cam orientation.x: %f\n", data->cam.orientation.x);
 	printf("cam orientation.y: %f\n", data->cam.orientation.y);
 	printf("cam orientation.z: %f\n", data->cam.orientation.z);
+	printf("cam position.x: %f\n", data->cam.position.x);
+	printf("cam position.y: %f\n", data->cam.position.y);
+	printf("cam position.z: %f\n", data->cam.position.z);
 	print_objects_list(data->world.objs);
 	x = 0;
 	y = 0;
 	render_background(&data->img, 0x000000);
 	printf("coucou\n");
+	// data->cam.position.x = 0;
+	// data->cam.position.y = 0;
+	// data->cam.position.z = 0;
+	// printf("cam position.x: %f\n", data->cam.position.x);
+	// printf("cam position.y: %f\n", data->cam.position.y);
+	// printf("cam position.z: %f\n", data->cam.position.z);
 	// t_light	light;
 	// light.position = create_point(-3, 4, -5);
 	// light.intensity = create_color (1, 1, 1);
 	// data->world.light = light;
 	//data->cam = create_camera(WINDOW_WIDTH, WINDOW_HEIGHT, M_PI / 3);
-	while (y < data->cam.hsize)
+	while (y < data->cam.vsize)
 	{
 		x = 0;
-		while (x < data->cam.vsize)
+		while (x < data->cam.hsize)
 		{
 			ray = ray_for_pixel(data->cam, x, y);
 			color = color_at(data->world, ray);

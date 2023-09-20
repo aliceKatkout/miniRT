@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:02:41 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/20 14:43:22 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:24:27 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_matrix_4	fuse_rotate(t_obj	*cy)
 	t_matrix_4	matrix2;
 	t_matrix_4	matrix3;
 
-	matrix1 = rotation_x((PI * cy->direction.x));
-	matrix2 = rotation_y((PI * cy->direction.y));
-	matrix3 = rotation_z((PI * cy->direction.z));
+	matrix1 = rotation_x(M_PI * cy->direction.x);
+	matrix2 = rotation_y(M_PI * cy->direction.y);
+	matrix3 = rotation_z(M_PI * cy->direction.z);
 	matrix = matrix_mult_4(matrix1, matrix2);
 	matrix = matrix_mult_4(matrix, matrix3);
 	return (matrix);

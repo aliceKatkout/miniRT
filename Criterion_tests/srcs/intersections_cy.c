@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:42:22 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 18:43:23 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:08:40 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ void	find_xs_cylinder(t_xs *xs, t_obj *obj, t_ray r)
 		xs->xs[1] = a;
 	}
 	y0 = r.origin.y + xs->xs[0] * r.direction.y;
-	if (obj->min < y0 && y0 < obj->max)
+	if (obj->min <= y0 && y0 <= obj->max)
 		xs->count++;
 	else
 		xs->xs[0] = -1;
 	y1 = r.origin.y + xs->xs[1] * r.direction.y;
-	if (obj->min < y1 && y1 < obj->max)
+	if (obj->min <= y1 && y1 <= obj->max)
 		xs->count++;
 	else
 		xs->xs[1] = -1;

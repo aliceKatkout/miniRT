@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:31:40 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/20 14:22:51 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:37:34 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_tuple	conv_cam_orientation(char **vec)
 		to.z = EPSILON;
 	to.w = 0;
 	ft_free_arr((void **) vec);
+	//verfier si in_range;
 	return (to);
 }
 
@@ -74,7 +75,8 @@ int	init_cam(t_data *data, char **info)
 	param = get_new_params(info[1], 3, ',');
 	data->cam.fov = ft_atof(info[3]);
 	data->cam.fov *= PI / 180;
-	data->cam = create_camera(WINDOW_HEIGHT, WINDOW_WIDTH, data->cam.fov);
+	//verifier si chiffres
+	data->cam = create_camera(WINDOW_WIDTH, WINDOW_HEIGHT, data->cam.fov);
 	if (!param)
 	{
 		ft_putstr_fd("Error\n❌ ", 2);
