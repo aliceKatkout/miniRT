@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:28:28 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/20 14:38:54 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:26:04 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,6 @@ int	init_xyz(t_obj *obj, char *param)
 	return (0);
 }
 
-t_matrix_4	sp_transform_matr(t_obj *s)
-{
-	t_matrix_4	res;
-
-	res = matrix_mult_4(translation(s->x, s->y, s->z), \
-					scaling(s->diameter / 2, s->diameter / 2, s->diameter / 2));
-	return (res);
-}
-
 int	init_sp(char **params, t_obj *sp)
 {
 	sp->shape = SPHERE;
@@ -63,7 +54,9 @@ int	init_sp(char **params, t_obj *sp)
 		return (1);
 	if (init_rgb(sp, params[3]))
 		return (1);
-	sp->transform = sp_transform_matr(sp);
+	sp->transform = matrix_mult_4(translation(sp->x, sp->y, sp->z), \
+					scaling(sp->diameter / 2, sp->diameter / 2,
+				sp->diameter / 2));
 	return (0);
 }
 
@@ -73,11 +66,11 @@ t_matrix_4	pl_transform_matr(t_obj *pl)
 
 	res = translation(pl->x, pl->y, pl->z);
 	res = matrix_mult_4(res, \
-					rotation_x(PI * pl->direction.x));
+					rotation_x(pl->direction.x));
 	res = matrix_mult_4(res, \
-					rotation_y(PI * pl->direction.y));
+					rotation_y(pl->direction.y));
 	res = matrix_mult_4(res, \
-					rotation_z(PI * pl->direction.z));
+					rotation_z(pl->direction.z));
 	return (res);
 }
 
