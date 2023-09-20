@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:28:28 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/20 14:38:54 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:05:13 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ t_matrix_4	pl_transform_matr(t_obj *pl)
 
 	res = translation(pl->x, pl->y, pl->z);
 	res = matrix_mult_4(res, \
-					rotation_x(PI * pl->direction.x));
+					rotation_x(pl->direction.x));
 	res = matrix_mult_4(res, \
-					rotation_y(PI * pl->direction.y));
+					rotation_y(pl->direction.y));
 	res = matrix_mult_4(res, \
-					rotation_z(PI * pl->direction.z));
+					rotation_z(pl->direction.z));
 	return (res);
 }
 
