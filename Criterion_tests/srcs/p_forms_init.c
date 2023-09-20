@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:28:28 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/20 17:05:13 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:35:47 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,6 @@ int	init_xyz(t_obj *obj, char *param)
 	return (0);
 }
 
-t_matrix_4	sp_transform_matr(t_obj *s)
-{
-	t_matrix_4	res;
-
-	res = matrix_mult_4(translation(s->x, s->y, s->z), \
-					scaling(s->diameter / 2, s->diameter / 2, s->diameter / 2));
-	return (res);
-}
-
 int	init_sp(char **params, t_obj *sp)
 {
 	sp->shape = SPHERE;
@@ -63,7 +54,9 @@ int	init_sp(char **params, t_obj *sp)
 		return (1);
 	if (init_rgb(sp, params[3]))
 		return (1);
-	sp->transform = sp_transform_matr(sp);
+	sp->transform = matrix_mult_4(translation(sp->x, sp->y, sp->z), \
+					scaling(sp->diameter / 2, sp->diameter / 2,
+				sp->diameter / 2));
 	return (0);
 }
 

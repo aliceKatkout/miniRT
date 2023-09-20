@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 18:14:25 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:36:07 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow)
 {
 	t_tuple	ambient;
 	double	reflect_dot_eye;
-	double	factor;
 	t_tuple	res;
 
 	l.eff_color = mult_colors(m.color, l.intensity);
@@ -67,10 +66,8 @@ t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow)
 		if (reflect_dot_eye <= 0)
 			l.spec = create_color(0, 0, 0);
 		else
-		{
-			factor = pow(reflect_dot_eye, m.shininess);
-			l.spec = mult_3(l.intensity, m.specular, factor);
-		}
+			l.spec = mult_3(l.intensity, m.specular,
+					pow(reflect_dot_eye, m.shininess));
 	}
 	res = add_3_tuples(ambient, l.diff, l.spec);
 	return (res);

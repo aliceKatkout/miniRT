@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:02:41 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/20 17:33:42 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:45:19 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ double	cylinder_min(t_obj *cyl)
 {
 	double	min;
 
-	min = 0 + cyl->y;
+	min = cyl->y - cyl->height / 2;
 	return (min);
 }
 
@@ -24,7 +24,7 @@ double	cylinder_max(t_obj *cyl)
 {
 	double	max;
 
-	max = cyl->height + cyl->y;
+	max = cyl->height / 2 + cyl->y;
 	return (max);
 }
 

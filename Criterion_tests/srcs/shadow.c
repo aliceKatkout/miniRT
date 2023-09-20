@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:54:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 19:06:00 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:22:25 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,13 @@ int	is_shadowed(t_world world, t_tuple point)
 	t_tuple		direction;
 	t_ray		r;
 	t_xs_world	intersections;
-	t_xs		h;
 
 	v = sub_tuples(world.light.position, point);
 	distance = magn_tuple(v);
 	direction = normalize(v);
 	r = create_ray(point, direction);
 	intersections = intersect_world(world, r);
-	h = intersections.tab_xs[0];
-	if (intersections.count > 0 && h.t < distance)
+	if (intersections.count > 0 && intersections.tab_xs[0].t < distance)
 		return (1);
 	else
 		return (0);

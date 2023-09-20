@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:03:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/20 14:35:47 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:28:32 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ t_obj	*init_fill_obj(char **params, int shape)
 		ft_free_arr((void **) params);
 		return (NULL);
 	}
-	// new_obj->o_pos = create_point(0, 0, 0);
 	new_obj->id = id++;
 	return (new_obj);
 }

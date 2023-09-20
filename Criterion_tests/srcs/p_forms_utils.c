@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 18:47:14 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:23:19 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,15 @@ char	**get_params_from_line(char *line, int wanted_nb)
 char	**check_rgb(char *line)
 {
 	char	**rgb;
-	double	r;
-	double	g;
-	double	b;
 
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = ',';
 	rgb = ft_split(line, ',');
 	if (ft_arrlen((void **)rgb) != 3 || !is_number(rgb[0])
-		|| !is_number(rgb[1]) || !is_number(rgb[2]))
-	{
-		ft_putstr_fd("Error in \"check_rgb\"❌\n ", 2);
-		ft_free_arr((void **)rgb);
-		return (NULL);
-	}
-	r = ft_atof(rgb[0]);
-	g = ft_atof(rgb[1]);
-	b = ft_atof(rgb[2]);
-	if (!is_in_range(r, 0.0, 255.0) || !is_in_range(b, 0.0, 255.0)
-		|| !is_in_range(g, 0.0, 255.0))
+		|| !is_number(rgb[1]) || !is_number(rgb[2])
+		|| !is_in_range(ft_atof(rgb[0]), 0.0, 255.0)
+		|| !is_in_range(ft_atof(rgb[1]), 0.0, 255.0)
+		|| !is_in_range(ft_atof(rgb[2]), 0.0, 255.0))
 	{
 		ft_putstr_fd("Error in \"check_rgb\"❌\n ", 2);
 		ft_free_arr((void **)rgb);
@@ -77,26 +67,15 @@ char	**check_rgb(char *line)
 char	**check_vectors(char *line)
 {
 	char	**vec;
-	double	x;
-	double	y;
-	double	z;
 
-	printf("line:%s\n", line);
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = ',';
 	vec = ft_split(line, ',');
 	if (ft_arrlen((void **)vec) != 3 || !is_number(vec[0])
-		|| !is_number(vec[1]) || !is_number(vec[2]))
-	{
-		ft_putstr_fd("Error in \"check_vectors\"❌\n ", 2);
-		ft_free_arr((void **)vec);
-		return (NULL);
-	}
-	x = ft_atof(vec[0]);
-	y = ft_atof(vec[1]);
-	z = ft_atof(vec[2]);
-	if (!is_in_range(x, -1.0, 1.0) || !is_in_range(y, -1.0, 1.0)
-		|| !is_in_range(z, -1.0, 1.0))
+		|| !is_number(vec[1]) || !is_number(vec[2])
+		|| !is_in_range(ft_atof(vec[0]), -1.0, 1.0)
+		|| !is_in_range(ft_atof(vec[1]), -1.0, 1.0)
+		|| !is_in_range(ft_atof(vec[2]), -1.0, 1.0))
 	{
 		ft_putstr_fd("Error in \"check_vectors\"❌\n ", 2);
 		ft_free_arr((void **)vec);

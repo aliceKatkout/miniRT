@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   shearing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:18:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 19:06:21 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:21:16 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../project.h"
 
-t_matrix_4	shearing(double xy, double xz, double yx, double yz, double zx, double zy)
+/* t_matrix_4	shearing(double xy, double xz,
+double yx, double yz, double zx, double zy)
 {
 	t_matrix_4	matrix;
 
@@ -23,4 +24,4 @@ t_matrix_4	shearing(double xy, double xz, double yx, double yz, double zx, doubl
 			0, 0, 0, 1
 		});
 	return (matrix);
-}
+} */
