@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 18:57:47 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:43:29 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <math.h>
 
 # define EPSILON 0.0001
-# define WINDOW_WIDTH 720
-# define WINDOW_HEIGHT 480
+# define WINDOW_WIDTH 400
+# define WINDOW_HEIGHT 250
 # define PI 3.14159265359
 
 # define SPHERE 1
@@ -122,6 +122,7 @@ typedef struct s_obj
 	double		x;
 	double		y;
 	double		z;
+	// t_tuple		o_pos;
 	double		radius;
 	double		diameter;
 	double		min;
@@ -361,14 +362,19 @@ int	create_obj(char *line, t_data *data, int shape);
 int	parse_forms(t_list *buf, t_data *data);
 t_obj	*init_fill_obj(char **params, int shape);
 t_tuple	color_to_unit(t_tuple color);
+t_matrix_4	pl_transform_matr(t_obj *pl);
 
-
+/* PARSE CYLINDER */
+double	cylinder_max(t_obj *cyl);
+int	init_cylinder(char **params, t_obj	*cy);
+t_matrix_4	cyl_transfo_matr(t_obj *cy);
+t_matrix_4	fuse_rotate(t_obj	*cy);
 
 /* P_FORMS_INIT */
+double	cylinder_min(t_obj *cyl);
 int	init_rgb(t_obj *obj, char *param);
 int	init_xyz(t_obj *obj, char *param);
 int	init_sp(char **params, t_obj *sp);
-int	init_cylinder(char **params, t_obj	*cy);
 int	init_plane(char **params, t_obj *pl);
 
 /* EXIT */

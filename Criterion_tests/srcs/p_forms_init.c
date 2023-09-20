@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:28:28 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 18:57:47 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:38:54 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ int	init_xyz(t_obj *obj, char *param)
 	return (0);
 }
 
+t_matrix_4	sp_transform_matr(t_obj *s)
+{
+	t_matrix_4	res;
+
+	res = matrix_mult_4(translation(s->x, s->y, s->z), \
+					scaling(s->diameter / 2, s->diameter / 2, s->diameter / 2));
+	return (res);
+}
+
 int	init_sp(char **params, t_obj *sp)
 {
 	sp->shape = SPHERE;
@@ -54,32 +63,22 @@ int	init_sp(char **params, t_obj *sp)
 		return (1);
 	if (init_rgb(sp, params[3]))
 		return (1);
-	sp->transform = identity_matrix();
+	sp->transform = sp_transform_matr(sp);
 	return (0);
 }
 
-int	init_cylinder(char **params, t_obj	*cy)
+t_matrix_4	pl_transform_matr(t_obj *pl)
 {
-	char		**vec;
+	t_matrix_4	res;
 
-	cy->shape = CYLINDER;
-	cy->closed = 1;
-	if (set_diam_height_rad(params[3], params[4], cy))
-		return (1);
-	if (init_xyz(cy, params[1]))
-		return (1);
-	if (init_rgb(cy, params[5]))
-		return (1);
-	vec = check_vectors(params[2]);
-	if (!vec)
-		return (1);
-	cy->direction = create_vector(ft_atof(vec[0]),
-			ft_atof(vec[1]), ft_atof(vec[2]));
-	ft_free_arr((void **)vec);
-	cy->transform = identity_matrix();
-	cy->min = cy->height / -2;
-	cy->max = cy->height / 2;
-	return (0);
+	res = translation(pl->x, pl->y, pl->z);
+	res = matrix_mult_4(res, \
+					rotation_x(PI * pl->direction.x));
+	res = matrix_mult_4(res, \
+					rotation_y(PI * pl->direction.y));
+	res = matrix_mult_4(res, \
+					rotation_z(PI * pl->direction.z));
+	return (res);
 }
 
 int	init_plane(char **params, t_obj	*pl)
@@ -98,6 +97,6 @@ int	init_plane(char **params, t_obj	*pl)
 	pl->direction = create_vector(ft_atof(vec[0]),
 			ft_atof(vec[1]), ft_atof(vec[2]));
 	ft_free_arr((void **)vec);
-	pl->transform = identity_matrix();
+	pl->transform = pl_transform_matr(pl);
 	return (0);
 }

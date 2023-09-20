@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:31:40 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/19 18:49:08 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:22:51 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	init_cam(t_data *data, char **info)
 
 	param = get_new_params(info[1], 3, ',');
 	data->cam.fov = ft_atof(info[3]);
-	// data->cam.fov *= PI / 180;
+	data->cam.fov *= PI / 180;
 	data->cam = create_camera(WINDOW_HEIGHT, WINDOW_WIDTH, data->cam.fov);
 	if (!param)
 	{

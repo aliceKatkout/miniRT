@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:25:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/19 16:57:41 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:18:12 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	set_diam_height_rad(char *s1, char *s2, t_obj *elem)
 	diam_hght[0] = ft_atof(s1);
 	if (!is_number(s1) || diam_hght[0] <= 0)
 		return (ft_putstr_fdi("Wrong diameter value for cylinder", 2));
-	elem->height = diam_hght[0];
+	elem->diameter = diam_hght[0];
+	elem->radius = diam_hght[0] / 2;
 	diam_hght[1] = ft_atof(s2);
 	if (!is_number(s2) || diam_hght[1] <= 0)
 		return (ft_putstr_fdi("Wrong heigth value for cylinder", 2));
-	elem->diameter = diam_hght[1];
-	elem->radius = diam_hght[1] / 2;
+	elem->height = diam_hght[1];
 	return (0);
 }
