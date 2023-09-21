@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_parse_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:14:03 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/20 17:58:04 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:25:35 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,25 @@ void	ft_print_info(char **info)
 int	check_nb_env(t_list *current)
 {
 	t_list	*tmp;
-	int		i;
+	int		a;
+	int		l;
+	int		c;
 
-	i = 0;
+	a = 0;
+	l = 0;
+	c = 0;
 	tmp = current;
 	while (tmp)
 	{
 		tmp = tmp->next;
-		if (tmp && (ft_strncmp(tmp->content, "C ", 2) == 0
-				|| ft_strncmp(tmp->content, "A ", 2) == 0
-				|| ft_strncmp(tmp->content, "L ", 2) == 0))
-			i++;
+		if (tmp && (ft_strncmp(tmp->content, "C ", 2) == 0))
+			c++;
+		else if (tmp && (ft_strncmp(tmp->content, "A ", 2) == 0))
+			a++;
+		else if (tmp && (ft_strncmp(tmp->content, "L ", 2) == 0))
+			l++;
 	}
-	if (i != 3)
+	if (a != 1 || l != 1 || c != 1)
 		return (1);
 	return (0);
 }
