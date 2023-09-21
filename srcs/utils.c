@@ -3,69 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/11 18:24:45 by avedrenn         ###   ########.fr       */
+/*   Created: 2023/09/18 12:21:41 by avedrenn          #+#    #+#             */
+/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-void	ft_error_parse(char *error, t_scene *s, t_list *buf)
+void	ft_swap_double(double	*a, double	*b)
 {
-	ft_putstr_fd("Error\n❌ ", 2);
-	ft_putstr_fd(error, 2);
-	ft_free_parse(s, buf);
-	exit(1);
+	double	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
-void	ft_error(char *error)
-{
-	ft_putstr_fd("Error\n❌ ", 2);
-	ft_putstr_fd(error, 2);
-	exit(1);
-}
-
-int	ft_arrlen(void **array)
+void	ft_sort_double_tab(double *tab, int size)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	if (!array)
-		return (i);
-	while (array[i])
-		i ++;
-	return (i);
-}
-
-int	ft_free_arr(void **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
+	j = 1;
+	while (i < size - 1)
 	{
-		free(array[i]);
+		if (tab[i] > tab[j])
+			ft_swap_double(&tab[i], &tab[j]);
 		i++;
+		j++;
 	}
-	free(array);
-	return (2);
-}
-
-void	ft_free_parse(t_scene *s, t_list *buf)
-{
-	if (s->rt_file > 2)
-		close(s->rt_file);
-	if (buf)
+	i = 0;
+	j = 1;
+	while (i < size - 1)
 	{
-		ft_lstclear(&buf, free);
-		free (buf);
+		if (tab[i] > tab[j])
+			ft_sort_double_tab(tab, size);
+		i++;
+		j++;
 	}
-	if (s->objs)
-		ft_lstclear(&s->objs, free);
-	if (s->cylinders)
-		ft_lstclear(&s->cylinders, free);
-	if (s->planes)
-		ft_lstclear(&s->planes, free);
 }

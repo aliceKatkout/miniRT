@@ -1,29 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   matrix_inversion.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
+/*   Created: 2023/09/01 14:34:52 by mrabourd          #+#    #+#             */
 /*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	main(int argc, char **argv)
+int	is_invertible(t_matrix_4 a)
 {
-	t_data	data;
+	if (determine_four(a) == 0)
+		return (0);
+	return (1);
+}
 
-	if (argc != 2)
+t_matrix_4	mat_inversion_4(t_matrix_4 a)
+{
+	int			x;
+	int			y;
+	double		deter;
+	double		cofact;
+	t_matrix_4	res;
+
+	x = 0;
+	deter = determine_four(a);
+	if (is_invertible(a) != 0)
 	{
-		printf("One argument expected. \n");
-		return (1);
+		while (x < 4)
+		{
+			y = 0;
+			while (y < 4)
+			{
+				cofact = cofactor_4(a, x, y);
+				res.tab[y][x] = (double)cofact / (double)deter;
+				y++;
+			}
+			x++;
+		}
 	}
-	parse_scene(argv[1], &data);
- 	init_canvas(&data);
-
-	ft_free_all(&data);
-	return (0);
+	else
+		res = identity_matrix();
+	return (res);
 }

@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
+/*   Created: 2023/08/30 18:59:17 by mrabourd          #+#    #+#             */
 /*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	main(int argc, char **argv)
+int	handle_keypress(int keysym, t_data *data)
 {
-	t_data	data;
-
-	if (argc != 2)
+	if (keysym == XK_Escape)
 	{
-		printf("One argument expected. \n");
-		return (1);
+		ft_free_all(data);
 	}
-	parse_scene(argv[1], &data);
- 	init_canvas(&data);
-
-	ft_free_all(&data);
 	return (0);
 }

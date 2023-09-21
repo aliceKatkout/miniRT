@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shearing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
+/*   Created: 2023/09/02 16:18:44 by avedrenn          #+#    #+#             */
 /*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	main(int argc, char **argv)
+/* t_matrix_4	shearing(double xy, double xz,
+double yx, double yz, double zx, double zy)
 {
-	t_data	data;
+	t_matrix_4	matrix;
 
-	if (argc != 2)
-	{
-		printf("One argument expected. \n");
-		return (1);
-	}
-	parse_scene(argv[1], &data);
- 	init_canvas(&data);
-
-	ft_free_all(&data);
-	return (0);
-}
+	matrix = create_matrix_4((double [16]){
+			1, xy, xz, 0,
+			yx, 1, yz, 0,
+			zx, zy, 1, 0,
+			0, 0, 0, 1
+		});
+	return (matrix);
+} */

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   operation_tuples3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
+/*   Created: 2023/09/19 18:14:14 by mrabourd          #+#    #+#             */
 /*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	main(int argc, char **argv)
+t_tuple	mult_3(t_tuple tuple1, double vec1, double vec2)
 {
-	t_data	data;
+	t_tuple	res;
 
-	if (argc != 2)
-	{
-		printf("One argument expected. \n");
-		return (1);
-	}
-	parse_scene(argv[1], &data);
- 	init_canvas(&data);
+	res = mult_tuples(tuple1, vec1);
+	res = mult_tuples(res, vec2);
+	return (res);
+}
 
-	ft_free_all(&data);
-	return (0);
+t_tuple	add_3_tuples(t_tuple tuple1, t_tuple tuple2, t_tuple tuple3)
+{
+	t_tuple	res;
+
+	res = add_tuples(tuple1, tuple2);
+	res = add_tuples(res, tuple3);
+	return (res);
 }

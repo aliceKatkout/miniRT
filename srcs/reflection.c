@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   reflection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 20:16:31 by mrabourd          #+#    #+#             */
+/*   Created: 2023/09/07 15:48:38 by mrabourd          #+#    #+#             */
 /*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-int	main(int argc, char **argv)
+t_tuple	reflect(t_tuple in, t_tuple normal)
 {
-	t_data	data;
+	t_tuple	res;
 
-	if (argc != 2)
-	{
-		printf("One argument expected. \n");
-		return (1);
-	}
-	parse_scene(argv[1], &data);
- 	init_canvas(&data);
+	res = mult_tuples(normal, 2);
+	res = mult_tuples(res, dot_product(in, normal));
+	res = sub_tuples(in, res);
+	return (res);
+}
 
-	ft_free_all(&data);
-	return (0);
+t_light	point_light(t_tuple position, t_tuple intensity)
+{
+	t_light	light;
+
+	light.position = position;
+	light.intensity = intensity;
+	return (light);
+}
+
+t_material	init_material(void)
+{
+	t_material	m;
+
+	m.color = create_color(1, 1, 1);
+	m.ambient = 0.1;
+	m.diffuse = 0.9;
+	m.specular = 0.9;
+	m.shininess = 200.0;
+	return (m);
 }
