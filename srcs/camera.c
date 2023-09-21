@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 18:27:42 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:10:26 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	t_matrix_4	orientation;
 	double		o[16];
 
-	// forward = normalize(sub_tuples(to, from));
 	forward = normalize(sub_tuples(to, from));
 	left = cross_product(forward, normalize(up));
 	true_up = cross_product(left, forward);

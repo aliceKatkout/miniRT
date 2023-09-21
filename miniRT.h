@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:47 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:04:46 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_light
 	t_tuple	spec;
 	t_tuple	eff_color;
 	double	light_dot_normal;
+	double	brightness;
 }	t_light;
 
 typedef struct s_material
@@ -122,7 +123,6 @@ typedef struct s_obj
 	double		x;
 	double		y;
 	double		z;
-	// t_tuple		o_pos;
 	double		radius;
 	double		diameter;
 	double		min;
@@ -187,6 +187,11 @@ typedef struct s_data
 
 void print_matrix_4(t_matrix_4 a);
 
+
+/* PRINT */
+void	print_objects_list(t_list *lst);
+
+
 /* TUPLES CREATE */
 t_tuple		create_point(double x, double y, double z);
 t_tuple		create_vector(double x, double y, double z);
@@ -225,7 +230,6 @@ void		init_canvas(t_data *data);
 
 /* HOOK --- with MLX */
 int			handle_keypress(int keysym, t_data *data);
-// int	handle_mouse(int button, int x, int y, t_data *data);
 
 /* MATRICES CREATE*/
 t_matrix_4	create_matrix_4(double tab[16]);
@@ -334,6 +338,8 @@ int			parse_cam(char *line, t_data *data);
 /* PARSE LIGHT */
 int		create_light(char *line, t_data *data);
 t_tuple	conv_color(char **param);
+int		get_brightness(t_data *data, char **info);
+int		get_l_position(t_data *data, char **info1, char **info3, int nb_info);
 int		create_amb(char *line, t_data *data);
 
 /* PARSE ENV */
@@ -379,7 +385,6 @@ int	init_plane(char **params, t_obj *pl);
 
 /* EXIT */
 int		ft_free_all(t_data *data);
-
 void	ft_swap_double(double	*a, double	*b);
 void	ft_sort_double_tab(double *tab, int size);
 

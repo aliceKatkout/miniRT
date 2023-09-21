@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:26:20 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,63 +51,18 @@ void	render_background(t_image *img, int color)
 	}
 }
 
-void	print_objects_list(t_list *lst)
-{
-	t_list	*tmp;
-	t_obj	*obj;
-
-	tmp = lst;
-	while (tmp != NULL)
-	{
-		obj = (t_obj *) tmp->content;
-		printf("obj id:%d\n", obj->id);
-		printf("obj shape : %d\n", obj->shape);
-		if (obj->shape == SPHERE)
-		{
-			printf("obj diameter :%f\n", obj->diameter);
-		}
-		printf("obj color x:%f\n", obj->material.color.x);
-		printf("obj color y:%f\n", obj->material.color.y);
-		printf("obj color z:%f\n", obj->material.color.z);
-		printf("obj x:%f\n", obj->x);
-		printf("obj y:%f\n", obj->y);
-		printf("obj z:%f\n", obj->z);
-		printf("obj closed:%d\n", obj->closed);
-
-		tmp = tmp->next;
-	}
-}
-
 void	render_map(t_data *data)
 {
 	t_ray	ray;
-	int x;
-	int y;
+	int		x;
+	int		y;
 	t_tuple	color;
 
-	printf("cam fov: %f\n", data->cam.fov);
-	printf("cam orientation.x: %f\n", data->cam.orientation.x);
-	printf("cam orientation.y: %f\n", data->cam.orientation.y);
-	printf("cam orientation.z: %f\n", data->cam.orientation.z);
-	printf("cam position.x: %f\n", data->cam.position.x);
-	printf("cam position.y: %f\n", data->cam.position.y);
-	printf("cam position.z: %f\n", data->cam.position.z);
 	print_objects_list(data->world.objs);
 	x = 0;
 	y = 0;
 	render_background(&data->img, 0x000000);
-	printf("coucou\n");
-	// data->cam.position.x = 0;
-	// data->cam.position.y = 0;
-	// data->cam.position.z = 0;
-	// printf("cam position.x: %f\n", data->cam.position.x);
-	// printf("cam position.y: %f\n", data->cam.position.y);
-	// printf("cam position.z: %f\n", data->cam.position.z);
-	// t_light	light;
-	// light.position = create_point(-3, 4, -5);
-	// light.intensity = create_color (1, 1, 1);
-	// data->world.light = light;
-	//data->cam = create_camera(WINDOW_WIDTH, WINDOW_HEIGHT, M_PI / 3);
+	printf("Starting render!\n");
 	while (y < data->cam.vsize)
 	{
 		x = 0;
@@ -125,7 +80,8 @@ void	render_map(t_data *data)
 
 int	render(t_data *data)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.image, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img.image, 0, 0);
 	return (0);
 }
 
@@ -135,7 +91,7 @@ void	init_canvas(t_data *data)
 	if (data->mlx_ptr == NULL)
 		return ;
 	data->win_ptr = mlx_new_window(data->mlx_ptr,
-			WINDOW_WIDTH, WINDOW_HEIGHT, "project");
+			WINDOW_WIDTH, WINDOW_HEIGHT, "MiniRT");
 	if (data->win_ptr == NULL)
 		return ;
 	data->img.image = mlx_new_image(data->mlx_ptr,
@@ -146,7 +102,6 @@ void	init_canvas(t_data *data)
 		render_map(data);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
-	// mlx_hook(data->win_ptr, 2, 1, &handle_keypress, data);
 	mlx_hook(data->win_ptr, 17, 0, &ft_free_all, data);
 	mlx_loop(data->mlx_ptr);
 }

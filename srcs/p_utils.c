@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:51:17 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,8 @@ void	ft_free_parse(t_data *data, t_list *buf)
 		ft_lstclear(&buf, free);
 		free (buf);
 	}
-	// if (data->objs)
-	// 	ft_lstclear(&data->objs, free);
-	// if (data->cylinders)
-	// 	ft_lstclear(&data->cylinders, free);
-	// if (data->planes)
-	// 	ft_lstclear(&data->planes, free);
+	// if (data->world.objs)
+	// 	ft_lstclear(&data->world.objs, free);
 }
 
 void	ft_replace(char *str, char old, char new)

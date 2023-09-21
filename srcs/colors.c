@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:25:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:35:32 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_tuple	color_at(t_world w, t_ray r)
 	t_tuple		res;
 
 	xs = intersect_world(w, r);
+	if (xs.count == 0)
+		return (create_color(0, 0, 0));
 	h = xs.tab_xs[0];
 	if (h.count == 0)
 		return (create_color(0, 0, 0));

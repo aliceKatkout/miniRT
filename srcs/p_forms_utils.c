@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:21:56 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ char	**get_params_from_line(char *line, int wanted_nb)
 	params = ft_split(line, 32);
 	if (!params)
 	{
-		ft_putstr_fd("Error in \"get_params from line\"❌\n ", 2);
+		ft_putstr_fd("Error: \"get_params from line\"❌\n ", 2);
 		return (NULL);
 	}
 	params_nb = ft_arrlen((void **) params);
 	if (params_nb != wanted_nb)
 	{
-		ft_putstr_fd("Error in \"get_params from line\"❌\n ", 2);
+		ft_putstr_fd("Error: \"get_params from line\"❌\n ", 2);
 		ft_free_arr((void **) params);
 		return (NULL);
 	}
@@ -57,7 +57,7 @@ char	**check_rgb(char *line)
 		|| !is_in_range(ft_atof(rgb[1]), 0.0, 255.0)
 		|| !is_in_range(ft_atof(rgb[2]), 0.0, 255.0))
 	{
-		ft_putstr_fd("Error in \"check_rgb\"❌\n ", 2);
+		ft_putstr_fd("Error: \"check_rgb\"❌\n ", 2);
 		ft_free_arr((void **)rgb);
 		return (NULL);
 	}
@@ -77,7 +77,7 @@ char	**check_vectors(char *line)
 		|| !is_in_range(ft_atof(vec[1]), -1.0, 1.0)
 		|| !is_in_range(ft_atof(vec[2]), -1.0, 1.0))
 	{
-		ft_putstr_fd("Error in \"check_vectors\"❌\n ", 2);
+		ft_putstr_fd("Error: \"check_vectors\"❌\n ", 2);
 		ft_free_arr((void **)vec);
 		return (NULL);
 	}
@@ -91,11 +91,14 @@ char	**get_new_params(char *line, int wanted_nb, char sep)
 
 	params = ft_split(line, sep);
 	if (!params)
+	{
+		ft_putstr_fd("Error: split params ❌\n ", 2);
 		return (NULL);
+	}
 	params_nb = ft_arrlen((void **) params);
 	if (params_nb != wanted_nb)
 	{
-		ft_putstr_fd("Error in \"get_new_params\"❌\n ", 2);
+		ft_putstr_fd("Error: number of params ❌\n ", 2);
 		ft_free_arr((void **) params);
 		return (NULL);
 	}

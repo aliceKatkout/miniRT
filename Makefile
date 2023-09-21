@@ -44,7 +44,9 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/p_utils.c \
 					srcs/p_parse_env.c \
 					srcs/p_parse_cam.c \
+					srcs/p_cam_conv.c \
 					srcs/p_parse_light.c \
+					srcs/p_parse_amb.c \
 					srcs/p_ft_atof.c \
 					srcs/p_forms_utils.c \
 					srcs/p_forms_init.c \
@@ -52,9 +54,10 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/p_parse_cylinder.c \
 					srcs/p_checks.c \
 					srcs/utils.c \
+					srcs/PRINT.c \
 					srcs/canvas.c \
 					srcs/hook.c	\
-					srcs/exit.c
+					srcs/exit.c 
 MAIN_SRCS		=	srcs/main.c
 NAME			= 	miniRT
 RM				= 	rm -rf
@@ -62,20 +65,22 @@ CC				=	gcc -ggdb $(CFLAGS)
 CFLAGS			=	-Wall -Werror -Wextra
 OBJECTS 		=	$(subst /,/build/,${SRCS:.c=.o})
 M_OBJECTS 		=	$(subst /,/build/,${MAIN_SRCS:.c=.o})
+LIBFT_DIR		=	libft
 
 ################################################################################
 #                                MAIN RULES								       #
 ################################################################################
 
-all:	$(NAME)
+all:	make_lib $(NAME)
 
-libft/libft.a:
-	${MAKE} -C libft
+make_lib:
+	@make -C ${LIBFT_DIR}
 
-${NAME}:	${OBJECTS} ${M_OBJECTS} libft
-	@echo "${_UNDER}${_RED}Creating binary for Project${_END}"
+${NAME}:	${OBJECTS} ${M_OBJECTS}
+	@make -C mlx_linux
+	@echo "${_UNDER}${_RED}Creating binary for MiniRT ${_END}"
 	@echo "${_BOLD}${_GREEN}${CC} -o ${NAME} ${OBJECTS} ${M_OBJECTS}${_END}"
-	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} -L ./libft -lft -L./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+	@${CC} -o ${NAME} ${M_OBJECTS} ${OBJECTS} libft/libft.a -L./mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 ${M_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 	@echo "${_BOLD}${_BLUE}"$(CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"
@@ -132,7 +137,7 @@ ${T_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 tests:	${OBJECTS} ${T_OBJECTS} libft/libft.a
 	@echo "${_UNDER}${_RED}Creating binary for Tests${_END}"
 	@echo "${_BOLD}${_GREEN}${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} ${_END}"
-	@${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} -lm -L ./libft -lft
+	@${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} -lm -L libft/libft.a
 	@./${T_NAME}
 
 ################################################################################
@@ -150,6 +155,9 @@ fclean: clean
 	@echo "${_UNDER}${_RED}Deleting Executable${_END}"
 	@echo "${_BOLD}${_RED}"${RM} ${NAME} ${T_NAME}"${_END}"
 	@${RM} ${NAME} ${T_NAME}
+	@echo "${_UNDER}${_RED}Deleting Libft.a${_END}"
+	@echo "${_BOLD}${_RED}"${RM} ${LIBFT_DIR}"${_END}"
+	@make -C ${LIBFT_DIR} fclean
 
 re:	fclean all
 

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 22:25:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:14:46 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	is_number(char *str)
 	if (!str)
 		return (0);
 	if (str[i] == '-')
-		i ++;
+		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && str[i] != '.')
 			return (0);
-		i ++;
+		i++;
 	}
 	return (1);
 }

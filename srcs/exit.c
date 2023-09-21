@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:00:47 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:46:44 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	ft_free_all(t_data *data)
 {
+	if (data->world.objs)
+	{
+		ft_lstclear(&data->world.objs, free);
+		free(data->world.objs);
+	}
 	if (data->mlx_ptr)
 	{
 		render_background(&data->img, 0x000000);
