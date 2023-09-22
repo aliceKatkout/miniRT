@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:28:28 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:31:21 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	init_sp(char **params, t_obj *sp)
 	sp->closed = 0;
 	sp->diameter = set_diameter(params[2]);
 	if (sp->diameter <= 0)
-		return (ft_putstr_fdi("Sphere diameter is incorrect.\n", 2));
+		return (1);
 	if (init_xyz(sp, params[1]))
 		return (1);
 	if (init_rgb(sp, params[3]))
