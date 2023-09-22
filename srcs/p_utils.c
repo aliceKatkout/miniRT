@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:12:44 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 18:51:17 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:41:50 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,19 @@ int	ft_free_arr(void **array)
 
 void	ft_free_parse(t_data *data, t_list *buf)
 {
-	if (data->rt_file > 2)
-		close(data->rt_file);
+
 	if (buf)
 	{
 		ft_lstclear(&buf, free);
 		free (buf);
 	}
-	// if (data->world.objs)
-	// 	ft_lstclear(&data->world.objs, free);
+	if (data)
+	{
+		if (data->world.objs)
+			ft_lstclear(&data->world.objs, free);
+		if (data->rt_file > 2)
+			close(data->rt_file);
+	}
 }
 
 void	ft_replace(char *str, char old, char new)

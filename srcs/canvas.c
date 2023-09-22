@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:56:28 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 17:26:20 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:22:05 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	render_map(t_data *data)
 	int		y;
 	t_tuple	color;
 
-	print_objects_list(data->world.objs);
 	x = 0;
 	y = 0;
 	render_background(&data->img, 0x000000);

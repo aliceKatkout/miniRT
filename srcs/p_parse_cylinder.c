@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_parse_cylinder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:02:41 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:53:56 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_matrix_4	cyl_transfo_matr(t_obj *cy)
 
 	rotate_matrix = fuse_rotate(cy);
 	res = rotate_matrix;
-	res = matrix_mult_4(res, scaling(cy->diameter, 1, cy->diameter));
+	res = matrix_mult_4(res, scaling(cy->radius, 1, cy->radius));
 	res = matrix_mult_4(res, translation(cy->x, cy->y, cy->z));
 	return (res);
 }

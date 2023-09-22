@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 18:04:46 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:03:56 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,6 +327,7 @@ void	find_hit_cylinder(t_xs *xs);
 void	parse_scene(char *argv, t_data *data);
 void	init_scene(t_data *data);
 void	print_list_prefix(t_list *lst, char *prefix);
+void	get_map(t_list *buf, int file);
 
 /* PARSE CAM */
 t_tuple		conv_vec(char **param);

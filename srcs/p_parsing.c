@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_parsing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 18:45:14 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:15:51 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,39 @@ void	init_scene(t_data *data)
 	data->rt_file = -1;
 }
 
-void	parse_scene(char *argv, t_data *data)
+void	get_map(t_list *buf, int file)
 {
-	t_list	*buf;
 	t_list	*tmp;
+	t_list	*new;
 
-	if (ft_strncmp(argv + (ft_strlen(argv) - 3), ".rt", 3) != 0)
-		ft_error_parse("Scene given is not in .rt format.\n", data, NULL);
-	data->rt_file = open(argv, O_RDWR);
-	if (data->rt_file < 0)
-		ft_error_parse("Can't open scene.\n", data, NULL);
-	buf = ft_lstnew((void *) get_next_line(data->rt_file));
-	if (!buf)
-		ft_error_parse("Empty scene.\n", data, NULL);
 	tmp = buf;
 	while (tmp)
 	{
 		ft_replace((char *)tmp->content, '	', ' ');
-		ft_lstadd_back(&buf, ft_lstnew((void *) get_next_line(data->rt_file)));
+		new = ft_lstnew((void *) get_next_line(file));
+		if (new)
+			ft_lstadd_back(&buf, new);
 		tmp = tmp->next;
 	}
+}
+
+void	parse_scene(char *argv, t_data *data)
+{
+	t_list	*buf;
+
+
+	if (ft_strncmp(argv + (ft_strlen(argv) - 3), ".rt", 3) != 0)
+		ft_error_parse("Scene given is not in .rt format.\n", NULL, NULL);
+	data->rt_file = open(argv, O_RDWR);
+	if (data->rt_file < 0)
+		ft_error_parse("Can't open scene.\n", NULL, NULL);
+	buf = ft_lstnew((void *) get_next_line(data->rt_file));
+	if (!buf)
+	{
+		close(data->rt_file);
+		ft_error_parse("Empty scene.\n", NULL, NULL);
+	}
+	get_map(buf, data->rt_file);
 	if (parse_forms(buf, data))
 		return (ft_error_parse("Occured when parsing forms.\n", data, buf));
 	if (parse_env(data, buf))
