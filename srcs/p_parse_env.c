@@ -6,23 +6,11 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:14:03 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 17:36:43 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:26:06 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
-
-void	ft_print_info(char **info)
-{
-	int	i;
-
-	i = 0;
-	while (info[i])
-	{
-		printf("info[%d]: %s\n", i, info[i]);
-		i++;
-	}
-}
 
 int	check_nb_env(t_list *current)
 {
@@ -37,13 +25,13 @@ int	check_nb_env(t_list *current)
 	tmp = current;
 	while (tmp)
 	{
-		tmp = tmp->next;
 		if (tmp && (ft_strncmp(tmp->content, "C ", 2) == 0))
 			c++;
 		else if (tmp && (ft_strncmp(tmp->content, "A ", 2) == 0))
 			a++;
 		else if (tmp && (ft_strncmp(tmp->content, "L ", 2) == 0))
 			l++;
+		tmp = tmp->next;
 	}
 	if (a != 1 || l != 1 || c != 1)
 		return (1);

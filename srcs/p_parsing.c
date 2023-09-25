@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_parsing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/22 14:15:51 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:09:10 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	get_map(t_list *buf, int file)
 void	parse_scene(char *argv, t_data *data)
 {
 	t_list	*buf;
-
 
 	if (ft_strncmp(argv + (ft_strlen(argv) - 3), ".rt", 3) != 0)
 		ft_error_parse("Scene given is not in .rt format.\n", NULL, NULL);

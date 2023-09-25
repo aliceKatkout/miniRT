@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:31:09 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:03:32 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,4 @@ void	set_transform(t_obj *s, t_matrix_4 m)
 		}
 		x++;
 	}
-	(void)s;
 }

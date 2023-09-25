@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:31:40 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 19:02:28 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:08:18 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ int	init_fov(t_data *data, char **info)
 {	
 	data->cam.fov = ft_atof(*info);
 	if (!is_in_range(data->cam.fov, 0, 180))
-	{
-		ft_putstr_fd("Error, fov not in range 0-180 ❌ \n", 2);
 		return (1);
-	}
 	data->cam.fov *= PI / 180;
 	return (0);
 }
@@ -64,11 +61,7 @@ int	init_cam(t_data *data, char **info)
 	data->cam.position = conv_vec(param);
 	vec = check_vectors(info[2]);
 	if (!vec)
-	{
-		ft_putstr_fd("Error ❌ \n", 2);
-		ft_free_arr((void **)info);
 		return (1);
-	}
 	data->cam.orientation = conv_cam_orientation(vec);
 	data->cam.transform = view_transform(data->cam.position,
 			data->cam.orientation, create_vector(0, 1, 0));

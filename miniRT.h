@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/22 14:03:56 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:58:32 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ void print_matrix_4(t_matrix_4 a);
 
 /* PRINT */
 void	print_objects_list(t_list *lst);
-
+void	print_matrix(t_matrix_4 m);
 
 /* TUPLES CREATE */
 t_tuple		create_point(double x, double y, double z);
@@ -269,8 +269,6 @@ t_matrix_4	rotation_x(double rad);
 t_matrix_4	rotation_y(double rad);
 t_matrix_4	rotation_z(double rad);
 
-t_matrix_4	shearing(double xy, double xz, double yx, double yz, double zx, double zy);
-
 /* RAYS */
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
@@ -348,7 +346,6 @@ int    parse_env(t_data *data, t_list *buf);
 
 /* P_UTILS */
 void	ft_error_parse(char *error, t_data *data, t_list *buf);
-void	ft_error(char *error);
 int		ft_arrlen(void **array);
 int		ft_free_arr(void **array);
 void	ft_free_parse(t_data *data, t_list *buf);

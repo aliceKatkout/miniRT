@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:51:11 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,6 @@ t_tuple	position(t_ray ray, double t)
 	pos.z = ray.origin.z + (ray.direction.z * t);
 	pos.w = 1;
 	return (pos);
-}
-
-void	print_matrix_4(t_matrix_4 a)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < 4)
-	{
-		y = 0;
-		while (y < 4)
-		{
-			printf("a.tab[%d][%d]: %f\n", x, y, a.tab[x][y]);
-			y++;
-		}
-		x++;
-	}
 }
 
 t_intersection	create_intersection(double t, t_obj *s)

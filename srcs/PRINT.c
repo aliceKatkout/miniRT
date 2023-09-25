@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:20:20 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 17:27:29 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:08:54 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,24 @@ void	print_objects_list(t_list *lst)
 		printf("obj z:%f\n", obj->z);
 		printf("obj closed:%d\n", obj->closed);
 		tmp = tmp->next;
+	}
+}
+
+void	print_matrix(t_matrix_4 m)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < 4)
+	{
+		y = 0;
+		while (y < 4)
+		{
+			printf("%f, ", m.tab[x][y]);
+			y++;
+		}
+		printf("\n");
+		x++;
 	}
 }

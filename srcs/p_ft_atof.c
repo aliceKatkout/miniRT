@@ -22,14 +22,14 @@ double	ft_atof(char *str)
 	i = 0;
 	minus = 1;
 	ret = (double)ft_atoi(str);
-	if (ret < 0)
+	if (str[0] == '-')
 	{
 		minus = -1;
 		ret *= -1;
 	}
 	ret2 = 0;
 	while (str[i] && str[i] != '.')
-	i++;
+		i++;
 	if (str[i] && str[i] == '.')
 	{
 		ret2 = (double)ft_atoi(&str[++i]);

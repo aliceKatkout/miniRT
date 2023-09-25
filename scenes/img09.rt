@@ -11,8 +11,8 @@ C   0,1.5,-6         0,0,1   70
 # Light
 # <coordinates: x,y,z> <brightness: 0-1> <color:red,green,blue>
 L  -10,10,-10                0.5         255,255,255
-L   10,10,-10                0.5         255,255,255
-L   0,10,-10                 0.5         255,255,255
+#L   10,10,-10                0.5         255,255,255
+#L   0,10,-10                 0.5         255,255,255
 
 # Sphere
 # <coordinates: x,y,z> <diameter> <color:red,green,blue>

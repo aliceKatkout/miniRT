@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/22 14:32:42 by avedrenn         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:08:03 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,10 @@ char	**get_params_from_line(char *line, int wanted_nb)
 
 	params = ft_split(line, 32);
 	if (!params)
-	{
-		ft_putstr_fd("Error: \"get_params from line\"❌\n ", 2);
 		return (NULL);
-	}
 	params_nb = ft_arrlen((void **) params);
 	if (params_nb != wanted_nb)
 	{
-		ft_putstr_fd("Error: \"get_params from line\"❌\n ", 2);
 		ft_free_arr((void **) params);
 		return (NULL);
 	}
@@ -89,14 +85,10 @@ char	**get_new_params(char *line, int wanted_nb, char sep)
 
 	params = ft_split(line, sep);
 	if (!params)
-	{
-		//ft_putstr_fd("Error: split params ❌\n ", 2);
 		return (NULL);
-	}
 	params_nb = ft_arrlen((void **) params);
 	if (params_nb != wanted_nb)
 	{
-		//ft_putstr_fd("Error: number of params ❌\n ", 2);
 		ft_free_arr((void **) params);
 		return (NULL);
 	}

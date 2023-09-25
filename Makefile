@@ -30,7 +30,6 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/matrix_inversion.c	\
 					srcs/transformations.c	\
 					srcs/rotations.c	\
-					srcs/shearing.c	\
 					srcs/rays.c	\
 					srcs/objs.c	\
 					srcs/light.c \
@@ -106,7 +105,6 @@ T_SRCS			=	tests/test_tuples.c \
 					tests/test_matrix.c	\
 					tests/test_transformations.c\
 					tests/test_rotations.c\
-					tests/test_shearing.c\
 					tests/test_chaining.c\
 					tests/test_rays.c	\
 					tests/test_reflection.c\

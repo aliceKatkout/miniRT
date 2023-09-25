@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:25:22 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:53:27 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ double	matrix_cmp_4(t_matrix_4 a, t_matrix_4 b)
 	return (0);
 }
 
-/* If you multiply any
-matrix or tuple by the identity matrix, you get back the matrix or tuple you
-started with. */
 t_matrix_4	identity_matrix(void)
 {
 	t_matrix_4	id;
