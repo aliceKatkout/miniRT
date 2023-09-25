@@ -53,18 +53,18 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/p_parse_cylinder.c \
 					srcs/p_checks.c \
 					srcs/utils.c \
-					srcs/PRINT.c \
 					srcs/canvas.c \
 					srcs/hook.c	\
 					srcs/exit.c 
 MAIN_SRCS		=	srcs/main.c
 NAME			= 	miniRT
 RM				= 	rm -rf
-CC				=	gcc -ggdb $(CFLAGS)
+CC				=	gcc $(CFLAGS)
 CFLAGS			=	-Wall -Werror -Wextra
 OBJECTS 		=	$(subst /,/build/,${SRCS:.c=.o})
 M_OBJECTS 		=	$(subst /,/build/,${MAIN_SRCS:.c=.o})
 LIBFT_DIR		=	libft
+HEADER			=	miniRT.h
 
 ################################################################################
 #                                MAIN RULES								       #
@@ -75,7 +75,7 @@ all:	make_lib $(NAME)
 make_lib:
 	@make -C ${LIBFT_DIR}
 
-${NAME}:	${OBJECTS} ${M_OBJECTS}
+${NAME}:	${OBJECTS} ${M_OBJECTS} ${HEADER}
 	@make -C mlx_linux
 	@echo "${_UNDER}${_RED}Creating binary for MiniRT ${_END}"
 	@echo "${_BOLD}${_GREEN}${CC} -o ${NAME} ${OBJECTS} ${M_OBJECTS}${_END}"
@@ -92,51 +92,6 @@ ${OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
 	fi
 	@echo "${_BOLD}${_BLUE}"$(CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"
 	@$(CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@
-
-################################################################################
-#                              	TEST VARIABLES					   		   	   #
-################################################################################
-
-CR_HEADER_PATH	=	-I${HOME}/Criterion/include/criterion
-T_NAME			= 	test_project
-T_SRCS			=	tests/test_tuples.c \
-					tests/test_tuples_ops.c	\
-					tests/test_colors.c	\
-					tests/test_matrix.c	\
-					tests/test_transformations.c\
-					tests/test_rotations.c\
-					tests/test_chaining.c\
-					tests/test_rays.c	\
-					tests/test_reflection.c\
-					tests/test_camera.c \
-					tests/test_plane.c \
-					tests/test_cylinders.c \
-					tests/test_intersections.c\
-					#tests/test_shadow.c \
-					tests/test_world.c \
-					tests/test_lights.c
-T_CC			=	gcc $(CR_HEADER_PATH) $(CR_LIB_PATH) $(CFLAGS) $(T_FLAGS)
-CR_LIB_PATH		=	-Wl,-rpath=${HOME}/Criterion/build/src -L${HOME}/Criterion/build/src
-T_FLAGS			=	-lcriterion
-T_OBJECTS 		=	$(subst /,/build/,${T_SRCS:.c=.o})
-
-################################################################################
-#                                TEST RULES								       #
-################################################################################
-
-${T_OBJECTS}: $(subst .o,.c,$(subst /build/,/,$@))
-	@if [ ! -d "./$(dir $@)" ]; then\
-		echo "${_BOLD}${_UNDER}${_BLUE}"mkdir -p $(dir $@)"${_END}";\
-		mkdir -p $(dir $@);\
-	fi
-	@echo "${_BOLD}${_BLUE}"$(T_CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@"${_END}"
-	@$(T_CC) -c $(subst .o,.c,$(subst /build/,/,$@)) -o $@
-
-tests:	${OBJECTS} ${T_OBJECTS} libft/libft.a
-	@echo "${_UNDER}${_RED}Creating binary for Tests${_END}"
-	@echo "${_BOLD}${_GREEN}${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} ${_END}"
-	@${T_CC} -o ${T_NAME} ${OBJECTS} ${T_OBJECTS} -lm -L libft/libft.a
-	@./${T_NAME}
 
 ################################################################################
 #                               	CLEANUP								       #

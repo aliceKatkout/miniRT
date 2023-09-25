@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:06:37 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/25 14:08:03 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:57:42 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ char	**check_rgb(char *line)
 {
 	char	**rgb;
 
-	if (line[ft_strlen(line) - 1] == '\n')
-		line[ft_strlen(line) - 1] = ',';
 	rgb = ft_split(line, ',');
 	if (ft_arrlen((void **)rgb) != 3 || !is_number(rgb[0])
 		|| !is_number(rgb[1]) || !is_number(rgb[2])

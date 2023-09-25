@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:31:40 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/25 14:08:18 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:53:43 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ t_cam	create_camera(double hsize, double vsize, double fov)
 }
 
 int	init_fov(t_data *data, char **info)
-{	
+{
+	if (!is_number(*info))
+		return (1);
 	data->cam.fov = ft_atof(*info);
 	if (!is_in_range(data->cam.fov, 0, 180))
 		return (1);
