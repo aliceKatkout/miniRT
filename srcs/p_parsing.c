@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:53:38 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/25 16:17:45 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:22:33 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	parse_scene(char *argv, t_data *data)
 		close(data->rt_file);
 		ft_error_parse("Empty scene.\n", NULL, NULL);
 	}
-	get_map(buf, data->rt_file);  
+	get_map(buf, data->rt_file);
 	if (parse_forms(buf, data))
 		return (ft_error_parse("Occured when parsing forms.\n", data, buf));
 	if (parse_env(data, buf))
