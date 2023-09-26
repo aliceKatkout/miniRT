@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_forms.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:03:00 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:51:35 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	create_obj(char *line, t_data *data, int shape)
 
 	if (shape == SPHERE || shape == PLANE)
 		params = get_params_from_line(line, 4);
-	else if (shape == CYLINDER)
+	else
 		params = get_params_from_line(line, 6);
 	if (!params)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:02:23 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/25 16:18:17 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:44:01 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	create_amb(char *line, t_data *data)
 	info = get_params_from_line(line, 3);
 	if (!info)
 		return (1);
+	if (!is_number(info[1]))
+	{
+		ft_free_arr((void **)info);
+		return (1);
+	}
 	data->world.light.amb.lighting = ft_atof(info[1]);
 	if (!is_in_range(data->world.light.amb.lighting, 0.0, 1.0))
 	{

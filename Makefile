@@ -55,11 +55,11 @@ SRCS			=	srcs/creation_tuple.c	\
 					srcs/utils.c \
 					srcs/canvas.c \
 					srcs/hook.c	\
-					srcs/exit.c 
+					srcs/exit.c
 MAIN_SRCS		=	srcs/main.c
 NAME			= 	miniRT
 RM				= 	rm -rf
-CC				=	gcc $(CFLAGS)
+CC				=	cc -g3 $(CFLAGS)
 CFLAGS			=	-Wall -Werror -Wextra
 OBJECTS 		=	$(subst /,/build/,${SRCS:.c=.o})
 M_OBJECTS 		=	$(subst /,/build/,${MAIN_SRCS:.c=.o})

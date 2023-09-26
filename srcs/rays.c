@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:59:11 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/25 14:51:11 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:41:28 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,6 @@ t_tuple	position(t_ray ray, double t)
 	pos.z = ray.origin.z + (ray.direction.z * t);
 	pos.w = 1;
 	return (pos);
-}
-
-t_intersection	create_intersection(double t, t_obj *s)
-{
-	t_intersection	i;
-
-	i.t = t;
-	i.s = s;
-	return (i);
 }
 
 t_ray	transform_ray(t_ray r, t_matrix_4 m)

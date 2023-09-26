@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:42:22 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/26 14:54:12 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	intersect_caps(t_obj *obj, t_ray r, t_xs *xs)
 {
 	double	t;
 
+	t = 0;
 	if (!obj->closed || fabs(r.direction.y) < EPSILON)
 		return ;
 	t = (obj->min - r.origin.y) / r.direction.y;

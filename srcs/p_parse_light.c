@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 16:17:05 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 18:27:11 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:45:04 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ t_tuple	conv_color(char **param)
 int	get_brightness(t_data *data, char **info)
 {
 	data->world.light.brightness = ft_atof(*info);
-	if (!is_in_range(data->world.light.brightness, 0.0, 1.0))
-	{
-		ft_free_arr((void **) info);
+	if (!is_in_range(data->world.light.brightness, 0.0, 1.0)
+		|| !is_number(*info))
 		return (1);
-	}
 	return (0);
 }
 
@@ -39,10 +37,9 @@ int	get_l_position(t_data *data, char **info1, char **info3, int nb_info)
 {
 	char	**param;
 
-	param = get_new_params(*info1, 3, ',');
-	if (!param)
+	data->world.light.position = create_point(0, 0, 0);
+	if (fill_xyz(&data->world.light.position, *info1))
 		return (1);
-	data->world.light.position = conv_vec(param);
 	if (nb_info == 4)
 	{
 		param = check_rgb(*info3);
@@ -67,10 +64,14 @@ int	create_light(char *line, t_data *data)
 		ft_free_arr((void **) info);
 		return (1);
 	}
-	if (get_brightness(data, &info[2]))
+	if (get_brightness(data, &info[2])
+		|| get_l_position(data, &info[1], &info[3], nb_info))
+	{
+		ft_free_arr((void **) info);
 		return (1);
-	if (get_l_position(data, &info[1], &info[3], nb_info))
-		return (1);
+	}
+	// if (get_l_position(data, &info[1], &info[3], nb_info))
+	// 	return (1);
 	data->world.light.intensity = color_to_unit(data->world.light.intensity);
 	data->world.light.intensity = mult_tuples(data->world.light.intensity,
 			data->world.light.brightness);

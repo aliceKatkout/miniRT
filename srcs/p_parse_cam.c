@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:31:40 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/25 15:53:43 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:51:47 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,31 @@ int	init_fov(t_data *data, char **info)
 	return (0);
 }
 
+int	fill_xyz(t_tuple *t, char *param)
+{
+	char		**xyz;
+
+	xyz = ft_split(param, ',');
+	if (ft_arrlen((void **)xyz) != 3 || !is_number(xyz[0])
+		|| !is_number(xyz[1]) || !is_number(xyz[2]))
+		return (ft_free_arr((void **)xyz));
+	t->x = ft_atof(xyz[0]);
+	t->y = ft_atof(xyz[1]);
+	t->z = ft_atof(xyz[2]);
+	ft_free_arr((void **)xyz);
+	return (0);
+}
+
 int	init_cam(t_data *data, char **info)
 {
 	char	**vec;
-	char	**param;
 
 	if (init_fov(data, &info[3]))
 		return (1);
-	param = get_new_params(info[1], 3, ',');
-	if (!param)
-		return (1);
 	data->cam = create_camera(WINDOW_WIDTH, WINDOW_HEIGHT, data->cam.fov);
-	data->cam.position = conv_vec(param);
+	data->cam.position = create_point(0, 0, 0);
+	if (fill_xyz(&data->cam.position, info[1]))
+		return (1);
 	vec = check_vectors(info[2]);
 	if (!vec)
 		return (1);
@@ -78,7 +91,7 @@ int	parse_cam(char *line, t_data *data)
 	if (!info)
 		return (1);
 	ft_bzero((void *)&data->cam, sizeof(t_cam));
-	if (init_cam(data, info))
+		if (init_cam(data, info))
 	{
 		ft_free_arr((void **) info);
 		return (1);

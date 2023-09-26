@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avedrenn <avedrenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:03:44 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:47:08 by avedrenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_tuple	normal_at(t_obj *obj, t_tuple point)
 	t_tuple	local_normal;
 	t_tuple	world_normal;
 
+	local_normal = create_vector(0, 1, 0);
 	local_point = matrix_mult_tuple(mat_inversion_4(obj->transform), point);
 	if (obj->shape == SPHERE)
 		local_normal = sub_tuples(local_point,

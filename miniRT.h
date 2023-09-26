@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:13:21 by mrabourd          #+#    #+#             */
-/*   Updated: 2023/09/25 14:58:32 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:59:07 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_amb
 {
 	t_tuple	color;
 	double	lighting;
-} t_amb;
+}	t_amb;
 
 typedef struct s_light
 {
@@ -113,7 +113,7 @@ typedef struct s_material
 	double	diffuse;
 	double	specular;
 	double	shininess;
-} t_material;
+}	t_material;
 
 typedef struct s_obj
 {
@@ -127,10 +127,10 @@ typedef struct s_obj
 	double		diameter;
 	double		min;
 	double		max;
-	double 		height;
+	double		height;
 	int			closed;
 	t_material	material;
-	t_tuple 	color;
+	t_tuple		color;
 	t_ray		saved_ray;
 	t_tuple		direction;
 }	t_obj;
@@ -140,7 +140,7 @@ typedef struct s_world
 	t_light		light;
 	t_list		*objs;
 
-} t_world;
+}	t_world;
 
 typedef struct s_comp
 {
@@ -152,13 +152,7 @@ typedef struct s_comp
 	t_tuple		normalv;
 	t_tuple		reflectv;
 	int			inside;
-} t_comp;
-
-typedef struct s_intersection
-{
-	double		t;
-	t_obj	*s;
-}	t_intersection;
+}	t_comp;
 
 typedef struct s_cam
 {
@@ -182,15 +176,6 @@ typedef struct s_data
 	t_cam			cam;
 	t_image			img;
 }	t_data;
-
-
-
-void print_matrix_4(t_matrix_4 a);
-
-
-/* PRINT */
-void	print_objects_list(t_list *lst);
-void	print_matrix(t_matrix_4 m);
 
 /* TUPLES CREATE */
 t_tuple		create_point(double x, double y, double z);
@@ -244,17 +229,17 @@ t_matrix_4	identity_matrix(void);
 t_matrix_4	transpose_mat(t_matrix_4 mat);
 
 /* SUBMATRICES */
-double			determine_two(t_matrix_2 a);
-double			determine_three(t_matrix_3 a);
-double			determine_four(t_matrix_4 a);
+double		determine_two(t_matrix_2 a);
+double		determine_three(t_matrix_3 a);
+double		determine_four(t_matrix_4 a);
 
 t_matrix_2	submatrix_3(t_matrix_3 a, int row, int col);
 t_matrix_3	submatrix_4(t_matrix_4 a, int row, int col);
-double			minor_3(t_matrix_3 a, int row, int col);
-double			cofactor_3(t_matrix_3 a, int row, int col);
+double		minor_3(t_matrix_3 a, int row, int col);
+double		cofactor_3(t_matrix_3 a, int row, int col);
 
-double			minor_4(t_matrix_4 a, int row, int col);
-double 		cofactor_4(t_matrix_4 a, int row, int col);
+double		minor_4(t_matrix_4 a, int row, int col);
+double		cofactor_4(t_matrix_4 a, int row, int col);
 
 /* MATRIX INVERSION */
 int			is_invertible(t_matrix_4 a);
@@ -272,21 +257,20 @@ t_matrix_4	rotation_z(double rad);
 /* RAYS */
 t_ray		create_ray(t_tuple origin, t_tuple direction);
 t_tuple		position(t_ray sray, double t);
-t_ray	transform_ray(t_ray r, t_matrix_4 m);
-t_intersection	create_intersection(double t, t_obj *s);
-t_ray	ray_for_pixel(t_cam c, int px, int py);
+t_ray		transform_ray(t_ray r, t_matrix_4 m);
+t_ray		ray_for_pixel(t_cam c, int px, int py);
 
 /* OBJS */
-t_obj	*void_obj(void);
-t_obj	*void_plane(void);
-void	set_transform(t_obj *s, t_matrix_4 m);
+t_obj		*void_obj(void);
+t_obj		*void_plane(void);
+void		set_transform(t_obj *s, t_matrix_4 m);
 
 /* LIGHTS */
 t_tuple		normal_at(t_obj *obj, t_tuple p);
-t_tuple	reflect(t_tuple in, t_tuple normal);
-t_light	point_light(t_tuple position, t_tuple intensity);
+t_tuple		reflect(t_tuple in, t_tuple normal);
+t_light		point_light(t_tuple position, t_tuple intensity);
 t_material	init_material(void);
-t_tuple	lighting(t_material m, t_comp comp, t_light l, int in_shadow);
+t_tuple		lighting(t_material m, t_comp comp, t_light l, int in_shadow);
 
 /* WORLD */
 t_world		create_world(void);
@@ -295,11 +279,10 @@ t_xs_world	intersect_world(t_world w, t_ray r);
 void		sort_list(t_xs_world *xs_world);
 
 /* INTERSECTIONS */
-void	find_hit(t_xs *xs);
-t_xs	intersect(t_obj *obj, t_ray ray);
-t_xs	intersect_sphere(t_obj *s, t_ray r);
-t_xs	intersect_plane(t_obj *obj, t_ray r);
-
+void		find_hit(t_xs *xs);
+t_xs		intersect(t_obj *obj, t_ray ray);
+t_xs		intersect_sphere(t_obj *s, t_ray r);
+t_xs		intersect_plane(t_obj *obj, t_ray r);
 
 /* SHADOW */
 t_comp		prepare_comp(t_xs xs, t_ray r);
@@ -308,24 +291,24 @@ int			is_shadowed(t_world world, t_tuple point);
 
 /* CAMERA */
 t_ray		ray_for_pixel(t_cam c, int px, int py);
-void		fill_orientation(double *o, t_tuple lft, t_tuple true_up, t_tuple fwd);
+void		fill_orientation(double *o, t_tuple lft,
+				t_tuple true_up, t_tuple fwd);
 t_matrix_4	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* CYLINDERS */
-t_obj	*void_cylinder(void);
-t_tuple	normal_at_cylinder(t_obj *cyl, t_tuple point);
-t_xs	intersect_cylinder(t_obj *obj, t_ray r);
-void	find_xs_cylinder(t_xs *xs, t_obj *obj, t_ray r);
-double	check_cap(t_ray ray, double t);
-void 	intersect_caps(t_obj *obj, t_ray r, t_xs *xs);
-void	find_hit_cylinder(t_xs *xs);
-
+t_obj		*void_cylinder(void);
+t_tuple		normal_at_cylinder(t_obj *cyl, t_tuple point);
+t_xs		intersect_cylinder(t_obj *obj, t_ray r);
+void		find_xs_cylinder(t_xs *xs, t_obj *obj, t_ray r);
+double		check_cap(t_ray ray, double t);
+void		intersect_caps(t_obj *obj, t_ray r, t_xs *xs);
+void		find_hit_cylinder(t_xs *xs);
 
 /* PARSING */
-void	parse_scene(char *argv, t_data *data);
-void	init_scene(t_data *data);
-void	print_list_prefix(t_list *lst, char *prefix);
-void	get_map(t_list *buf, int file);
+void		parse_scene(char *argv, t_data *data);
+void		init_scene(t_data *data);
+void		print_list_prefix(t_list *lst, char *prefix);
+void		get_map(t_list *buf, int file);
 
 /* PARSE CAM */
 t_tuple		conv_vec(char **param);
@@ -333,57 +316,59 @@ t_tuple		conv_cam_orientation(char **vec);
 t_cam		create_camera(double hsize, double vsize, double fov);
 int			init_cam(t_data *data, char **info);
 int			parse_cam(char *line, t_data *data);
+int			fill_xyz(t_tuple *t, char *param);
 
 /* PARSE LIGHT */
-int		create_light(char *line, t_data *data);
-t_tuple	conv_color(char **param);
-int		get_brightness(t_data *data, char **info);
-int		get_l_position(t_data *data, char **info1, char **info3, int nb_info);
-int		create_amb(char *line, t_data *data);
+int			create_light(char *line, t_data *data);
+t_tuple		conv_color(char **param);
+int			get_brightness(t_data *data, char **info);
+int			get_l_position(t_data *data, char **info1,
+				char **info3, int nb_info);
+int			create_amb(char *line, t_data *data);
 
 /* PARSE ENV */
-int    parse_env(t_data *data, t_list *buf);
+int			parse_env(t_data *data, t_list *buf);
 
 /* P_UTILS */
-void	ft_error_parse(char *error, t_data *data, t_list *buf);
-int		ft_arrlen(void **array);
-int		ft_free_arr(void **array);
-void	ft_free_parse(t_data *data, t_list *buf);
-double  ft_atof(char *str);
-char	**check_vectors(char *line);
-char	**get_new_params(char *line, int wanted_nb, char sep);
-char	**check_rgb(char *line);
-char	**get_params_from_line(char *line, int wanted_nb);
-int		is_in_range(double val, double min, double max);
-int		is_number(char *str);
-double	set_diameter(char	*param);
+void		ft_error_parse(char *error, t_data *data, t_list *buf);
+int			ft_arrlen(void **array);
+int			ft_free_arr(void **array);
+void		ft_free_parse(t_data *data, t_list *buf);
+double		ft_atof(char *str);
+char		**check_vectors(char *line);
+char		**get_new_params(char *line, int wanted_nb, char sep);
+char		**check_rgb(char *line);
+char		**get_params_from_line(char *line, int wanted_nb);
+int			is_in_range(double val, double min, double max);
+int			is_number(char *str);
+double		set_diameter(char	*param);
 
-int		set_diam_height_rad(char *s1, char *s2, t_obj *elem);
-void	ft_replace(char *str, char old, char new);
+int			set_diam_height_rad(char *s1, char *s2, t_obj *elem);
+void		ft_replace(char *str, char old, char new);
 
 /* P_FORMS */
-int	create_obj(char *line, t_data *data, int shape);
-int	parse_forms(t_list *buf, t_data *data);
-t_obj	*init_fill_obj(char **params, int shape);
-t_tuple	color_to_unit(t_tuple color);
+int			create_obj(char *line, t_data *data, int shape);
+int			parse_forms(t_list *buf, t_data *data);
+t_obj		*init_fill_obj(char **params, int shape);
+t_tuple		color_to_unit(t_tuple color);
 t_matrix_4	pl_transform_matr(t_obj *pl);
 
 /* PARSE CYLINDER */
-double	cylinder_max(t_obj *cyl);
-int	init_cylinder(char **params, t_obj	*cy);
+double		cylinder_max(t_obj *cyl);
+int			init_cylinder(char **params, t_obj	*cy);
 t_matrix_4	cyl_transfo_matr(t_obj *cy);
 t_matrix_4	fuse_rotate(t_obj	*cy);
 
 /* P_FORMS_INIT */
-double	cylinder_min(t_obj *cyl);
-int	init_rgb(t_obj *obj, char *param);
-int	init_xyz(t_obj *obj, char *param);
-int	init_sp(char **params, t_obj *sp);
-int	init_plane(char **params, t_obj *pl);
+double		cylinder_min(t_obj *cyl);
+int			init_rgb(t_obj *obj, char *param);
+int			init_xyz(t_obj *obj, char *param);
+int			init_sp(char **params, t_obj *sp);
+int			init_plane(char **params, t_obj *pl);
 
 /* EXIT */
-int		ft_free_all(t_data *data);
-void	ft_swap_double(double	*a, double	*b);
-void	ft_sort_double_tab(double *tab, int size);
+int			ft_free_all(t_data *data);
+void		ft_swap_double(double	*a, double	*b);
+void		ft_sort_double_tab(double *tab, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mrabourd <mrabourd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:44:10 by avedrenn          #+#    #+#             */
-/*   Updated: 2023/09/21 16:03:10 by mrabourd         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:06:56 by mrabourd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_xs	intersect_plane(t_obj *obj, t_ray r)
 
 void	find_hit(t_xs *xs)
 {
+	xs->t = 0;
 	if (xs->xs[0] < 0 && xs->xs[1] < 0)
 		xs->count = 0;
 	else if (xs->xs[0] < 0 || xs->xs[1] < 0)
@@ -83,6 +84,7 @@ t_xs	intersect_sphere(t_obj *s, t_ray r)
 	double	b;
 	double	discriminant;
 
+	xs.t = 0;
 	obj_to_ray = sub_tuples(r.origin, create_point(s->x, s->y, s->z));
 	xs.obj = s;
 	a = dot_product(r.direction, r.direction);
